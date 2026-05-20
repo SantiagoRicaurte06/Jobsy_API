@@ -1,11 +1,12 @@
 package controllers
 
 import (
-	"Crud_tienda/api_crud_tienda/models"
+	"API_JOBSY/Tienda_API/models"
 	"encoding/json"
-	"errors"
 	"strconv"
 	"strings"
+
+	"github.com/beego/beego/v2/core/logs"
 
 	beego "github.com/beego/beego/v2/server/web"
 )
@@ -32,16 +33,31 @@ func (c *FacturacionController) URLMapping() {
 // @Failure 403 body is empty
 // @router / [post]
 func (c *FacturacionController) Post() {
-	var v models.Facturacion
+	var v models.CategoriasTienda
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddFacturacion(&v); err == nil {
-			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+		if _, err := models.AddCategoriasTienda(&v); err == nil {
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  201,
+				"message": "Cliente creado exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": err.Error(),
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "Error al deserializar el cuerpo de la solicitud",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -56,11 +72,21 @@ func (c *FacturacionController) Post() {
 func (c *FacturacionController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetFacturacionById(id)
+	v, err := models.GetCategoriasTiendaById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Cliente encontrado",
+			"data":    v,
+		}
 	}
 	c.ServeJSON()
 }
@@ -110,7 +136,12 @@ func (c *FacturacionController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = map[string]interface{}{
+					"success": false,
+					"status":  400,
+					"message": "Error: invalid query key/value pair",
+					"data":    nil,
+				}
 				c.ServeJSON()
 				return
 			}
@@ -119,11 +150,22 @@ func (c *FacturacionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllFacturacion(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllCategoriasTienda(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = l
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Clientes encontrados",
+			"data":    l,
+		}
 	}
 	c.ServeJSON()
 }

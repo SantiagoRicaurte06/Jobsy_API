@@ -1,11 +1,12 @@
 package controllers
 
 import (
-	"Crud_tienda/api_crud_tienda/models"
+	"API_JOBSY/Tienda_API/models"
 	"encoding/json"
-	"errors"
 	"strconv"
 	"strings"
+
+	"github.com/beego/beego/v2/core/logs"
 
 	beego "github.com/beego/beego/v2/server/web"
 )
@@ -35,13 +36,28 @@ func (c *CuponesController) Post() {
 	var v models.Cupones
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddCupones(&v); err == nil {
-			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  201,
+				"message": "Cupon creado exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": err.Error(),
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "Error al deserializar el cuerpo de la solicitud",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -58,9 +74,19 @@ func (c *CuponesController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetCuponesById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Cupon encontrado",
+			"data":    v,
+		}
 	}
 	c.ServeJSON()
 }
@@ -110,7 +136,12 @@ func (c *CuponesController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = map[string]interface{}{
+					"success": false,
+					"status":  400,
+					"message": "Error: invalid query key/value pair",
+					"data":    nil,
+				}
 				c.ServeJSON()
 				return
 			}
@@ -121,9 +152,20 @@ func (c *CuponesController) GetAll() {
 
 	l, err := models.GetAllCupones(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = l
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Clientes encontrados",
+			"data":    l,
+		}
 	}
 	c.ServeJSON()
 }
@@ -142,12 +184,27 @@ func (c *CuponesController) Put() {
 	v := models.Cupones{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateCuponesById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  200,
+				"message": "Cupon actualizado",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": err.Error(),
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "Error al deserializar el cuerpo de la solicitud",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -163,9 +220,19 @@ func (c *CuponesController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteCupones(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Cupon eliminado",
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
