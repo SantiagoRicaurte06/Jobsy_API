@@ -1,12 +1,13 @@
 package controllers
 
 import (
-	"Jobsy_Api/Catalogo_api/models"
+	"Api_Josby/Catalogo_API/models"
 	"encoding/json"
 	"errors"
 	"strconv"
 	"strings"
 
+	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -36,12 +37,21 @@ func (c *ModalidadesSuscripcionController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddModalidadesSuscripcion(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  201,
+				"message": "Cliente creado exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": err.Error(),
+				"data":    nil,
+			}
 		}
-	} else {
-		c.Data["json"] = err.Error()
 	}
 	c.ServeJSON()
 }
@@ -58,9 +68,20 @@ func (c *ModalidadesSuscripcionController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetModalidadesSuscripcionById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+		}
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    v,
+		}
+
 	}
 	c.ServeJSON()
 }
@@ -110,7 +131,12 @@ func (c *ModalidadesSuscripcionController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = map[string]interface{}{
+					"success": false,
+					"status":  400,
+					"message": errors.New("Error: invalid query key/value pair").Error(),
+					"data":    nil,
+				}
 				c.ServeJSON()
 				return
 			}
@@ -121,10 +147,22 @@ func (c *ModalidadesSuscripcionController) GetAll() {
 
 	l, err := models.GetAllModalidadesSuscripcion(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = l
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    l,
+		}
 	}
+
 	c.ServeJSON()
 }
 
@@ -142,12 +180,29 @@ func (c *ModalidadesSuscripcionController) Put() {
 	v := models.ModalidadesSuscripcion{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateModalidadesSuscripcionById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  200,
+				"message": "Cliente actualizado exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": "Error: no se pudo actualizar el cliente, es posible que el id no exista o que la solicitud contenga un parametro incorrecto",
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "Error: no se pudo actualizar el cliente, es posible que el id no exista o que la solicitud contenga un parametro incorrecto",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -163,9 +218,20 @@ func (c *ModalidadesSuscripcionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteModalidadesSuscripcion(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Cliente eliminado exitosamente",
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "Error: no se pudo eliminar el cliente, es posible que el cliente tenga pedidos asociados o que el id no exista",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
