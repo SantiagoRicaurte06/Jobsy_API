@@ -19,18 +19,10 @@ func init() {
 
 // Run the migrations
 func (m *JobsyMigrations_20260521_131549) Up() {
-	m.SQL(`CREATE TABLE IF NOT EXISTS usuarios (
-		id_usuarios SERIAL PRIMARY KEY,
-		nombre VARCHAR(100) NOT NULL,
-		correo VARCHAR(100) UNIQUE NOT NULL,
-		contrasena VARCHAR(255) NOT NULL,
-		telefono VARCHAR(20),
-		activo BOOLEAN DEFAULT true,
-		creado_en TIMESTAMP DEFAULT NOW(),
-		actualizado_en TIMESTAMP DEFAULT NOW()
+	m.SQL(`CREATE SCHEMA IF NOT EXISTS usuarios
 	);`)
 
-	m.SQL(`CREATE TABLE IF NOT EXISTS configuraciones (
+	m.SQL(`CREATE TABLE IF NOT EXISTS usuarios.configuraciones (
 		id_configuraciones SERIAL PRIMARY KEY,
 		id_usuarios INT REFERENCES usuarios(id_usuarios),
 		perfil_publico BOOLEAN DEFAULT false,
@@ -51,7 +43,7 @@ func (m *JobsyMigrations_20260521_131549) Up() {
 		actualizado_en TIMESTAMP DEFAULT NOW()
 	);`)
 
-	m.SQL(`CREATE TABLE IF NOT EXISTS notificaciones (
+	m.SQL(`CREATE TABLE IF NOT EXISTS usuarios.notificaciones (
 		id_notificaciones SERIAL PRIMARY KEY,
 		id_usuarios INT REFERENCES usuarios(id_usuarios),
 		titulo VARCHAR(255),
@@ -67,5 +59,5 @@ func (m *JobsyMigrations_20260521_131549) Up() {
 func (m *JobsyMigrations_20260521_131549) Down() {
 	m.SQL(`DROP TABLE IF EXISTS configuraciones;`)
 	m.SQL(`DROP TABLE IF EXISTS notificaciones;`)
-	m.SQL(`DROP TABLE IF EXISTS usuarios;`)
+	m.SQL(`DROP SCHEMA IF EXISTS usuarios;`)
 }
