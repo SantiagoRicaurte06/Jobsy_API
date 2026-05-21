@@ -1,0 +1,2896 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API\n",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/carritos/": {
+            "get": {
+                "tags": [
+                    "carritos"
+                ],
+                "description": "get Carritos\n\u003cbr\u003e",
+                "operationId": "CarritosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Carritos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "carritos"
+                ],
+                "description": "create Carritos\n\u003cbr\u003e",
+                "operationId": "CarritosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Carritos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Carritos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Carritos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/carritos/{id}": {
+            "get": {
+                "tags": [
+                    "carritos"
+                ],
+                "description": "get Carritos by id\n\u003cbr\u003e",
+                "operationId": "CarritosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Carritos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "carritos"
+                ],
+                "description": "update the Carritos\n\u003cbr\u003e",
+                "operationId": "CarritosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Carritos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Carritos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Carritos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "carritos"
+                ],
+                "description": "delete the Carritos\n\u003cbr\u003e",
+                "operationId": "CarritosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/categorias_tienda/": {
+            "get": {
+                "tags": [
+                    "categorias_tienda"
+                ],
+                "description": "get CategoriasTienda\n\u003cbr\u003e",
+                "operationId": "CategoriasTiendaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoriasTienda"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "categorias_tienda"
+                ],
+                "description": "create CategoriasTienda\n\u003cbr\u003e",
+                "operationId": "CategoriasTiendaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CategoriasTienda content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoriasTienda"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CategoriasTienda"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/categorias_tienda/{id}": {
+            "get": {
+                "tags": [
+                    "categorias_tienda"
+                ],
+                "description": "get CategoriasTienda by id\n\u003cbr\u003e",
+                "operationId": "CategoriasTiendaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoriasTienda"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "categorias_tienda"
+                ],
+                "description": "update the CategoriasTienda\n\u003cbr\u003e",
+                "operationId": "CategoriasTiendaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CategoriasTienda content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoriasTienda"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoriasTienda"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "categorias_tienda"
+                ],
+                "description": "delete the CategoriasTienda\n\u003cbr\u003e",
+                "operationId": "CategoriasTiendaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/cupones/": {
+            "get": {
+                "tags": [
+                    "cupones"
+                ],
+                "description": "get Cupones\n\u003cbr\u003e",
+                "operationId": "CuponesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Cupones"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "cupones"
+                ],
+                "description": "create Cupones\n\u003cbr\u003e",
+                "operationId": "CuponesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Cupones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Cupones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Cupones"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/cupones/{id}": {
+            "get": {
+                "tags": [
+                    "cupones"
+                ],
+                "description": "get Cupones by id\n\u003cbr\u003e",
+                "operationId": "CuponesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Cupones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "cupones"
+                ],
+                "description": "update the Cupones\n\u003cbr\u003e",
+                "operationId": "CuponesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Cupones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Cupones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Cupones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "cupones"
+                ],
+                "description": "delete the Cupones\n\u003cbr\u003e",
+                "operationId": "CuponesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/facturacion/": {
+            "get": {
+                "tags": [
+                    "facturacion"
+                ],
+                "description": "get Facturacion\n\u003cbr\u003e",
+                "operationId": "FacturacionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Facturacion"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "facturacion"
+                ],
+                "description": "create Facturacion\n\u003cbr\u003e",
+                "operationId": "FacturacionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Facturacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Facturacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Facturacion"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/facturacion/{id}": {
+            "get": {
+                "tags": [
+                    "facturacion"
+                ],
+                "description": "get Facturacion by id\n\u003cbr\u003e",
+                "operationId": "FacturacionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Facturacion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "facturacion"
+                ],
+                "description": "update the Facturacion\n\u003cbr\u003e",
+                "operationId": "FacturacionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Facturacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Facturacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Facturacion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "facturacion"
+                ],
+                "description": "delete the Facturacion\n\u003cbr\u003e",
+                "operationId": "FacturacionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/metodo_pago/": {
+            "get": {
+                "tags": [
+                    "metodo_pago"
+                ],
+                "description": "get MetodoPago\n\u003cbr\u003e",
+                "operationId": "MetodoPagoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodoPago"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "metodo_pago"
+                ],
+                "description": "create MetodoPago\n\u003cbr\u003e",
+                "operationId": "MetodoPagoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for MetodoPago content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodoPago"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.MetodoPago"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/metodo_pago/{id}": {
+            "get": {
+                "tags": [
+                    "metodo_pago"
+                ],
+                "description": "get MetodoPago by id\n\u003cbr\u003e",
+                "operationId": "MetodoPagoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodoPago"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "metodo_pago"
+                ],
+                "description": "update the MetodoPago\n\u003cbr\u003e",
+                "operationId": "MetodoPagoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for MetodoPago content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodoPago"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodoPago"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "metodo_pago"
+                ],
+                "description": "delete the MetodoPago\n\u003cbr\u003e",
+                "operationId": "MetodoPagoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/metodos_pago_guardados/": {
+            "get": {
+                "tags": [
+                    "metodos_pago_guardados"
+                ],
+                "description": "get MetodosPagoGuardados\n\u003cbr\u003e",
+                "operationId": "MetodosPagoGuardadosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodosPagoGuardados"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "metodos_pago_guardados"
+                ],
+                "description": "create MetodosPagoGuardados\n\u003cbr\u003e",
+                "operationId": "MetodosPagoGuardadosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for MetodosPagoGuardados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodosPagoGuardados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.MetodosPagoGuardados"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/metodos_pago_guardados/{id}": {
+            "get": {
+                "tags": [
+                    "metodos_pago_guardados"
+                ],
+                "description": "get MetodosPagoGuardados by id\n\u003cbr\u003e",
+                "operationId": "MetodosPagoGuardadosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodosPagoGuardados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "metodos_pago_guardados"
+                ],
+                "description": "update the MetodosPagoGuardados\n\u003cbr\u003e",
+                "operationId": "MetodosPagoGuardadosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for MetodosPagoGuardados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodosPagoGuardados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.MetodosPagoGuardados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "metodos_pago_guardados"
+                ],
+                "description": "delete the MetodosPagoGuardados\n\u003cbr\u003e",
+                "operationId": "MetodosPagoGuardadosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/pagos/": {
+            "get": {
+                "tags": [
+                    "pagos"
+                ],
+                "description": "get Pagos\n\u003cbr\u003e",
+                "operationId": "PagosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pagos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "pagos"
+                ],
+                "description": "create Pagos\n\u003cbr\u003e",
+                "operationId": "PagosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Pagos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Pagos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Pagos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/pagos/{id}": {
+            "get": {
+                "tags": [
+                    "pagos"
+                ],
+                "description": "get Pagos by id\n\u003cbr\u003e",
+                "operationId": "PagosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pagos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "pagos"
+                ],
+                "description": "update the Pagos\n\u003cbr\u003e",
+                "operationId": "PagosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Pagos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Pagos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Pagos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "pagos"
+                ],
+                "description": "delete the Pagos\n\u003cbr\u003e",
+                "operationId": "PagosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/pedido_items/": {
+            "get": {
+                "tags": [
+                    "pedido_items"
+                ],
+                "description": "get PedidoItems\n\u003cbr\u003e",
+                "operationId": "PedidoItemsController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PedidoItems"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "pedido_items"
+                ],
+                "description": "create PedidoItems\n\u003cbr\u003e",
+                "operationId": "PedidoItemsController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for PedidoItems content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PedidoItems"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.PedidoItems"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/pedido_items/{id}": {
+            "get": {
+                "tags": [
+                    "pedido_items"
+                ],
+                "description": "get PedidoItems by id\n\u003cbr\u003e",
+                "operationId": "PedidoItemsController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PedidoItems"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "pedido_items"
+                ],
+                "description": "update the PedidoItems\n\u003cbr\u003e",
+                "operationId": "PedidoItemsController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for PedidoItems content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PedidoItems"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PedidoItems"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "pedido_items"
+                ],
+                "description": "delete the PedidoItems\n\u003cbr\u003e",
+                "operationId": "PedidoItemsController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/productos/": {
+            "get": {
+                "tags": [
+                    "productos"
+                ],
+                "description": "get Productos\n\u003cbr\u003e",
+                "operationId": "ProductosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Productos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "productos"
+                ],
+                "description": "create Productos\n\u003cbr\u003e",
+                "operationId": "ProductosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Productos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Productos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Productos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/productos/{id}": {
+            "get": {
+                "tags": [
+                    "productos"
+                ],
+                "description": "get Productos by id\n\u003cbr\u003e",
+                "operationId": "ProductosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Productos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "productos"
+                ],
+                "description": "update the Productos\n\u003cbr\u003e",
+                "operationId": "ProductosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Productos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Productos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Productos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "productos"
+                ],
+                "description": "delete the Productos\n\u003cbr\u003e",
+                "operationId": "ProductosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/saldo_jobsy/": {
+            "get": {
+                "tags": [
+                    "saldo_jobsy"
+                ],
+                "description": "get SaldoJobsy\n\u003cbr\u003e",
+                "operationId": "SaldoJobsyController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SaldoJobsy"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "saldo_jobsy"
+                ],
+                "description": "create SaldoJobsy\n\u003cbr\u003e",
+                "operationId": "SaldoJobsyController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for SaldoJobsy content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SaldoJobsy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.SaldoJobsy"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/saldo_jobsy/{id}": {
+            "get": {
+                "tags": [
+                    "saldo_jobsy"
+                ],
+                "description": "get SaldoJobsy by id\n\u003cbr\u003e",
+                "operationId": "SaldoJobsyController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SaldoJobsy"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "saldo_jobsy"
+                ],
+                "description": "update the SaldoJobsy\n\u003cbr\u003e",
+                "operationId": "SaldoJobsyController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for SaldoJobsy content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SaldoJobsy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SaldoJobsy"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "saldo_jobsy"
+                ],
+                "description": "delete the SaldoJobsy\n\u003cbr\u003e",
+                "operationId": "SaldoJobsyController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_transaccion/": {
+            "get": {
+                "tags": [
+                    "tipo_transaccion"
+                ],
+                "description": "get TipoTransaccion\n\u003cbr\u003e",
+                "operationId": "TipoTransaccionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoTransaccion"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_transaccion"
+                ],
+                "description": "create TipoTransaccion\n\u003cbr\u003e",
+                "operationId": "TipoTransaccionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoTransaccion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoTransaccion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoTransaccion"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_transaccion/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_transaccion"
+                ],
+                "description": "get TipoTransaccion by id\n\u003cbr\u003e",
+                "operationId": "TipoTransaccionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoTransaccion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_transaccion"
+                ],
+                "description": "update the TipoTransaccion\n\u003cbr\u003e",
+                "operationId": "TipoTransaccionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoTransaccion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoTransaccion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoTransaccion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_transaccion"
+                ],
+                "description": "delete the TipoTransaccion\n\u003cbr\u003e",
+                "operationId": "TipoTransaccionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_carrito_items/": {
+            "get": {
+                "tags": [
+                    "tr_carrito_items"
+                ],
+                "description": "get TrCarritoItems\n\u003cbr\u003e",
+                "operationId": "TrCarritoItemsController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrCarritoItems"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid query parameters"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tr_carrito_items"
+                ],
+                "description": "create TrCarritoItems\n\u003cbr\u003e",
+                "operationId": "TrCarritoItemsController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrCarritoItems content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrCarritoItems"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrCarritoItems"
+                    },
+                    "400": {
+                        "description": "body is empty or invalid"
+                    }
+                }
+            }
+        },
+        "/tr_carrito_items/{id}": {
+            "get": {
+                "tags": [
+                    "tr_carrito_items"
+                ],
+                "description": "get TrCarritoItems by id\n\u003cbr\u003e",
+                "operationId": "TrCarritoItemsController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrCarritoItems"
+                        }
+                    },
+                    "400": {
+                        "description": "id is invalid"
+                    },
+                    "404": {
+                        "description": "TrCarritoItems not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tr_carrito_items"
+                ],
+                "description": "update the TrCarritoItems\n\u003cbr\u003e",
+                "operationId": "TrCarritoItemsController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrCarritoItems content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrCarritoItems"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrCarritoItems"
+                        }
+                    },
+                    "400": {
+                        "description": "id is invalid or body is invalid"
+                    },
+                    "404": {
+                        "description": "TrCarritoItems not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tr_carrito_items"
+                ],
+                "description": "delete the TrCarritoItems\n\u003cbr\u003e",
+                "operationId": "TrCarritoItemsController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success"
+                    },
+                    "400": {
+                        "description": "id is invalid"
+                    },
+                    "404": {
+                        "description": "TrCarritoItems not found"
+                    }
+                }
+            }
+        },
+        "/transacciones/": {
+            "get": {
+                "tags": [
+                    "transacciones"
+                ],
+                "description": "get Transacciones\n\u003cbr\u003e",
+                "operationId": "TransaccionesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Transacciones"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "transacciones"
+                ],
+                "description": "create Transacciones\n\u003cbr\u003e",
+                "operationId": "TransaccionesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Transacciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Transacciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Transacciones"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/transacciones/{id}": {
+            "get": {
+                "tags": [
+                    "transacciones"
+                ],
+                "description": "get Transacciones by id\n\u003cbr\u003e",
+                "operationId": "TransaccionesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Transacciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "transacciones"
+                ],
+                "description": "update the Transacciones\n\u003cbr\u003e",
+                "operationId": "TransaccionesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Transacciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Transacciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Transacciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "transacciones"
+                ],
+                "description": "delete the Transacciones\n\u003cbr\u003e",
+                "operationId": "TransaccionesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Carritos": {
+            "title": "Carritos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdCupones": {
+                    "$ref": "#/definitions/models.Cupones"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.CategoriasTienda": {
+            "title": "CategoriasTienda",
+            "type": "object",
+            "properties": {
+                "Activa": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Icono": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Cupones": {
+            "title": "Cupones",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Codigo": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "DescuentoFijo": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "DescuentoPct": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ExpiraEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "UsosActuales": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "UsosMaximos": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.Facturacion": {
+            "title": "Facturacion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CuponDescuento": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "DescuentoTotal": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Envio": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "FacturaCiudad": {
+                    "type": "string"
+                },
+                "FacturaCorreo": {
+                    "type": "string"
+                },
+                "FacturaDireccion": {
+                    "type": "string"
+                },
+                "FacturaDoc": {
+                    "type": "string"
+                },
+                "FacturaDpto": {
+                    "type": "string"
+                },
+                "FacturaNombre": {
+                    "type": "string"
+                },
+                "FacturaTelefono": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdCarritos": {
+                    "$ref": "#/definitions/models.Carritos"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Subtotal": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Total": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "models.MetodoPago": {
+            "title": "MetodoPago",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.MetodosPagoGuardados": {
+            "title": "MetodosPagoGuardados",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Alias": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "EsPrincipal": {
+                    "type": "boolean"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdMetodoPago": {
+                    "$ref": "#/definitions/models.MetodoPago"
+                },
+                "IdTipoCuenta": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NumeroCuenta": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Pagos": {
+            "title": "Pagos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Banco": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdContrataciones": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdMetodoPago": {
+                    "$ref": "#/definitions/models.MetodoPago"
+                },
+                "IdPedidos": {
+                    "$ref": "#/definitions/models.Facturacion"
+                },
+                "IdTipoCuenta": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTipoPago": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Monto": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ReferenciaExt": {
+                    "type": "string"
+                },
+                "TitularTarjeta": {
+                    "type": "string"
+                },
+                "Ultimos4": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.PedidoItems": {
+            "title": "PedidoItems",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Cantidad": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPedidos": {
+                    "$ref": "#/definitions/models.Facturacion"
+                },
+                "IdProductos": {
+                    "$ref": "#/definitions/models.Productos"
+                },
+                "PrecioUnitario": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Subtotal": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "models.Productos": {
+            "title": "Productos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "DescuentoPct": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Destacado": {
+                    "type": "boolean"
+                },
+                "EnvioGratis": {
+                    "type": "boolean"
+                },
+                "EsNuevo": {
+                    "type": "boolean"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdCategoriasTienda": {
+                    "$ref": "#/definitions/models.CategoriasTienda"
+                },
+                "IdTipo": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ImagenUrl": {
+                    "type": "string"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "Precio": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "PrecioOriginal": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "RatingPromedio": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Stock": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TotalResenas": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.SaldoJobsy": {
+            "title": "SaldoJobsy",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ProximoPago": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "SaldoDisponible": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TotalGanado": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TotalRetirado": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "models.TipoTransaccion": {
+            "title": "TipoTransaccion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TrCarritoItems": {
+            "title": "TrCarritoItems",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Cantidad": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdCarritos": {
+                    "$ref": "#/definitions/models.Carritos"
+                },
+                "IdProductos": {
+                    "$ref": "#/definitions/models.Productos"
+                },
+                "PrecioUnitario": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Seleccionado": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.Transacciones": {
+            "title": "Transacciones",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPagos": {
+                    "$ref": "#/definitions/models.Pagos"
+                },
+                "IdTipoTransaccion": {
+                    "$ref": "#/definitions/models.TipoTransaccion"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Monto": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Referencia": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "categorias_tienda",
+            "description": "CategoriasTiendaController operations for CategoriasTienda\n"
+        },
+        {
+            "name": "productos",
+            "description": "ProductosController operations for Productos\n"
+        },
+        {
+            "name": "carritos",
+            "description": "CarritosController operations for Carritos\n"
+        },
+        {
+            "name": "cupones",
+            "description": "CuponesController operations for Cupones\n"
+        },
+        {
+            "name": "tr_carrito_items",
+            "description": "TrCarritoItemsController operations for TrCarritoItems\n"
+        },
+        {
+            "name": "facturacion",
+            "description": "FacturacionController operations for Facturacion\n"
+        },
+        {
+            "name": "pedido_items",
+            "description": "PedidoItemsController operations for PedidoItems\n"
+        },
+        {
+            "name": "pagos",
+            "description": "PagosController operations for Pagos\n"
+        },
+        {
+            "name": "metodo_pago",
+            "description": "MetodoPagoController operations for MetodoPago\n"
+        },
+        {
+            "name": "transacciones",
+            "description": "TransaccionesController operations for Transacciones\n"
+        },
+        {
+            "name": "tipo_transaccion",
+            "description": "TipoTransaccionController operations for TipoTransaccion\n"
+        },
+        {
+            "name": "saldo_jobsy",
+            "description": "SaldoJobsyController operations for SaldoJobsy\n"
+        },
+        {
+            "name": "metodos_pago_guardados",
+            "description": "MetodosPagoGuardadosController operations for MetodosPagoGuardados\n"
+        }
+    ]
+}
