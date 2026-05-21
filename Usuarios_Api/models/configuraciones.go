@@ -53,6 +53,7 @@ func GetConfiguracionesById(id int) (v *Configuraciones, err error) {
 	o := orm.NewOrm()
 	v = &Configuraciones{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
 		return v, nil
 	}
 	return nil, err
@@ -63,7 +64,7 @@ func GetConfiguracionesById(id int) (v *Configuraciones, err error) {
 func GetAllConfiguraciones(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Configuraciones))
+	qs := o.QueryTable(new(Configuraciones)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
