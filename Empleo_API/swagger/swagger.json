@@ -1,0 +1,4652 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API\n",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/certificaciones/": {
+            "get": {
+                "tags": [
+                    "certificaciones"
+                ],
+                "description": "get Certificaciones\n\u003cbr\u003e",
+                "operationId": "CertificacionesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Certificaciones"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "certificaciones"
+                ],
+                "description": "create Certificaciones\n\u003cbr\u003e",
+                "operationId": "CertificacionesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Certificaciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Certificaciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Certificaciones"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/certificaciones/{id}": {
+            "get": {
+                "tags": [
+                    "certificaciones"
+                ],
+                "description": "get Certificaciones by id\n\u003cbr\u003e",
+                "operationId": "CertificacionesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Certificaciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "certificaciones"
+                ],
+                "description": "update the Certificaciones\n\u003cbr\u003e",
+                "operationId": "CertificacionesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Certificaciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Certificaciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Certificaciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "certificaciones"
+                ],
+                "description": "delete the Certificaciones\n\u003cbr\u003e",
+                "operationId": "CertificacionesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/contrataciones/": {
+            "get": {
+                "tags": [
+                    "contrataciones"
+                ],
+                "description": "get Contrataciones\n\u003cbr\u003e",
+                "operationId": "ContratacionesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Contrataciones"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "contrataciones"
+                ],
+                "description": "create Contrataciones\n\u003cbr\u003e",
+                "operationId": "ContratacionesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Contrataciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contrataciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Contrataciones"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/contrataciones/{id}": {
+            "get": {
+                "tags": [
+                    "contrataciones"
+                ],
+                "description": "get Contrataciones by id\n\u003cbr\u003e",
+                "operationId": "ContratacionesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Contrataciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "contrataciones"
+                ],
+                "description": "update the Contrataciones\n\u003cbr\u003e",
+                "operationId": "ContratacionesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Contrataciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Contrataciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Contrataciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "contrataciones"
+                ],
+                "description": "delete the Contrataciones\n\u003cbr\u003e",
+                "operationId": "ContratacionesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/dias_trabajados/": {
+            "get": {
+                "tags": [
+                    "dias_trabajados"
+                ],
+                "description": "get DiasTrabajados\n\u003cbr\u003e",
+                "operationId": "DiasTrabajadosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasTrabajados"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "dias_trabajados"
+                ],
+                "description": "create DiasTrabajados\n\u003cbr\u003e",
+                "operationId": "DiasTrabajadosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DiasTrabajados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasTrabajados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DiasTrabajados"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/dias_trabajados/{id}": {
+            "get": {
+                "tags": [
+                    "dias_trabajados"
+                ],
+                "description": "get DiasTrabajados by id\n\u003cbr\u003e",
+                "operationId": "DiasTrabajadosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasTrabajados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "dias_trabajados"
+                ],
+                "description": "update the DiasTrabajados\n\u003cbr\u003e",
+                "operationId": "DiasTrabajadosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DiasTrabajados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasTrabajados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasTrabajados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "dias_trabajados"
+                ],
+                "description": "delete the DiasTrabajados\n\u003cbr\u003e",
+                "operationId": "DiasTrabajadosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/disponibilidad_empleado/": {
+            "get": {
+                "tags": [
+                    "disponibilidad_empleado"
+                ],
+                "description": "get DisponibilidadEmpleado\n\u003cbr\u003e",
+                "operationId": "DisponibilidadEmpleadoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadEmpleado"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "disponibilidad_empleado"
+                ],
+                "description": "create DisponibilidadEmpleado\n\u003cbr\u003e",
+                "operationId": "DisponibilidadEmpleadoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DisponibilidadEmpleado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadEmpleado"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DisponibilidadEmpleado"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/disponibilidad_empleado/{id}": {
+            "get": {
+                "tags": [
+                    "disponibilidad_empleado"
+                ],
+                "description": "get DisponibilidadEmpleado by id\n\u003cbr\u003e",
+                "operationId": "DisponibilidadEmpleadoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadEmpleado"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "disponibilidad_empleado"
+                ],
+                "description": "update the DisponibilidadEmpleado\n\u003cbr\u003e",
+                "operationId": "DisponibilidadEmpleadoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DisponibilidadEmpleado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadEmpleado"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DisponibilidadEmpleado"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "disponibilidad_empleado"
+                ],
+                "description": "delete the DisponibilidadEmpleado\n\u003cbr\u003e",
+                "operationId": "DisponibilidadEmpleadoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/documentos_usuario/": {
+            "get": {
+                "tags": [
+                    "documentos_usuario"
+                ],
+                "description": "get DocumentosUsuario\n\u003cbr\u003e",
+                "operationId": "DocumentosUsuarioController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentosUsuario"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "documentos_usuario"
+                ],
+                "description": "create DocumentosUsuario\n\u003cbr\u003e",
+                "operationId": "DocumentosUsuarioController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentosUsuario content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentosUsuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DocumentosUsuario"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/documentos_usuario/{id}": {
+            "get": {
+                "tags": [
+                    "documentos_usuario"
+                ],
+                "description": "get DocumentosUsuario by id\n\u003cbr\u003e",
+                "operationId": "DocumentosUsuarioController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentosUsuario"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "documentos_usuario"
+                ],
+                "description": "update the DocumentosUsuario\n\u003cbr\u003e",
+                "operationId": "DocumentosUsuarioController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentosUsuario content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentosUsuario"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentosUsuario"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "documentos_usuario"
+                ],
+                "description": "delete the DocumentosUsuario\n\u003cbr\u003e",
+                "operationId": "DocumentosUsuarioController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/especialidades/": {
+            "get": {
+                "tags": [
+                    "especialidades"
+                ],
+                "description": "get Especialidades\n\u003cbr\u003e",
+                "operationId": "EspecialidadesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Especialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "especialidades"
+                ],
+                "description": "create Especialidades\n\u003cbr\u003e",
+                "operationId": "EspecialidadesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Especialidades content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Especialidades"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Especialidades"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/especialidades/{id}": {
+            "get": {
+                "tags": [
+                    "especialidades"
+                ],
+                "description": "get Especialidades by id\n\u003cbr\u003e",
+                "operationId": "EspecialidadesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Especialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "especialidades"
+                ],
+                "description": "update the Especialidades\n\u003cbr\u003e",
+                "operationId": "EspecialidadesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Especialidades content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Especialidades"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Especialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "especialidades"
+                ],
+                "description": "delete the Especialidades\n\u003cbr\u003e",
+                "operationId": "EspecialidadesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/hojas_vida/": {
+            "get": {
+                "tags": [
+                    "hojas_vida"
+                ],
+                "description": "get HojasVida\n\u003cbr\u003e",
+                "operationId": "HojasVidaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HojasVida"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "hojas_vida"
+                ],
+                "description": "create HojasVida\n\u003cbr\u003e",
+                "operationId": "HojasVidaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for HojasVida content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HojasVida"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.HojasVida"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/hojas_vida/{id}": {
+            "get": {
+                "tags": [
+                    "hojas_vida"
+                ],
+                "description": "get HojasVida by id\n\u003cbr\u003e",
+                "operationId": "HojasVidaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HojasVida"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "hojas_vida"
+                ],
+                "description": "update the HojasVida\n\u003cbr\u003e",
+                "operationId": "HojasVidaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for HojasVida content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HojasVida"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HojasVida"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "hojas_vida"
+                ],
+                "description": "delete the HojasVida\n\u003cbr\u003e",
+                "operationId": "HojasVidaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/horarios_agendados/": {
+            "get": {
+                "tags": [
+                    "horarios_agendados"
+                ],
+                "description": "get HorariosAgendados\n\u003cbr\u003e",
+                "operationId": "HorariosAgendadosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HorariosAgendados"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "horarios_agendados"
+                ],
+                "description": "create HorariosAgendados\n\u003cbr\u003e",
+                "operationId": "HorariosAgendadosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for HorariosAgendados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HorariosAgendados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.HorariosAgendados"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/horarios_agendados/{id}": {
+            "get": {
+                "tags": [
+                    "horarios_agendados"
+                ],
+                "description": "get HorariosAgendados by id\n\u003cbr\u003e",
+                "operationId": "HorariosAgendadosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HorariosAgendados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "horarios_agendados"
+                ],
+                "description": "update the HorariosAgendados\n\u003cbr\u003e",
+                "operationId": "HorariosAgendadosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for HorariosAgendados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HorariosAgendados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HorariosAgendados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "horarios_agendados"
+                ],
+                "description": "delete the HorariosAgendados\n\u003cbr\u003e",
+                "operationId": "HorariosAgendadosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/hv_experiencias/": {
+            "get": {
+                "tags": [
+                    "hv_experiencias"
+                ],
+                "description": "get HvExperiencias\n\u003cbr\u003e",
+                "operationId": "HvExperienciasController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HvExperiencias"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "hv_experiencias"
+                ],
+                "description": "create HvExperiencias\n\u003cbr\u003e",
+                "operationId": "HvExperienciasController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for HvExperiencias content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HvExperiencias"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.HvExperiencias"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/hv_experiencias/{id}": {
+            "get": {
+                "tags": [
+                    "hv_experiencias"
+                ],
+                "description": "get HvExperiencias by id\n\u003cbr\u003e",
+                "operationId": "HvExperienciasController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HvExperiencias"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "hv_experiencias"
+                ],
+                "description": "update the HvExperiencias\n\u003cbr\u003e",
+                "operationId": "HvExperienciasController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for HvExperiencias content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HvExperiencias"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HvExperiencias"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "hv_experiencias"
+                ],
+                "description": "delete the HvExperiencias\n\u003cbr\u003e",
+                "operationId": "HvExperienciasController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/oferta_fotos/": {
+            "get": {
+                "tags": [
+                    "oferta_fotos"
+                ],
+                "description": "get OfertaFotos\n\u003cbr\u003e",
+                "operationId": "OfertaFotosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.OfertaFotos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "oferta_fotos"
+                ],
+                "description": "create OfertaFotos\n\u003cbr\u003e",
+                "operationId": "OfertaFotosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for OfertaFotos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.OfertaFotos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.OfertaFotos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/oferta_fotos/{id}": {
+            "get": {
+                "tags": [
+                    "oferta_fotos"
+                ],
+                "description": "get OfertaFotos by id\n\u003cbr\u003e",
+                "operationId": "OfertaFotosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.OfertaFotos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "oferta_fotos"
+                ],
+                "description": "update the OfertaFotos\n\u003cbr\u003e",
+                "operationId": "OfertaFotosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for OfertaFotos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.OfertaFotos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.OfertaFotos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "oferta_fotos"
+                ],
+                "description": "delete the OfertaFotos\n\u003cbr\u003e",
+                "operationId": "OfertaFotosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/ofertas/": {
+            "get": {
+                "tags": [
+                    "ofertas"
+                ],
+                "description": "get Ofertas\n\u003cbr\u003e",
+                "operationId": "OfertasController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Ofertas"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ofertas"
+                ],
+                "description": "create Ofertas\n\u003cbr\u003e",
+                "operationId": "OfertasController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Ofertas content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Ofertas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Ofertas"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/ofertas/{id}": {
+            "get": {
+                "tags": [
+                    "ofertas"
+                ],
+                "description": "get Ofertas by id\n\u003cbr\u003e",
+                "operationId": "OfertasController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Ofertas"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ofertas"
+                ],
+                "description": "update the Ofertas\n\u003cbr\u003e",
+                "operationId": "OfertasController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Ofertas content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Ofertas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Ofertas"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ofertas"
+                ],
+                "description": "delete the Ofertas\n\u003cbr\u003e",
+                "operationId": "OfertasController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/perfiles_empleado/": {
+            "get": {
+                "tags": [
+                    "perfiles_empleado"
+                ],
+                "description": "get PerfilesEmpleado\n\u003cbr\u003e",
+                "operationId": "PerfilesEmpleadoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PerfilesEmpleado"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "perfiles_empleado"
+                ],
+                "description": "create PerfilesEmpleado\n\u003cbr\u003e",
+                "operationId": "PerfilesEmpleadoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for PerfilesEmpleado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PerfilesEmpleado"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.PerfilesEmpleado"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/perfiles_empleado/{id}": {
+            "get": {
+                "tags": [
+                    "perfiles_empleado"
+                ],
+                "description": "get PerfilesEmpleado by id\n\u003cbr\u003e",
+                "operationId": "PerfilesEmpleadoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PerfilesEmpleado"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "perfiles_empleado"
+                ],
+                "description": "update the PerfilesEmpleado\n\u003cbr\u003e",
+                "operationId": "PerfilesEmpleadoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for PerfilesEmpleado content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PerfilesEmpleado"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PerfilesEmpleado"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "perfiles_empleado"
+                ],
+                "description": "delete the PerfilesEmpleado\n\u003cbr\u003e",
+                "operationId": "PerfilesEmpleadoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/postulacion_chips/": {
+            "get": {
+                "tags": [
+                    "postulacion_chips"
+                ],
+                "description": "get PostulacionChips\n\u003cbr\u003e",
+                "operationId": "PostulacionChipsController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PostulacionChips"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "postulacion_chips"
+                ],
+                "description": "create PostulacionChips\n\u003cbr\u003e",
+                "operationId": "PostulacionChipsController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for PostulacionChips content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PostulacionChips"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.PostulacionChips"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/postulacion_chips/{id}": {
+            "get": {
+                "tags": [
+                    "postulacion_chips"
+                ],
+                "description": "get PostulacionChips by id\n\u003cbr\u003e",
+                "operationId": "PostulacionChipsController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PostulacionChips"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "postulacion_chips"
+                ],
+                "description": "update the PostulacionChips\n\u003cbr\u003e",
+                "operationId": "PostulacionChipsController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for PostulacionChips content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PostulacionChips"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.PostulacionChips"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "postulacion_chips"
+                ],
+                "description": "delete the PostulacionChips\n\u003cbr\u003e",
+                "operationId": "PostulacionChipsController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/postulaciones/": {
+            "get": {
+                "tags": [
+                    "postulaciones"
+                ],
+                "description": "get Postulaciones\n\u003cbr\u003e",
+                "operationId": "PostulacionesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Postulaciones"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "postulaciones"
+                ],
+                "description": "create Postulaciones\n\u003cbr\u003e",
+                "operationId": "PostulacionesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Postulaciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Postulaciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Postulaciones"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/postulaciones/{id}": {
+            "get": {
+                "tags": [
+                    "postulaciones"
+                ],
+                "description": "get Postulaciones by id\n\u003cbr\u003e",
+                "operationId": "PostulacionesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Postulaciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "postulaciones"
+                ],
+                "description": "update the Postulaciones\n\u003cbr\u003e",
+                "operationId": "PostulacionesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Postulaciones content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Postulaciones"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Postulaciones"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "postulaciones"
+                ],
+                "description": "delete the Postulaciones\n\u003cbr\u003e",
+                "operationId": "PostulacionesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/resenas/": {
+            "get": {
+                "tags": [
+                    "resenas"
+                ],
+                "description": "get Resenas\n\u003cbr\u003e",
+                "operationId": "ResenasController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Resenas"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "resenas"
+                ],
+                "description": "create Resenas\n\u003cbr\u003e",
+                "operationId": "ResenasController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Resenas content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Resenas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Resenas"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/resenas/{id}": {
+            "get": {
+                "tags": [
+                    "resenas"
+                ],
+                "description": "get Resenas by id\n\u003cbr\u003e",
+                "operationId": "ResenasController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Resenas"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "resenas"
+                ],
+                "description": "update the Resenas\n\u003cbr\u003e",
+                "operationId": "ResenasController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Resenas content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Resenas"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Resenas"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "resenas"
+                ],
+                "description": "delete the Resenas\n\u003cbr\u003e",
+                "operationId": "ResenasController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tamano_inmueble/": {
+            "get": {
+                "tags": [
+                    "tamano_inmueble"
+                ],
+                "description": "get TamanoInmueble\n\u003cbr\u003e",
+                "operationId": "TamanoInmuebleController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TamanoInmueble"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tamano_inmueble"
+                ],
+                "description": "create TamanoInmueble\n\u003cbr\u003e",
+                "operationId": "TamanoInmuebleController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TamanoInmueble content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TamanoInmueble"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TamanoInmueble"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tamano_inmueble/{id}": {
+            "get": {
+                "tags": [
+                    "tamano_inmueble"
+                ],
+                "description": "get TamanoInmueble by id\n\u003cbr\u003e",
+                "operationId": "TamanoInmuebleController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TamanoInmueble"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tamano_inmueble"
+                ],
+                "description": "update the TamanoInmueble\n\u003cbr\u003e",
+                "operationId": "TamanoInmuebleController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TamanoInmueble content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TamanoInmueble"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TamanoInmueble"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tamano_inmueble"
+                ],
+                "description": "delete the TamanoInmueble\n\u003cbr\u003e",
+                "operationId": "TamanoInmuebleController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_inmueble/": {
+            "get": {
+                "tags": [
+                    "tipo_inmueble"
+                ],
+                "description": "get TipoInmueble\n\u003cbr\u003e",
+                "operationId": "TipoInmuebleController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInmueble"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_inmueble"
+                ],
+                "description": "create TipoInmueble\n\u003cbr\u003e",
+                "operationId": "TipoInmuebleController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoInmueble content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInmueble"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoInmueble"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_inmueble/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_inmueble"
+                ],
+                "description": "get TipoInmueble by id\n\u003cbr\u003e",
+                "operationId": "TipoInmuebleController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInmueble"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_inmueble"
+                ],
+                "description": "update the TipoInmueble\n\u003cbr\u003e",
+                "operationId": "TipoInmuebleController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoInmueble content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInmueble"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInmueble"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_inmueble"
+                ],
+                "description": "delete the TipoInmueble\n\u003cbr\u003e",
+                "operationId": "TipoInmuebleController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_contratacion_especialidades/": {
+            "get": {
+                "tags": [
+                    "tr_contratacion_especialidades"
+                ],
+                "description": "get TrContratacionEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrContratacionEspecialidadesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrContratacionEspecialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tr_contratacion_especialidades"
+                ],
+                "description": "create TrContratacionEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrContratacionEspecialidadesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrContratacionEspecialidades content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrContratacionEspecialidades"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrContratacionEspecialidades"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_contratacion_especialidades/{id}": {
+            "get": {
+                "tags": [
+                    "tr_contratacion_especialidades"
+                ],
+                "description": "get TrContratacionEspecialidades by id\n\u003cbr\u003e",
+                "operationId": "TrContratacionEspecialidadesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrContratacionEspecialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tr_contratacion_especialidades"
+                ],
+                "description": "update the TrContratacionEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrContratacionEspecialidadesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrContratacionEspecialidades content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrContratacionEspecialidades"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrContratacionEspecialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tr_contratacion_especialidades"
+                ],
+                "description": "delete the TrContratacionEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrContratacionEspecialidadesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_oferta_servicios/": {
+            "get": {
+                "tags": [
+                    "tr_oferta_servicios"
+                ],
+                "description": "get TrOfertaServicios\n\u003cbr\u003e",
+                "operationId": "TrOfertaServiciosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrOfertaServicios"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tr_oferta_servicios"
+                ],
+                "description": "create TrOfertaServicios\n\u003cbr\u003e",
+                "operationId": "TrOfertaServiciosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrOfertaServicios content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrOfertaServicios"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrOfertaServicios"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_oferta_servicios/{id}": {
+            "get": {
+                "tags": [
+                    "tr_oferta_servicios"
+                ],
+                "description": "get TrOfertaServicios by id\n\u003cbr\u003e",
+                "operationId": "TrOfertaServiciosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrOfertaServicios"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tr_oferta_servicios"
+                ],
+                "description": "update the TrOfertaServicios\n\u003cbr\u003e",
+                "operationId": "TrOfertaServiciosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrOfertaServicios content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrOfertaServicios"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrOfertaServicios"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tr_oferta_servicios"
+                ],
+                "description": "delete the TrOfertaServicios\n\u003cbr\u003e",
+                "operationId": "TrOfertaServiciosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_perfil_especialidades/": {
+            "get": {
+                "tags": [
+                    "tr_perfil_especialidades"
+                ],
+                "description": "get TrPerfilEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrPerfilEspecialidadesController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPerfilEspecialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tr_perfil_especialidades"
+                ],
+                "description": "create TrPerfilEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrPerfilEspecialidadesController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrPerfilEspecialidades content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPerfilEspecialidades"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrPerfilEspecialidades"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_perfil_especialidades/{id}": {
+            "get": {
+                "tags": [
+                    "tr_perfil_especialidades"
+                ],
+                "description": "get TrPerfilEspecialidades by id\n\u003cbr\u003e",
+                "operationId": "TrPerfilEspecialidadesController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPerfilEspecialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tr_perfil_especialidades"
+                ],
+                "description": "update the TrPerfilEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrPerfilEspecialidadesController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrPerfilEspecialidades content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPerfilEspecialidades"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPerfilEspecialidades"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tr_perfil_especialidades"
+                ],
+                "description": "delete the TrPerfilEspecialidades\n\u003cbr\u003e",
+                "operationId": "TrPerfilEspecialidadesController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tr_postulacion_dias/": {
+            "get": {
+                "tags": [
+                    "tr_postulacion_dias"
+                ],
+                "description": "get TrPostulacionDias\n\u003cbr\u003e",
+                "operationId": "TrPostulacionDiasController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPostulacionDias"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tr_postulacion_dias"
+                ],
+                "description": "create TrPostulacionDias\n\u003cbr\u003e",
+                "operationId": "TrPostulacionDiasController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrPostulacionDias content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPostulacionDias"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrPostulacionDias"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tr_postulacion_dias/{id}": {
+            "get": {
+                "tags": [
+                    "tr_postulacion_dias"
+                ],
+                "description": "get TrPostulacionDias by id\n\u003cbr\u003e",
+                "operationId": "TrPostulacionDiasController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPostulacionDias"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tr_postulacion_dias"
+                ],
+                "description": "update the TrPostulacionDias\n\u003cbr\u003e",
+                "operationId": "TrPostulacionDiasController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrPostulacionDias content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPostulacionDias"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TrPostulacionDias"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tr_postulacion_dias"
+                ],
+                "description": "delete the TrPostulacionDias\n\u003cbr\u003e",
+                "operationId": "TrPostulacionDiasController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Certificaciones": {
+            "title": "Certificaciones",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "AnioEmision": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "EntidadEmisora": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPerfilesEmpleado": {
+                    "$ref": "#/definitions/models.PerfilesEmpleado"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "UrlDocumento": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Contrataciones": {
+            "title": "Contrataciones",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "DescripcionTrabajo": {
+                    "type": "string"
+                },
+                "DireccionServicio": {
+                    "type": "string"
+                },
+                "DuracionHoras": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "FechaInicio": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FinalizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "HoraInicio": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEmpleado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEmpleador": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdModalidad": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdOfertas": {
+                    "$ref": "#/definitions/models.Ofertas"
+                },
+                "IdPostulaciones": {
+                    "$ref": "#/definitions/models.Postulaciones"
+                },
+                "NotaAdicional": {
+                    "type": "string"
+                },
+                "TarifaAcordada": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TotalEstimado": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "models.DiasTrabajados": {
+            "title": "DiasTrabajados",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "HorasTrabajadas": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdDiaSemana": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.DisponibilidadEmpleado": {
+            "title": "DisponibilidadEmpleado",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "HoraFin": {
+                    "type": "string"
+                },
+                "HoraInicio": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdDiaSemana": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPerfilesEmpleado": {
+                    "$ref": "#/definitions/models.PerfilesEmpleado"
+                },
+                "IdTurno": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.DocumentosUsuario": {
+            "title": "DocumentosUsuario",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTipo": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Notas": {
+                    "type": "string"
+                },
+                "UrlArchivo": {
+                    "type": "string"
+                },
+                "VerificadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                }
+            }
+        },
+        "models.Especialidades": {
+            "title": "Especialidades",
+            "type": "object",
+            "properties": {
+                "Activa": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Icono": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.HojasVida": {
+            "title": "HojasVida",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "EsPredeterminada": {
+                    "type": "boolean"
+                },
+                "EsPublica": {
+                    "type": "boolean"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "ProgresoPct": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Resumen": {
+                    "type": "string"
+                },
+                "UrlPdf": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.HorariosAgendados": {
+            "title": "HorariosAgendados",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "HoraFin": {
+                    "type": "string"
+                },
+                "HoraInicio": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdContrataciones": {
+                    "$ref": "#/definitions/models.Contrataciones"
+                },
+                "IdDiaSemana": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTurno": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nota": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.HvExperiencias": {
+            "title": "HvExperiencias",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Cargo": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Empresa": {
+                    "type": "string"
+                },
+                "FechaFin": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaInicio": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdHojasVida": {
+                    "$ref": "#/definitions/models.HojasVida"
+                },
+                "IdTipo": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.OfertaFotos": {
+            "title": "OfertaFotos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "EsPrincipal": {
+                    "type": "boolean"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdOfertas": {
+                    "$ref": "#/definitions/models.Ofertas"
+                },
+                "Orden": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "UrlFoto": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Ofertas": {
+            "title": "Ofertas",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Barrio": {
+                    "type": "string"
+                },
+                "Ciudad": {
+                    "type": "string"
+                },
+                "CondicionesExtra": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Destacada": {
+                    "type": "boolean"
+                },
+                "Direccion": {
+                    "type": "string"
+                },
+                "ExpiraEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "HorarioDescripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdDiasTrabajados": {
+                    "$ref": "#/definitions/models.DiasTrabajados"
+                },
+                "IdEmpleador": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdModalidadTrabajo": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTamanoInmueble": {
+                    "$ref": "#/definitions/models.TamanoInmueble"
+                },
+                "IdTipoInmueble": {
+                    "$ref": "#/definitions/models.TipoInmueble"
+                },
+                "IdTipoMascota": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InsumosCliente": {
+                    "type": "boolean"
+                },
+                "Nueva": {
+                    "type": "boolean"
+                },
+                "NumBanos": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "NumHabitaciones": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TarifaHora": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TarifaJornada": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Titulo": {
+                    "type": "string"
+                },
+                "Vigilancia": {
+                    "type": "boolean"
+                },
+                "Vistas": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.PerfilesEmpleado": {
+            "title": "PerfilesEmpleado",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "AniosExperiencia": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "AparecerBusquedas": {
+                    "type": "boolean"
+                },
+                "BarrioZona": {
+                    "type": "string"
+                },
+                "Bio": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "DistanciaMaxKm": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "HvVisible": {
+                    "type": "boolean"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdModalidadTrabajo": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdNivelExperiencia": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTurnoPreferido": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdUsuarios": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RatingPromedio": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TarifaHora": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TarifaNegociable": {
+                    "type": "boolean"
+                },
+                "TotalResenas": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TotalTrabajos": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Verificado": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "models.PostulacionChips": {
+            "title": "PostulacionChips",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPostulaciones": {
+                    "$ref": "#/definitions/models.Postulaciones"
+                },
+                "Texto": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Postulaciones": {
+            "title": "Postulaciones",
+            "type": "object",
+            "properties": {
+                "AceptaTerminos": {
+                    "type": "boolean"
+                },
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "DisponibleDesde": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEmpleado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEstado": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdFormaCobro": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdHojasVida": {
+                    "$ref": "#/definitions/models.HojasVida"
+                },
+                "IdModalidadDisp": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdOfertas": {
+                    "$ref": "#/definitions/models.Ofertas"
+                },
+                "IdTurnoPostulacion": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "MensajeEmpleador": {
+                    "type": "string"
+                },
+                "NotaDisponibilidad": {
+                    "type": "string"
+                },
+                "NotaRechazo": {
+                    "type": "string"
+                },
+                "OrigenPostulacion": {
+                    "type": "boolean"
+                },
+                "PostuladoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "RespondidoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "TarifaMax": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "TarifaMin": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
+        "models.Resenas": {
+            "title": "Resenas",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Calificacion": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Comentario": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPostulaciones": {
+                    "$ref": "#/definitions/models.Postulaciones"
+                },
+                "IdReviewed": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdReviewer": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdTipo": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.TamanoInmueble": {
+            "title": "TamanoInmueble",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TipoInmueble": {
+            "title": "TipoInmueble",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TrContratacionEspecialidades": {
+            "title": "TrContratacionEspecialidades",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdContrataciones": {
+                    "$ref": "#/definitions/models.Contrataciones"
+                },
+                "IdEspecialidades": {
+                    "$ref": "#/definitions/models.Especialidades"
+                }
+            }
+        },
+        "models.TrOfertaServicios": {
+            "title": "TrOfertaServicios",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEspecialidades": {
+                    "$ref": "#/definitions/models.Especialidades"
+                },
+                "IdOfertas": {
+                    "$ref": "#/definitions/models.Ofertas"
+                }
+            }
+        },
+        "models.TrPerfilEspecialidades": {
+            "title": "TrPerfilEspecialidades",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdEspecialidades": {
+                    "$ref": "#/definitions/models.Especialidades"
+                },
+                "IdPerfilesEmpleado": {
+                    "$ref": "#/definitions/models.PerfilesEmpleado"
+                }
+            }
+        },
+        "models.TrPostulacionDias": {
+            "title": "TrPostulacionDias",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdDiaSemana": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdPostulaciones": {
+                    "$ref": "#/definitions/models.Postulaciones"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "dias_trabajados",
+            "description": "DiasTrabajadosController operations for DiasTrabajados\n"
+        },
+        {
+            "name": "perfiles_empleado",
+            "description": "PerfilesEmpleadoController operations for PerfilesEmpleado\n"
+        },
+        {
+            "name": "tr_perfil_especialidades",
+            "description": "TrPerfilEspecialidadesController operations for TrPerfilEspecialidades\n"
+        },
+        {
+            "name": "especialidades",
+            "description": "EspecialidadesController operations for Especialidades\n"
+        },
+        {
+            "name": "disponibilidad_empleado",
+            "description": "DisponibilidadEmpleadoController operations for DisponibilidadEmpleado\n"
+        },
+        {
+            "name": "certificaciones",
+            "description": "CertificacionesController operations for Certificaciones\n"
+        },
+        {
+            "name": "documentos_usuario",
+            "description": "DocumentosUsuarioController operations for DocumentosUsuario\n"
+        },
+        {
+            "name": "ofertas",
+            "description": "OfertasController operations for Ofertas\n"
+        },
+        {
+            "name": "tipo_inmueble",
+            "description": "TipoInmuebleController operations for TipoInmueble\n"
+        },
+        {
+            "name": "tamano_inmueble",
+            "description": "TamanoInmuebleController operations for TamanoInmueble\n"
+        },
+        {
+            "name": "tr_oferta_servicios",
+            "description": "TrOfertaServiciosController operations for TrOfertaServicios\n"
+        },
+        {
+            "name": "oferta_fotos",
+            "description": "OfertaFotosController operations for OfertaFotos\n"
+        },
+        {
+            "name": "hojas_vida",
+            "description": "HojasVidaController operations for HojasVida\n"
+        },
+        {
+            "name": "hv_experiencias",
+            "description": "HvExperienciasController operations for HvExperiencias\n"
+        },
+        {
+            "name": "postulaciones",
+            "description": "PostulacionesController operations for Postulaciones\n"
+        },
+        {
+            "name": "tr_postulacion_dias",
+            "description": "TrPostulacionDiasController operations for TrPostulacionDias\n"
+        },
+        {
+            "name": "postulacion_chips",
+            "description": "PostulacionChipsController operations for PostulacionChips\n"
+        },
+        {
+            "name": "resenas",
+            "description": "ResenasController operations for Resenas\n"
+        },
+        {
+            "name": "contrataciones",
+            "description": "ContratacionesController operations for Contrataciones\n"
+        },
+        {
+            "name": "tr_contratacion_especialidades",
+            "description": "TrContratacionEspecialidadesController operations for TrContratacionEspecialidades\n"
+        },
+        {
+            "name": "horarios_agendados",
+            "description": "HorariosAgendadosController operations for HorariosAgendados\n"
+        }
+    ]
+}
