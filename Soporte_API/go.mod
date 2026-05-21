@@ -3,8 +3,8 @@ module Soporte_API
 go 1.24.2
 
 require (
-	github.com/beego/bee/v2 v2.3.0
 	github.com/beego/beego/v2 v2.3.10
+	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.12.3
 )
 
