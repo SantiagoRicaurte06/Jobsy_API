@@ -1,18 +1,18 @@
 package main
 
 import (
-	_ "Catalogo_api/routers"
+	_ "Api_Josby/Catalogo_API/routers"
 
-	beego "github.com/beego/beego/v2/server/web"
 	beeLogger "github.com/beego/bee/v2/logger"
 	"github.com/beego/beego/v2/client/orm"
+	beego "github.com/beego/beego/v2/server/web"
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	sqlConn,err := beego.AppConfig.String("sqlconn")
+	sqlConn, err := beego.AppConfig.String("sqlconn")
 	if err != nil {
-		beeLogger.Log.Fatal("%s", err)
+		beeLogger.Log.Fatal("%s")
 	}
 	orm.RegisterDataBase("default", "postgres", sqlConn)
 	if beego.BConfig.RunMode == "dev" {
@@ -21,4 +21,3 @@ func main() {
 	}
 	beego.Run()
 }
-
