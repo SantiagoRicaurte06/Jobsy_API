@@ -1,0 +1,480 @@
+swagger: "2.0"
+info:
+  title: beego Test API
+  description: |
+    beego has a very cool tools to autogenerate documents for your API
+  version: 1.0.0
+  termsOfService: http://beego.me/
+  contact:
+    email: astaxie@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+basePath: /v1
+paths:
+  /plan_features/:
+    get:
+      tags:
+      - plan_features
+      description: |-
+        get PlanFeatures
+        <br>
+      operationId: PlanFeaturesController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PlanFeatures'
+        "403":
+          description: ""
+    post:
+      tags:
+      - plan_features
+      description: |-
+        create PlanFeatures
+        <br>
+      operationId: PlanFeaturesController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for PlanFeatures content
+        required: true
+        schema:
+          $ref: '#/definitions/models.PlanFeatures'
+      responses:
+        "201":
+          description: '{int} models.PlanFeatures'
+        "403":
+          description: body is empty
+  /plan_features/{id}:
+    get:
+      tags:
+      - plan_features
+      description: |-
+        get PlanFeatures by id
+        <br>
+      operationId: PlanFeaturesController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PlanFeatures'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - plan_features
+      description: |-
+        update the PlanFeatures
+        <br>
+      operationId: PlanFeaturesController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for PlanFeatures content
+        required: true
+        schema:
+          $ref: '#/definitions/models.PlanFeatures'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.PlanFeatures'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - plan_features
+      description: |-
+        delete the PlanFeatures
+        <br>
+      operationId: PlanFeaturesController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /planes/:
+    get:
+      tags:
+      - planes
+      description: |-
+        get Planes
+        <br>
+      operationId: PlanesController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Planes'
+        "403":
+          description: ""
+    post:
+      tags:
+      - planes
+      description: |-
+        create Planes
+        <br>
+      operationId: PlanesController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Planes content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Planes'
+      responses:
+        "201":
+          description: '{int} models.Planes'
+        "403":
+          description: body is empty
+  /planes/{id}:
+    get:
+      tags:
+      - planes
+      description: |-
+        get Planes by id
+        <br>
+      operationId: PlanesController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Planes'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - planes
+      description: |-
+        update the Planes
+        <br>
+      operationId: PlanesController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Planes content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Planes'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Planes'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - planes
+      description: |-
+        delete the Planes
+        <br>
+      operationId: PlanesController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /usuarios_suscripciones/:
+    get:
+      tags:
+      - usuarios_suscripciones
+      description: |-
+        get UsuariosSuscripciones
+        <br>
+      operationId: UsuariosSuscripcionesController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UsuariosSuscripciones'
+        "403":
+          description: ""
+    post:
+      tags:
+      - usuarios_suscripciones
+      description: |-
+        create UsuariosSuscripciones
+        <br>
+      operationId: UsuariosSuscripcionesController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for UsuariosSuscripciones content
+        required: true
+        schema:
+          $ref: '#/definitions/models.UsuariosSuscripciones'
+      responses:
+        "201":
+          description: '{int} models.UsuariosSuscripciones'
+        "403":
+          description: body is empty
+  /usuarios_suscripciones/{id}:
+    get:
+      tags:
+      - usuarios_suscripciones
+      description: |-
+        get UsuariosSuscripciones by id
+        <br>
+      operationId: UsuariosSuscripcionesController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UsuariosSuscripciones'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - usuarios_suscripciones
+      description: |-
+        update the UsuariosSuscripciones
+        <br>
+      operationId: UsuariosSuscripcionesController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for UsuariosSuscripciones content
+        required: true
+        schema:
+          $ref: '#/definitions/models.UsuariosSuscripciones'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.UsuariosSuscripciones'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - usuarios_suscripciones
+      description: |-
+        delete the UsuariosSuscripciones
+        <br>
+      operationId: UsuariosSuscripcionesController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+definitions:
+  models.PlanFeatures:
+    title: PlanFeatures
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      CreadoEn:
+        type: string
+        format: datetime
+      Feature:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      IdPlanes:
+        $ref: '#/definitions/models.Planes'
+      Incluida:
+        type: boolean
+  models.Planes:
+    title: Planes
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      CreadoEn:
+        type: string
+        format: datetime
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      PrecioAnual:
+        type: number
+        format: double
+      PrecioMensual:
+        type: number
+        format: double
+  models.UsuariosSuscripciones:
+    title: UsuariosSuscripciones
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      AutoRenovar:
+        type: boolean
+      CreadoEn:
+        type: string
+        format: datetime
+      FinEn:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
+      IdEstado:
+        type: integer
+        format: int64
+      IdModalidadSuscripcion:
+        type: integer
+        format: int64
+      IdPlanes:
+        $ref: '#/definitions/models.Planes'
+      IdUsuarios:
+        type: integer
+        format: int64
+      InicioEn:
+        type: string
+        format: datetime
+tags:
+- name: planes
+  description: |
+    PlanesController operations for Planes
+- name: plan_features
+  description: |
+    PlanFeaturesController operations for PlanFeatures
+- name: usuarios_suscripciones
+  description: |
+    UsuariosSuscripcionesController operations for UsuariosSuscripciones
