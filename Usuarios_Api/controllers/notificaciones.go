@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"JOBSY_API/api_crud_tienda/models"
+	"JOBSY_API/models"
 	"encoding/json"
 	"errors"
 	"strconv"

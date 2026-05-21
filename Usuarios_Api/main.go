@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "JOBSY_API/api_crud_tienda/routers"
+	_ "JOBSY_API/routers"
 
 	beeLogger "github.com/beego/bee/v2/logger"
 	"github.com/beego/beego/v2/client/orm"
