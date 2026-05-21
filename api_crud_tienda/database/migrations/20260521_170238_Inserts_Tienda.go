@@ -9,21 +9,21 @@ import (
 )
 
 // DO NOT MODIFY
-type CreacionSchemaTienda_20260521_155729 struct {
+type InsertsTienda_20260521_170238 struct {
 	migration.Migration
 }
 
 // DO NOT MODIFY
 func init() {
-	m := &CreacionSchemaTienda_20260521_155729{}
-	m.Created = "20260521_155729"
+	m := &InsertsTienda_20260521_170238{}
+	m.Created = "20260521_170238"
 
-	migration.Register("CreacionSchemaTienda_20260521_155729", m)
+	migration.Register("InsertsTienda_20260521_170238", m)
 }
 
 // Run the migrations
-func (m *CreacionSchemaTienda_20260521_155729) Up() {
-	file, err := ioutil.ReadFile("../20260521_155729_Creacion_schema_tienda_up.sql")
+func (m *InsertsTienda_20260521_170238) Up() {
+	file, err := ioutil.ReadFile("../20260521_170238_Inserts_Tienda_up.sql")
 	if err != nil {
 		fmt.Println(err)
 
@@ -39,9 +39,9 @@ func (m *CreacionSchemaTienda_20260521_155729) Up() {
 }
 
 // Reverse the migrations
-func (m *CreacionSchemaTienda_20260521_155729) Down() {
+func (m *InsertsTienda_20260521_170238) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
-	file, err := ioutil.ReadFile("../20260521_155729_Creacion_schema_tienda_down.sql")
+	file, err := ioutil.ReadFile("../20260521_170238_Inserts_Tienda_down.sql")
 	if err != nil {
 		fmt.Println(err)
 
