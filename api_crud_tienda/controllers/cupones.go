@@ -1,13 +1,13 @@
 package controllers
 
 import (
-	"API_JOBSY/Tienda_API/models"
+	"api_crud_tienda/models"
 	"encoding/json"
+	"errors"
 	"strconv"
 	"strings"
 
 	"github.com/beego/beego/v2/core/logs"
-
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -36,10 +36,11 @@ func (c *CuponesController) Post() {
 	var v models.Cupones
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddCupones(&v); err == nil {
+			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = map[string]interface{}{
 				"success": true,
 				"status":  201,
-				"message": "Cupon creado exitosamente",
+				"message": "Cupón creado exitosamente",
 				"data":    v,
 			}
 		} else {
@@ -52,10 +53,11 @@ func (c *CuponesController) Post() {
 			}
 		}
 	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": "Error al deserializar el cuerpo de la solicitud",
+			"message": err.Error(),
 			"data":    nil,
 		}
 	}
@@ -71,20 +73,32 @@ func (c *CuponesController) Post() {
 // @router /:id [get]
 func (c *CuponesController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetCuponesById(id)
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": err.Error(),
+			"message": "El id del cupón debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
+	v, err := models.GetCuponesById(id)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  404,
+			"message": "No se encontró el cupón con el id especificado",
 			"data":    nil,
 		}
 	} else {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Cupon encontrado",
+			"message": "Consulta exitosa",
 			"data":    v,
 		}
 	}
@@ -111,27 +125,21 @@ func (c *CuponesController) GetAll() {
 	var limit int64 = 10
 	var offset int64
 
-	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
 		fields = strings.Split(v, ",")
 	}
-	// limit: 10 (default is 10)
 	if v, err := c.GetInt64("limit"); err == nil {
 		limit = v
 	}
-	// offset: 0 (default is 0)
 	if v, err := c.GetInt64("offset"); err == nil {
 		offset = v
 	}
-	// sortby: col1,col2
 	if v := c.GetString("sortby"); v != "" {
 		sortby = strings.Split(v, ",")
 	}
-	// order: desc,asc
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
-	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
@@ -139,7 +147,7 @@ func (c *CuponesController) GetAll() {
 				c.Data["json"] = map[string]interface{}{
 					"success": false,
 					"status":  400,
-					"message": "Error: invalid query key/value pair",
+					"message": errors.New("El filtro de búsqueda tiene un formato inválido, use el formato campo:valor").Error(),
 					"data":    nil,
 				}
 				c.ServeJSON()
@@ -163,7 +171,7 @@ func (c *CuponesController) GetAll() {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Clientes encontrados",
+			"message": "Consulta exitosa",
 			"data":    l,
 		}
 	}
@@ -180,29 +188,42 @@ func (c *CuponesController) GetAll() {
 // @router /:id [put]
 func (c *CuponesController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id del cupón debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	v := models.Cupones{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateCuponesById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,
 				"status":  200,
-				"message": "Cupon actualizado",
+				"message": "Cupón actualizado exitosamente",
 				"data":    v,
 			}
 		} else {
+			logs.Error(err)
 			c.Data["json"] = map[string]interface{}{
 				"success": false,
 				"status":  400,
-				"message": err.Error(),
+				"message": "No se pudo actualizar el cupón, verifique que el id exista y que los datos enviados sean correctos",
 				"data":    nil,
 			}
 		}
 	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": "Error al deserializar el cuerpo de la solicitud",
+			"message": "El cuerpo de la solicitud no tiene un formato JSON válido",
 			"data":    nil,
 		}
 	}
@@ -218,19 +239,31 @@ func (c *CuponesController) Put() {
 // @router /:id [delete]
 func (c *CuponesController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id del cupón debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	if err := models.DeleteCupones(id); err == nil {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Cupon eliminado",
+			"message": "Cupón eliminado exitosamente",
 			"data":    nil,
 		}
 	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": err.Error(),
+			"message": "No se pudo eliminar el cupón, es posible que esté siendo utilizado en pedidos o que el id no exista",
 			"data":    nil,
 		}
 	}

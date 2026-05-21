@@ -11,22 +11,22 @@ import (
 )
 
 type Pagos struct {
-	Id               int             `orm:"column(id_pagos);pk"`
-	IdPedidos        *Facturacion    `orm:"column(id_pedidos);rel(fk)"`
-	IdContrataciones *Contrataciones `orm:"column(id_contrataciones);rel(fk)"`
-	IdUsuarios       *Usuarios       `orm:"column(id_usuarios);rel(fk)"`
-	IdMetodoPago     *MetodoPago     `orm:"column(id_metodo_pago);rel(fk)"`
-	IdTipoPago       *Tipos          `orm:"column(id_tipo_pago);rel(fk)"`
-	IdEstado         *Estados        `orm:"column(id_estado);rel(fk)"`
-	IdTipoCuenta     *Tipos          `orm:"column(id_tipo_cuenta);rel(fk)"`
-	Monto            float64         `orm:"column(monto)"`
-	ReferenciaExt    string          `orm:"column(referencia_ext);null"`
-	Banco            string          `orm:"column(banco);null"`
-	TitularTarjeta   string          `orm:"column(titular_tarjeta);null"`
-	Ultimos4         string          `orm:"column(ultimos4);null"`
-	Activo           bool            `orm:"column(activo)"`
-	CreadoEn         time.Time       `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn    time.Time       `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	Id               int          `orm:"column(id_pagos);pk"`
+	IdPedidos        *Facturacion `orm:"column(id_pedidos);rel(fk)"`
+	IdContrataciones int          `orm:"column(id_contrataciones);`
+	IdUsuarios       int          `orm:"column(id_usuarios)`
+	IdMetodoPago     *MetodoPago  `orm:"column(id_metodo_pago);rel(fk)"`
+	IdTipoPago       int          `orm:"column(id_tipo_pago)`
+	IdEstado         int          `orm:"column(id_estado)`
+	IdTipoCuenta     int          `orm:"column(id_tipo_cuenta)`
+	Monto            float64      `orm:"column(monto)"`
+	ReferenciaExt    string       `orm:"column(referencia_ext);null"`
+	Banco            string       `orm:"column(banco);null"`
+	TitularTarjeta   string       `orm:"column(titular_tarjeta);null"`
+	Ultimos4         string       `orm:"column(ultimos4);null"`
+	Activo           bool         `orm:"column(activo)"`
+	CreadoEn         time.Time    `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn    time.Time    `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
 }
 
 func (t *Pagos) TableName() string {

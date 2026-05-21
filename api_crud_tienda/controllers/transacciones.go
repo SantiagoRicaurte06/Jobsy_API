@@ -1,12 +1,13 @@
 package controllers
 
 import (
-	"API_JOBSY/Tienda_API/models"
+	"api_crud_tienda/models"
 	"encoding/json"
 	"errors"
 	"strconv"
 	"strings"
 
+	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -36,12 +37,29 @@ func (c *TransaccionesController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddTransacciones(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  201,
+				"message": "Transacción registrada exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": err.Error(),
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -55,12 +73,34 @@ func (c *TransaccionesController) Post() {
 // @router /:id [get]
 func (c *TransaccionesController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id de la transacción debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	v, err := models.GetTransaccionesById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  404,
+			"message": "No se encontró la transacción con el id especificado",
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    v,
+		}
 	}
 	c.ServeJSON()
 }
@@ -85,32 +125,31 @@ func (c *TransaccionesController) GetAll() {
 	var limit int64 = 10
 	var offset int64
 
-	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
 		fields = strings.Split(v, ",")
 	}
-	// limit: 10 (default is 10)
 	if v, err := c.GetInt64("limit"); err == nil {
 		limit = v
 	}
-	// offset: 0 (default is 0)
 	if v, err := c.GetInt64("offset"); err == nil {
 		offset = v
 	}
-	// sortby: col1,col2
 	if v := c.GetString("sortby"); v != "" {
 		sortby = strings.Split(v, ",")
 	}
-	// order: desc,asc
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
-	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = map[string]interface{}{
+					"success": false,
+					"status":  400,
+					"message": errors.New("El filtro de búsqueda tiene un formato inválido, use el formato campo:valor").Error(),
+					"data":    nil,
+				}
 				c.ServeJSON()
 				return
 			}
@@ -121,9 +160,20 @@ func (c *TransaccionesController) GetAll() {
 
 	l, err := models.GetAllTransacciones(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = l
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    l,
+		}
 	}
 	c.ServeJSON()
 }
@@ -138,16 +188,44 @@ func (c *TransaccionesController) GetAll() {
 // @router /:id [put]
 func (c *TransaccionesController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id de la transacción debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	v := models.Transacciones{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateTransaccionesById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  200,
+				"message": "Transacción actualizada exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": "No se pudo actualizar la transacción, verifique que el id exista y que los datos enviados sean correctos",
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El cuerpo de la solicitud no tiene un formato JSON válido",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -161,11 +239,33 @@ func (c *TransaccionesController) Put() {
 // @router /:id [delete]
 func (c *TransaccionesController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id de la transacción debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	if err := models.DeleteTransacciones(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Transacción eliminada exitosamente",
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "No se pudo eliminar la transacción, es posible que esté referenciada en otros registros o que el id no exista",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }

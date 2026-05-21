@@ -1,13 +1,13 @@
 package controllers
 
 import (
-	"API_JOBSY/Tienda_API/models"
+	"api_crud_tienda/models"
 	"encoding/json"
+	"errors"
 	"strconv"
 	"strings"
 
 	"github.com/beego/beego/v2/core/logs"
-
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -33,13 +33,14 @@ func (c *FacturacionController) URLMapping() {
 // @Failure 403 body is empty
 // @router / [post]
 func (c *FacturacionController) Post() {
-	var v models.CategoriasTienda
+	var v models.Facturacion
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddCategoriasTienda(&v); err == nil {
+		if _, err := models.AddFacturacion(&v); err == nil {
+			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = map[string]interface{}{
 				"success": true,
 				"status":  201,
-				"message": "Cliente creado exitosamente",
+				"message": "Registro de facturación creado exitosamente",
 				"data":    v,
 			}
 		} else {
@@ -52,10 +53,11 @@ func (c *FacturacionController) Post() {
 			}
 		}
 	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": "Error al deserializar el cuerpo de la solicitud",
+			"message": err.Error(),
 			"data":    nil,
 		}
 	}
@@ -71,20 +73,32 @@ func (c *FacturacionController) Post() {
 // @router /:id [get]
 func (c *FacturacionController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetCategoriasTiendaById(id)
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": err.Error(),
+			"message": "El id de la facturación debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
+	v, err := models.GetFacturacionById(id)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  404,
+			"message": "No se encontró el registro de facturación con el id especificado",
 			"data":    nil,
 		}
 	} else {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Cliente encontrado",
+			"message": "Consulta exitosa",
 			"data":    v,
 		}
 	}
@@ -111,27 +125,21 @@ func (c *FacturacionController) GetAll() {
 	var limit int64 = 10
 	var offset int64
 
-	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
 		fields = strings.Split(v, ",")
 	}
-	// limit: 10 (default is 10)
 	if v, err := c.GetInt64("limit"); err == nil {
 		limit = v
 	}
-	// offset: 0 (default is 0)
 	if v, err := c.GetInt64("offset"); err == nil {
 		offset = v
 	}
-	// sortby: col1,col2
 	if v := c.GetString("sortby"); v != "" {
 		sortby = strings.Split(v, ",")
 	}
-	// order: desc,asc
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
-	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
@@ -139,7 +147,7 @@ func (c *FacturacionController) GetAll() {
 				c.Data["json"] = map[string]interface{}{
 					"success": false,
 					"status":  400,
-					"message": "Error: invalid query key/value pair",
+					"message": errors.New("El filtro de búsqueda tiene un formato inválido, use el formato campo:valor").Error(),
 					"data":    nil,
 				}
 				c.ServeJSON()
@@ -150,7 +158,7 @@ func (c *FacturacionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllCategoriasTienda(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllFacturacion(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
@@ -163,7 +171,7 @@ func (c *FacturacionController) GetAll() {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Clientes encontrados",
+			"message": "Consulta exitosa",
 			"data":    l,
 		}
 	}
@@ -180,16 +188,44 @@ func (c *FacturacionController) GetAll() {
 // @router /:id [put]
 func (c *FacturacionController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id de la facturación debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	v := models.Facturacion{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateFacturacionById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  200,
+				"message": "Registro de facturación actualizado exitosamente",
+				"data":    v,
+			}
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": "No se pudo actualizar el registro de facturación, verifique que el id exista y que los datos enviados sean correctos",
+				"data":    nil,
+			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El cuerpo de la solicitud no tiene un formato JSON válido",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -203,11 +239,33 @@ func (c *FacturacionController) Put() {
 // @router /:id [delete]
 func (c *FacturacionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id de la facturación debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
 	if err := models.DeleteFacturacion(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Registro de facturación eliminado exitosamente",
+			"data":    nil,
+		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "No se pudo eliminar el registro de facturación, es posible que tenga pagos o transacciones asociadas o que el id no exista",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }

@@ -12,8 +12,8 @@ import (
 
 type Carritos struct {
 	Id            int       `orm:"column(id_carritos);pk"`
-	IdUsuarios    *Usuarios `orm:"column(id_usuarios);rel(fk)"`
-	IdEstado      *Estados  `orm:"column(id_estado);rel(fk)"`
+	IdUsuarios    int       `orm:"column(id_usuarios)"`
+	IdEstado      int       `orm:"column(id_estado)"`
 	IdCupones     *Cupones  `orm:"column(id_cupones);rel(fk)"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`

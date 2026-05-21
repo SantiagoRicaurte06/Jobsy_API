@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"API_JOBSY/Tienda_API/models"
+	"api_crud_tienda/models"
 	"encoding/json"
+	"errors"
 	"strconv"
 	"strings"
 
@@ -35,10 +36,11 @@ func (c *CategoriasTiendaController) Post() {
 	var v models.CategoriasTienda
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddCategoriasTienda(&v); err == nil {
+			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = map[string]interface{}{
 				"success": true,
 				"status":  201,
-				"message": "Cliente creado exitosamente",
+				"message": "Categoría creada exitosamente",
 				"data":    v,
 			}
 		} else {
@@ -51,10 +53,11 @@ func (c *CategoriasTiendaController) Post() {
 			}
 		}
 	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": "Error al deserializar el cuerpo de la solicitud",
+			"message": err.Error(),
 			"data":    nil,
 		}
 	}
@@ -70,20 +73,32 @@ func (c *CategoriasTiendaController) Post() {
 // @router /:id [get]
 func (c *CategoriasTiendaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetCategoriasTiendaById(id)
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": err.Error(),
+			"message": "El id de la categoría debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
+	v, err := models.GetCategoriasTiendaById(id)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  404,
+			"message": "No se encontró la categoría con el id especificado",
 			"data":    nil,
 		}
 	} else {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Cliente encontrado",
+			"message": "Consulta exitosa",
 			"data":    v,
 		}
 	}
@@ -110,27 +125,21 @@ func (c *CategoriasTiendaController) GetAll() {
 	var limit int64 = 10
 	var offset int64
 
-	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
 		fields = strings.Split(v, ",")
 	}
-	// limit: 10 (default is 10)
 	if v, err := c.GetInt64("limit"); err == nil {
 		limit = v
 	}
-	// offset: 0 (default is 0)
 	if v, err := c.GetInt64("offset"); err == nil {
 		offset = v
 	}
-	// sortby: col1,col2
 	if v := c.GetString("sortby"); v != "" {
 		sortby = strings.Split(v, ",")
 	}
-	// order: desc,asc
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
-	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
@@ -138,7 +147,7 @@ func (c *CategoriasTiendaController) GetAll() {
 				c.Data["json"] = map[string]interface{}{
 					"success": false,
 					"status":  400,
-					"message": "Error: invalid query key/value pair",
+					"message": errors.New("El filtro de búsqueda tiene un formato inválido, use el formato campo:valor").Error(),
 					"data":    nil,
 				}
 				c.ServeJSON()
@@ -162,7 +171,7 @@ func (c *CategoriasTiendaController) GetAll() {
 		c.Data["json"] = map[string]interface{}{
 			"success": true,
 			"status":  200,
-			"message": "Clientes encontrados",
+			"message": "Consulta exitosa",
 			"data":    l,
 		}
 	}
@@ -179,29 +188,42 @@ func (c *CategoriasTiendaController) GetAll() {
 // @router /:id [put]
 func (c *CategoriasTiendaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v := models.Carritos{Id: id}
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id de la categoría debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
+	v := models.CategoriasTienda{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateCarritosById(&v); err == nil {
+		if err := models.UpdateCategoriasTiendaById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,
 				"status":  200,
-				"message": "Cliente actualizado",
+				"message": "Categoría actualizada exitosamente",
 				"data":    v,
 			}
 		} else {
+			logs.Error(err)
 			c.Data["json"] = map[string]interface{}{
 				"success": false,
 				"status":  400,
-				"message": err.Error(),
+				"message": "No se pudo actualizar la categoría, verifique que el id exista y que los datos enviados sean correctos",
 				"data":    nil,
 			}
 		}
 	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": "Error al deserializar el cuerpo de la solicitud",
+			"message": "El cuerpo de la solicitud no tiene un formato JSON válido",
 			"data":    nil,
 		}
 	}
@@ -217,19 +239,31 @@ func (c *CategoriasTiendaController) Put() {
 // @router /:id [delete]
 func (c *CategoriasTiendaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteCarritos(id); err == nil {
-		c.Data["json"] = map[string]interface{}{
-			"success": true,
-			"status":  200,
-			"message": "Cliente eliminado",
-			"data":    nil,
-		}
-	} else {
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": err.Error(),
+			"message": "El id de la categoría debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
+		return
+	}
+	if err := models.DeleteCategoriasTienda(id); err == nil {
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Categoría eliminada exitosamente",
+			"data":    nil,
+		}
+	} else {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "No se pudo eliminar la categoría, es posible que tenga productos asociados o que el id no exista",
 			"data":    nil,
 		}
 	}
