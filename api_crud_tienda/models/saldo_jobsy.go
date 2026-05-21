@@ -11,7 +11,7 @@ import (
 )
 
 type SaldoJobsy struct {
-	Id              int       `orm:"column(id_saldo_jobsy);pk"`
+	Id              int       `orm:"column(id_saldo_jobsy);pk;auto"`
 	IdUsuarios      int       `orm:"column(id_usuarios)"`
 	SaldoDisponible float64   `orm:"column(saldo_disponible)"`
 	TotalGanado     float64   `orm:"column(total_ganado)"`
@@ -19,7 +19,7 @@ type SaldoJobsy struct {
 	ProximoPago     time.Time `orm:"column(proximo_pago);type(date);null"`
 	Activo          bool      `orm:"column(activo)"`
 	CreadoEn        time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn   time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn   time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *SaldoJobsy) TableName() string {
@@ -44,6 +44,7 @@ func GetSaldoJobsyById(id int) (v *SaldoJobsy, err error) {
 	o := orm.NewOrm()
 	v = &SaldoJobsy{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
 		return v, nil
 	}
 	return nil, err
@@ -54,7 +55,7 @@ func GetSaldoJobsyById(id int) (v *SaldoJobsy, err error) {
 func GetAllSaldoJobsy(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(SaldoJobsy))
+	qs := o.QueryTable(new(SaldoJobsy)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

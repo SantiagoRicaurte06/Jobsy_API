@@ -11,7 +11,7 @@ import (
 )
 
 type MetodosPagoGuardados struct {
-	Id            int         `orm:"column(id_metodos_pago_guardados);pk"`
+	Id            int         `orm:"column(id_metodos_pago_guardados);pk;auto"`
 	IdUsuarios    int         `orm:"column(id_usuarios)"`
 	IdMetodoPago  *MetodoPago `orm:"column(id_metodo_pago);rel(fk)"`
 	Alias         string      `orm:"column(alias);null"`
@@ -20,7 +20,7 @@ type MetodosPagoGuardados struct {
 	EsPrincipal   bool        `orm:"column(es_principal)"`
 	Activo        bool        `orm:"column(activo)"`
 	CreadoEn      time.Time   `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time   `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time   `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *MetodosPagoGuardados) TableName() string {
@@ -45,6 +45,9 @@ func GetMetodosPagoGuardadosById(id int) (v *MetodosPagoGuardados, err error) {
 	o := orm.NewOrm()
 	v = &MetodosPagoGuardados{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
+		o.LoadRelated(v, "IdMetodoPago")
+		o.LoadRelated(v, "IdTipoCuenta")
 		return v, nil
 	}
 	return nil, err
@@ -55,7 +58,7 @@ func GetMetodosPagoGuardadosById(id int) (v *MetodosPagoGuardados, err error) {
 func GetAllMetodosPagoGuardados(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(MetodosPagoGuardados))
+	qs := o.QueryTable(new(MetodosPagoGuardados)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
