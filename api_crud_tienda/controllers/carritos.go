@@ -1,11 +1,13 @@
 package controllers
 
 import (
-	"API_JOBSY/Tienda_API/models"
+	"api_crud_tienda/models"
 	"encoding/json"
+	"errors"
 	"strconv"
 	"strings"
 
+	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -32,27 +34,32 @@ func (c *CarritosController) URLMapping() {
 // @router / [post]
 func (c *CarritosController) Post() {
 	var v models.Carritos
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		if _, err := models.AddCarritos(&v); err == nil {
+			c.Ctx.Output.SetStatus(201)
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  201,
+				"message": "Carrito creado exitosamente",
+				"data":    v,
+			}
+		} else {
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": err.Error(),
+				"data":    nil,
+			}
+		}
+	} else {
+		logs.Error(err)
 		c.Data["json"] = map[string]interface{}{
 			"success": false,
 			"status":  400,
-			"message": "Error al deserializar el cuerpo de la solicitud",
+			"message": err.Error(),
 			"data":    nil,
 		}
-		c.ServeJSON()
-		return
-	}
-
-	if _, err := models.AddCarritos(&v); err != nil {
-		respondError(c, 400, "Error al crear el carrito", err)
-		return
-	}
-
-	c.Data["json"] = map[string]interface{}{
-		"success": true,
-		"status":  201,
-		"message": "Carrito creado exitosamente",
-		"data":    v,
 	}
 	c.ServeJSON()
 }
@@ -68,17 +75,34 @@ func (c *CarritosController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		respondError(&c.Controller, 400, "ID inválido", err)
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id del carrito debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
 		return
 	}
-
 	v, err := models.GetCarritosById(id)
 	if err != nil {
-		respondError(&c.Controller, 404, "Carrito no encontrado", err)
-		return
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  404,
+			"message": "No se encontró el carrito con el id especificado",
+			"data":    nil,
+		}
+	} else {
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    v,
+		}
 	}
-
-	respondSuccess(&c.Controller, 200, "Carrito encontrado", v)
+	c.ServeJSON()
 }
 
 // GetAll ...
@@ -101,27 +125,21 @@ func (c *CarritosController) GetAll() {
 	var limit int64 = 10
 	var offset int64
 
-	// fields: col1,col2,entity.col3
 	if v := c.GetString("fields"); v != "" {
 		fields = strings.Split(v, ",")
 	}
-	// limit: 10 (default is 10)
 	if v, err := c.GetInt64("limit"); err == nil {
 		limit = v
 	}
-	// offset: 0 (default is 0)
 	if v, err := c.GetInt64("offset"); err == nil {
 		offset = v
 	}
-	// sortby: col1,col2
 	if v := c.GetString("sortby"); v != "" {
 		sortby = strings.Split(v, ",")
 	}
-	// order: desc,asc
 	if v := c.GetString("order"); v != "" {
 		order = strings.Split(v, ",")
 	}
-	// query: k:v,k:v
 	if v := c.GetString("query"); v != "" {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
@@ -129,7 +147,7 @@ func (c *CarritosController) GetAll() {
 				c.Data["json"] = map[string]interface{}{
 					"success": false,
 					"status":  400,
-					"message": "Error: invalid query key/value pair",
+					"message": errors.New("El filtro de búsqueda tiene un formato inválido, use el formato campo:valor").Error(),
 					"data":    nil,
 				}
 				c.ServeJSON()
@@ -142,11 +160,22 @@ func (c *CarritosController) GetAll() {
 
 	l, err := models.GetAllCarritos(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		respondError(&c.Controller, 400, "Error al obtener carritos", err)
-		return
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": err.Error(),
+			"data":    nil,
+		}
+	} else {
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    l,
+		}
 	}
-
-	respondSuccess(&c.Controller, 200, "Carritos encontrados", l)
+	c.ServeJSON()
 }
 
 // Put ...
@@ -161,22 +190,44 @@ func (c *CarritosController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		respondError(&c.Controller, 400, "ID inválido", err)
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id del carrito debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
 		return
 	}
-
 	v := models.Carritos{Id: id}
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
-		respondError(&c.Controller, 400, "Error al deserializar el cuerpo de la solicitud", err)
-		return
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		if err := models.UpdateCarritosById(&v); err == nil {
+			c.Data["json"] = map[string]interface{}{
+				"success": true,
+				"status":  200,
+				"message": "Carrito actualizado exitosamente",
+				"data":    v,
+			}
+		} else {
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{
+				"success": false,
+				"status":  400,
+				"message": "No se pudo actualizar el carrito, verifique que el id exista y que los datos enviados sean correctos",
+				"data":    nil,
+			}
+		}
+	} else {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El cuerpo de la solicitud no tiene un formato JSON válido",
+			"data":    nil,
+		}
 	}
-
-	if err := models.UpdateCarritosById(&v); err != nil {
-		respondError(&c.Controller, 400, "Error al actualizar carrito", err)
-		return
-	}
-
-	respondSuccess(&c.Controller, 200, "Carrito actualizado", v)
+	c.ServeJSON()
 }
 
 // Delete ...
@@ -190,14 +241,31 @@ func (c *CarritosController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		respondError(&c.Controller, 400, "ID inválido", err)
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El id del carrito debe ser un número entero válido",
+			"data":    nil,
+		}
+		c.ServeJSON()
 		return
 	}
-
-	if err := models.DeleteCarritos(id); err != nil {
-		respondError(&c.Controller, 400, "Error al eliminar carrito", err)
-		return
+	if err := models.DeleteCarritos(id); err == nil {
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Carrito eliminado exitosamente",
+			"data":    nil,
+		}
+	} else {
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "No se pudo eliminar el carrito, es posible que tenga items asociados o que el id no exista",
+			"data":    nil,
+		}
 	}
-
-	respondSuccess(&c.Controller, 200, "Carrito eliminado", nil)
+	c.ServeJSON()
 }
