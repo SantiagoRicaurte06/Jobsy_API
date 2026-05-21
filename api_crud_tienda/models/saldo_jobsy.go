@@ -12,7 +12,7 @@ import (
 
 type SaldoJobsy struct {
 	Id              int       `orm:"column(id_saldo_jobsy);pk"`
-	IdUsuarios      int       `orm:"column(id_usuarios);rel(fk)"`
+	IdUsuarios      int       `orm:"column(id_usuarios)"`
 	SaldoDisponible float64   `orm:"column(saldo_disponible)"`
 	TotalGanado     float64   `orm:"column(total_ganado)"`
 	TotalRetirado   float64   `orm:"column(total_retirado)"`

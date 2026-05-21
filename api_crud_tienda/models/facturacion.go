@@ -12,9 +12,9 @@ import (
 
 type Facturacion struct {
 	Id               int       `orm:"column(id_pedidos);pk"`
-	IdUsuarios       int       `orm:"column(id_usuarios);rel(fk)"`
+	IdUsuarios       int       `orm:"column(id_usuarios)"`
 	IdCarritos       *Carritos `orm:"column(id_carritos);rel(fk)"`
-	IdEstado         int       `orm:"column(id_estado)`
+	IdEstado         int       `orm:"column(id_estado)"`
 	Subtotal         float64   `orm:"column(subtotal)"`
 	DescuentoTotal   float64   `orm:"column(descuento_total)"`
 	CuponDescuento   float64   `orm:"column(cupon_descuento)"`

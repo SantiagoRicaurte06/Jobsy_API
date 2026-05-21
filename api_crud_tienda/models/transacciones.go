@@ -12,7 +12,7 @@ import (
 
 type Transacciones struct {
 	Id                int              `orm:"column(id_transacciones);pk"`
-	IdUsuarios        int              `orm:"column(id_usuarios)`
+	IdUsuarios        int              `orm:"column(id_usuarios)"`
 	IdPagos           *Pagos           `orm:"column(id_pagos);rel(fk)"`
 	IdTipoTransaccion *TipoTransaccion `orm:"column(id_tipo_transaccion);rel(fk)"`
 	Monto             float64          `orm:"column(monto)"`

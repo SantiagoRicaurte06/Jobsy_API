@@ -15,7 +15,7 @@ type Productos struct {
 	IdCategoriasTienda *CategoriasTienda `orm:"column(id_categorias_tienda);rel(fk)"`
 	Nombre             string            `orm:"column(nombre)"`
 	Descripcion        string            `orm:"column(descripcion);null"`
-	IdTipo             int               `orm:"column(id_tipo);rel(fk)"`
+	IdTipo             int               `orm:"column(id_tipo)"`
 	Precio             float64           `orm:"column(precio)"`
 	PrecioOriginal     float64           `orm:"column(precio_original);null"`
 	DescuentoPct       int               `orm:"column(descuento_pct)"`
