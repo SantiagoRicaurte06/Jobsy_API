@@ -11,8 +11,8 @@ import (
 )
 
 type Configuraciones struct {
-	Id                   int       `orm:"column(id_configuraciones);pk"`
-	IdUsuarios           int       `orm:"column(id_usuarios);rel(fk)"`
+	Id                   int       `orm:"column(id_configuraciones);pk;auto"`
+	IdUsuarios           int       `orm:"column(id_usuarios)"`
 	PerfilPublico        bool      `orm:"column(perfil_publico)"`
 	MostrarCorreo        bool      `orm:"column(mostrar_correo)"`
 	MostrarTelefono      bool      `orm:"column(mostrar_telefono)"`
@@ -28,7 +28,7 @@ type Configuraciones struct {
 	NotifPostulaciones   bool      `orm:"column(notif_postulaciones)"`
 	Activo               bool      `orm:"column(activo)"`
 	CreadoEn             time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn        time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn        time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Configuraciones) TableName() string {

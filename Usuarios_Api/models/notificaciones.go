@@ -11,16 +11,16 @@ import (
 )
 
 type Notificaciones struct {
-	Id            int       `orm:"column(id_notificaciones);pk"`
-	IdUsuarios    int       `orm:"column(id_usuarios);rel(fk)"`
-	IdTipo        int       `orm:"column(id_tipo);rel(fk)"`
+	Id            int       `orm:"column(id_notificaciones);pk;auto"`
+	IdUsuarios    int       `orm:"column(id_usuarios)"`
+	IdTipo        int       `orm:"column(id_tipo)"`
 	Titulo        string    `orm:"column(titulo)"`
 	Cuerpo        string    `orm:"column(cuerpo);null"`
 	Leida         bool      `orm:"column(leida)"`
 	UrlDestino    string    `orm:"column(url_destino);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Notificaciones) TableName() string {
