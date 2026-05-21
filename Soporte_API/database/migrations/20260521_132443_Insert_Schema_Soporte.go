@@ -9,21 +9,21 @@ import (
 )
 
 // DO NOT MODIFY
-type Create_Schema_20260521_131558 struct {
+type Insert_Schema_Soporte_20260521_132443 struct {
 	migration.Migration
 }
 
 // DO NOT MODIFY
 func init() {
-	m := &Create_Schema_20260521_131558{}
+	m := &Insert_Schema_Soporte_20260521_132443{}
 	m.Created = "20260514_125215"
 	migration.Register("CreacionDb_20260514_125215", m)
 }
 
 // Run the migrations
-func (m *Create_Schema_20260521_131558) Up() {
+func (m *Insert_Schema_Soporte_20260521_132443) Up() {
 	// Se lee el archivo SQL
-	file, err := ioutil.ReadFile("../20260521_131558_Create_Schema_Soporte_UP.sql")
+	file, err := ioutil.ReadFile("../20260521_132443_Insert_Schema_Soporte_up.sql")
 
 	// Se verifica si hubo un error al leer el archivo
 	if err != nil {
@@ -41,9 +41,9 @@ func (m *Create_Schema_20260521_131558) Up() {
 }
 
 // Reverse the migrations
-func (m *Create_Schema_20260521_131558) Down() {
+func (m *Insert_Schema_Soporte_20260521_132443) Down() {
 	// Se lee el archivo SQL
-	file, err := ioutil.ReadFile("../20260521_131558_Create_Schema_Soporte__down.sql")
+	file, err := ioutil.ReadFile("../20260521_132443_Insert_Schema_Soporte_down.sql")
 
 	// Se verifica si hubo un error al leer el archivo
 	if err != nil {
