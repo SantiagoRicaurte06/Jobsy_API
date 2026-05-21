@@ -11,7 +11,7 @@ import (
 )
 
 type TrCarritoItems struct {
-	Id             int        `orm:"column(id_tr_carrito_items);pk"`
+	Id             int        `orm:"column(id_tr_carrito_items);pk;auto"`
 	IdCarritos     *Carritos  `orm:"column(id_carritos);rel(fk)"`
 	IdProductos    *Productos `orm:"column(id_productos);rel(fk)"`
 	Cantidad       int        `orm:"column(cantidad)"`
@@ -19,7 +19,7 @@ type TrCarritoItems struct {
 	Seleccionado   bool       `orm:"column(seleccionado)"`
 	Activo         bool       `orm:"column(activo)"`
 	CreadoEn       time.Time  `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn  time.Time  `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn  time.Time  `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *TrCarritoItems) TableName() string {
@@ -44,6 +44,8 @@ func GetTrCarritoItemsById(id int) (v *TrCarritoItems, err error) {
 	o := orm.NewOrm()
 	v = &TrCarritoItems{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdCarritos")
+		o.LoadRelated(v, "IdProductos")
 		return v, nil
 	}
 	return nil, err
@@ -54,7 +56,7 @@ func GetTrCarritoItemsById(id int) (v *TrCarritoItems, err error) {
 func GetAllTrCarritoItems(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TrCarritoItems))
+	qs := o.QueryTable(new(TrCarritoItems)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

@@ -11,7 +11,7 @@ import (
 )
 
 type Cupones struct {
-	Id            int       `orm:"column(id_cupones);pk"`
+	Id            int       `orm:"column(id_cupones);pk;auto"`
 	Codigo        string    `orm:"column(codigo)"`
 	DescuentoPct  int       `orm:"column(descuento_pct);null"`
 	DescuentoFijo float64   `orm:"column(descuento_fijo);null"`
@@ -20,7 +20,7 @@ type Cupones struct {
 	Activo        bool      `orm:"column(activo)"`
 	ExpiraEn      time.Time `orm:"column(expira_en);type(timestamp without time zone);null"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Cupones) TableName() string {

@@ -11,7 +11,7 @@ import (
 )
 
 type Productos struct {
-	Id                 int               `orm:"column(id_productos);pk"`
+	Id                 int               `orm:"column(id_productos);pk;auto"`
 	IdCategoriasTienda *CategoriasTienda `orm:"column(id_categorias_tienda);rel(fk)"`
 	Nombre             string            `orm:"column(nombre)"`
 	Descripcion        string            `orm:"column(descripcion);null"`
@@ -28,7 +28,7 @@ type Productos struct {
 	TotalResenas       int               `orm:"column(total_resenas)"`
 	Activo             bool              `orm:"column(activo)"`
 	CreadoEn           time.Time         `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn      time.Time         `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn      time.Time         `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Productos) TableName() string {
@@ -53,6 +53,8 @@ func GetProductosById(id int) (v *Productos, err error) {
 	o := orm.NewOrm()
 	v = &Productos{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdCategoriasTienda")
+		o.LoadRelated(v, "IdTipo")
 		return v, nil
 	}
 	return nil, err
@@ -63,7 +65,7 @@ func GetProductosById(id int) (v *Productos, err error) {
 func GetAllProductos(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Productos))
+	qs := o.QueryTable(new(Productos)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

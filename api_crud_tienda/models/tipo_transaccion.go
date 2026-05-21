@@ -11,12 +11,12 @@ import (
 )
 
 type TipoTransaccion struct {
-	Id            int       `orm:"column(id_tipo_transaccion);pk"`
+	Id            int       `orm:"column(id_tipo_transaccion);pk;auto"`
 	Nombre        string    `orm:"column(nombre)"`
 	Descripcion   string    `orm:"column(descripcion)"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *TipoTransaccion) TableName() string {

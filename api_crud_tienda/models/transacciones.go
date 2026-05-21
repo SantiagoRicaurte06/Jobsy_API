@@ -11,7 +11,7 @@ import (
 )
 
 type Transacciones struct {
-	Id                int              `orm:"column(id_transacciones);pk"`
+	Id                int              `orm:"column(id_transacciones);pk;auto"`
 	IdUsuarios        int              `orm:"column(id_usuarios)"`
 	IdPagos           *Pagos           `orm:"column(id_pagos);rel(fk)"`
 	IdTipoTransaccion *TipoTransaccion `orm:"column(id_tipo_transaccion);rel(fk)"`
@@ -20,7 +20,7 @@ type Transacciones struct {
 	Referencia        string           `orm:"column(referencia);null"`
 	Activo            bool             `orm:"column(activo)"`
 	CreadoEn          time.Time        `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn     time.Time        `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn     time.Time        `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Transacciones) TableName() string {
@@ -45,6 +45,9 @@ func GetTransaccionesById(id int) (v *Transacciones, err error) {
 	o := orm.NewOrm()
 	v = &Transacciones{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
+		o.LoadRelated(v, "IdPagos")
+		o.LoadRelated(v, "IdTipoTransaccion")
 		return v, nil
 	}
 	return nil, err
@@ -55,7 +58,7 @@ func GetTransaccionesById(id int) (v *Transacciones, err error) {
 func GetAllTransacciones(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Transacciones))
+	qs := o.QueryTable(new(Transacciones)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

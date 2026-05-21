@@ -11,7 +11,7 @@ import (
 )
 
 type PedidoItems struct {
-	Id             int          `orm:"column(id_pedido_items);pk"`
+	Id             int          `orm:"column(id_pedido_items);pk;auto"`
 	IdPedidos      *Facturacion `orm:"column(id_pedidos);rel(fk)"`
 	IdProductos    *Productos   `orm:"column(id_productos);rel(fk)"`
 	Cantidad       int          `orm:"column(cantidad)"`
@@ -19,7 +19,7 @@ type PedidoItems struct {
 	Subtotal       float64      `orm:"column(subtotal)"`
 	Activo         bool         `orm:"column(activo)"`
 	CreadoEn       time.Time    `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn  time.Time    `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn  time.Time    `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *PedidoItems) TableName() string {
@@ -44,6 +44,8 @@ func GetPedidoItemsById(id int) (v *PedidoItems, err error) {
 	o := orm.NewOrm()
 	v = &PedidoItems{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdPedidos")
+		o.LoadRelated(v, "IdProductos")
 		return v, nil
 	}
 	return nil, err
@@ -54,7 +56,7 @@ func GetPedidoItemsById(id int) (v *PedidoItems, err error) {
 func GetAllPedidoItems(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(PedidoItems))
+	qs := o.QueryTable(new(PedidoItems)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

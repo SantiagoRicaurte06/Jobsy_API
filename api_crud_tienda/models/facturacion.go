@@ -11,7 +11,7 @@ import (
 )
 
 type Facturacion struct {
-	Id               int       `orm:"column(id_pedidos);pk"`
+	Id               int       `orm:"column(id_pedidos);pk;auto"`
 	IdUsuarios       int       `orm:"column(id_usuarios)"`
 	IdCarritos       *Carritos `orm:"column(id_carritos);rel(fk)"`
 	IdEstado         int       `orm:"column(id_estado)"`
@@ -29,7 +29,7 @@ type Facturacion struct {
 	FacturaDpto      string    `orm:"column(factura_dpto);null"`
 	Activo           bool      `orm:"column(activo)"`
 	CreadoEn         time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn    time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn    time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Facturacion) TableName() string {
@@ -54,6 +54,9 @@ func GetFacturacionById(id int) (v *Facturacion, err error) {
 	o := orm.NewOrm()
 	v = &Facturacion{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
+		o.LoadRelated(v, "IdCarritos")
+		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err
@@ -64,7 +67,7 @@ func GetFacturacionById(id int) (v *Facturacion, err error) {
 func GetAllFacturacion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Facturacion))
+	qs := o.QueryTable(new(Facturacion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

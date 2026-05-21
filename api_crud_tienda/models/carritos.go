@@ -11,13 +11,13 @@ import (
 )
 
 type Carritos struct {
-	Id            int       `orm:"column(id_carritos);pk"`
+	Id            int       `orm:"column(id_carritos);pk;auto"`
 	IdUsuarios    int       `orm:"column(id_usuarios)"`
 	IdEstado      int       `orm:"column(id_estado)"`
 	IdCupones     *Cupones  `orm:"column(id_cupones);rel(fk)"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Carritos) TableName() string {
@@ -42,6 +42,9 @@ func GetCarritosById(id int) (v *Carritos, err error) {
 	o := orm.NewOrm()
 	v = &Carritos{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
+		o.LoadRelated(v, "IdEstado")
+		o.LoadRelated(v, "IdCupones")
 		return v, nil
 	}
 	return nil, err
@@ -52,7 +55,7 @@ func GetCarritosById(id int) (v *Carritos, err error) {
 func GetAllCarritos(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Carritos))
+	qs := o.QueryTable(new(Carritos)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
