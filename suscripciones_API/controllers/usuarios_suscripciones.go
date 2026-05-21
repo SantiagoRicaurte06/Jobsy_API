@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
@@ -36,12 +37,12 @@ func (c *UsuariosSuscripcionesController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddUsuariosSuscripciones(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "message": "Post exitoso", "date": v}
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio Post: informacion invalidad verifique el body"}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio Post: informacion invalidad verifique el body"}
 	}
 	c.ServeJSON()
 }
@@ -58,9 +59,10 @@ func (c *UsuariosSuscripcionesController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetUsuariosSuscripcionesById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 400, "message": "Error en el servicio GetOne: La solicitud contiene un parametro invalido o no existe el recurso solicitado"}
 	} else {
-		c.Data["json"] = v
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": v}
 	}
 	c.ServeJSON()
 }
@@ -123,7 +125,11 @@ func (c *UsuariosSuscripcionesController) GetAll() {
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
-		c.Data["json"] = l
+		if l == nil {
+			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetAll: no se encontro el ID", "data": nil}
+		} else {
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": l}
+		}
 	}
 	c.ServeJSON()
 }
@@ -142,12 +148,12 @@ func (c *UsuariosSuscripcionesController) Put() {
 	v := models.UsuariosSuscripciones{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateUsuariosSuscripcionesById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "date": v}
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el Put: No se encontro el id"}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el Put: No se encontro el id"}
 	}
 	c.ServeJSON()
 }
@@ -163,9 +169,9 @@ func (c *UsuariosSuscripcionesController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteUsuariosSuscripciones(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Eliminado exitoso"}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error de Deleate: No se encontro el ID"}
 	}
 	c.ServeJSON()
 }
