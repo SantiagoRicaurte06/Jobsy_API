@@ -43,6 +43,8 @@ func GetReporteMensajesById(id int) (v *ReporteMensajes, err error) {
 	o := orm.NewOrm()
 	v = &ReporteMensajes{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdReportes")
+		o.LoadRelated(v, "IdRemitente")
 		return v, nil
 	}
 	return nil, err
@@ -53,7 +55,7 @@ func GetReporteMensajesById(id int) (v *ReporteMensajes, err error) {
 func GetAllReporteMensajes(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(ReporteMensajes))
+	qs := o.QueryTable(new(ReporteMensajes)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
