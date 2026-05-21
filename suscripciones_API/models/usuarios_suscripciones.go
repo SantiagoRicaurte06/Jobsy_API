@@ -11,17 +11,17 @@ import (
 )
 
 type UsuariosSuscripciones struct {
-	Id                     int                     `orm:"column(id_usuarios_suscripciones);pk"`
-	IdUsuarios             *Usuarios               `orm:"column(id_usuarios);rel(fk)"`
-	IdPlanes               *Planes                 `orm:"column(id_planes);rel(fk)"`
-	IdModalidadSuscripcion *ModalidadesSuscripcion `orm:"column(id_modalidad_suscripcion);rel(fk)"`
-	IdEstado               *Estados                `orm:"column(id_estado);rel(fk)"`
-	InicioEn               time.Time               `orm:"column(inicio_en);type(timestamp without time zone)"`
-	FinEn                  time.Time               `orm:"column(fin_en);type(timestamp without time zone);null"`
-	AutoRenovar            bool                    `orm:"column(auto_renovar)"`
-	Activo                 bool                    `orm:"column(activo)"`
-	CreadoEn               time.Time               `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn          time.Time               `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	Id                     int       `orm:"column(id_usuarios_suscripciones);pk"`
+	IdUsuarios             int       `orm:"column(id_usuarios)"`
+	IdPlanes               *Planes   `orm:"column(id_planes);rel(fk)"`
+	IdModalidadSuscripcion int       `orm:"column(id_modalidad_suscripcion)"`
+	IdEstado               int       `orm:"column(id_estado)"`
+	InicioEn               time.Time `orm:"column(inicio_en);type(timestamp without time zone)"`
+	FinEn                  time.Time `orm:"column(fin_en);type(timestamp without time zone);null"`
+	AutoRenovar            bool      `orm:"column(auto_renovar)"`
+	Activo                 bool      `orm:"column(activo)"`
+	CreadoEn               time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn          time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
 }
 
 func (t *UsuariosSuscripciones) TableName() string {

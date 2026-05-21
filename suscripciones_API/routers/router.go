@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"Jobsy_API/Soporte_API/controllers"
+	"Suscripciones_Api/controllers"
 
 	beego "github.com/beego/beego/v2/server/web"
 )

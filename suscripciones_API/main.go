@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "Soporte_API/routers"
+	_ "Suscripciones_Api/routers"
 
 	beego "github.com/beego/beego/v2/server/web"
 	beeLogger "github.com/beego/bee/v2/logger"
@@ -12,7 +12,7 @@ import (
 func main() {
 	sqlConn,err := beego.AppConfig.String("sqlconn")
 	if err != nil {
-		beeLogger.Log.Fatal("%s", err)
+		beeLogger.Log.Fatal(err.Error())
 	}
 	orm.RegisterDataBase("default", "postgres", sqlConn)
 	if beego.BConfig.RunMode == "dev" {

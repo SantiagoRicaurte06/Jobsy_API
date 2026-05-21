@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"Jobsy_API/Soporte_API/models"
+	"Suscripciones_Api/models"
 	"encoding/json"
 	"errors"
 	"strconv"
