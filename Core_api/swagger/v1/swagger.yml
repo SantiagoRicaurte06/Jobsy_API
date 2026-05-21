@@ -1,0 +1,941 @@
+swagger: "2.0"
+info: {}
+basePath: /v1
+paths:
+  /credenciales/:
+    get:
+      tags:
+      - credenciales
+      description: |-
+        get Credenciales
+        <br>
+      operationId: CredencialesController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Credenciales'
+        "403":
+          description: ""
+    post:
+      tags:
+      - credenciales
+      description: |-
+        create Credenciales
+        <br>
+      operationId: CredencialesController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Credenciales content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Credenciales'
+      responses:
+        "201":
+          description: '{int} models.Credenciales'
+        "403":
+          description: body is empty
+  /credenciales/{id}:
+    get:
+      tags:
+      - credenciales
+      description: |-
+        get Credenciales by id
+        <br>
+      operationId: CredencialesController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Credenciales'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - credenciales
+      description: |-
+        update the Credenciales
+        <br>
+      operationId: CredencialesController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Credenciales content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Credenciales'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Credenciales'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - credenciales
+      description: |-
+        delete the Credenciales
+        <br>
+      operationId: CredencialesController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /documentos_identidad/:
+    get:
+      tags:
+      - documentos_identidad
+      description: |-
+        get DocumentosIdentidad
+        <br>
+      operationId: DocumentosIdentidadController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DocumentosIdentidad'
+        "403":
+          description: ""
+    post:
+      tags:
+      - documentos_identidad
+      description: |-
+        create DocumentosIdentidad
+        <br>
+      operationId: DocumentosIdentidadController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for DocumentosIdentidad content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DocumentosIdentidad'
+      responses:
+        "201":
+          description: '{int} models.DocumentosIdentidad'
+        "403":
+          description: body is empty
+  /documentos_identidad/{id}:
+    get:
+      tags:
+      - documentos_identidad
+      description: |-
+        get DocumentosIdentidad by id
+        <br>
+      operationId: DocumentosIdentidadController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DocumentosIdentidad'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - documentos_identidad
+      description: |-
+        update the DocumentosIdentidad
+        <br>
+      operationId: DocumentosIdentidadController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for DocumentosIdentidad content
+        required: true
+        schema:
+          $ref: '#/definitions/models.DocumentosIdentidad'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.DocumentosIdentidad'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - documentos_identidad
+      description: |-
+        delete the DocumentosIdentidad
+        <br>
+      operationId: DocumentosIdentidadController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /roles_usuarios/:
+    get:
+      tags:
+      - roles_usuarios
+      description: |-
+        get RolesUsuarios
+        <br>
+      operationId: RolesUsuariosController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.RolesUsuarios'
+        "403":
+          description: ""
+    post:
+      tags:
+      - roles_usuarios
+      description: |-
+        create RolesUsuarios
+        <br>
+      operationId: RolesUsuariosController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for RolesUsuarios content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RolesUsuarios'
+      responses:
+        "201":
+          description: '{int} models.RolesUsuarios'
+        "403":
+          description: body is empty
+  /roles_usuarios/{id}:
+    get:
+      tags:
+      - roles_usuarios
+      description: |-
+        get RolesUsuarios by id
+        <br>
+      operationId: RolesUsuariosController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.RolesUsuarios'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - roles_usuarios
+      description: |-
+        update the RolesUsuarios
+        <br>
+      operationId: RolesUsuariosController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for RolesUsuarios content
+        required: true
+        schema:
+          $ref: '#/definitions/models.RolesUsuarios'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.RolesUsuarios'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - roles_usuarios
+      description: |-
+        delete the RolesUsuarios
+        <br>
+      operationId: RolesUsuariosController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /sesiones/:
+    get:
+      tags:
+      - sesiones
+      description: |-
+        get Sesiones
+        <br>
+      operationId: SesionesController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Sesiones'
+        "403":
+          description: ""
+    post:
+      tags:
+      - sesiones
+      description: |-
+        create Sesiones
+        <br>
+      operationId: SesionesController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Sesiones content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Sesiones'
+      responses:
+        "201":
+          description: '{int} models.Sesiones'
+        "403":
+          description: body is empty
+  /sesiones/{id}:
+    get:
+      tags:
+      - sesiones
+      description: |-
+        get Sesiones by id
+        <br>
+      operationId: SesionesController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Sesiones'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - sesiones
+      description: |-
+        update the Sesiones
+        <br>
+      operationId: SesionesController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Sesiones content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Sesiones'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Sesiones'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - sesiones
+      description: |-
+        delete the Sesiones
+        <br>
+      operationId: SesionesController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /tipo_documento/:
+    get:
+      tags:
+      - tipo_documento
+      description: |-
+        get TipoDocumento
+        <br>
+      operationId: TipoDocumentoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoDocumento'
+        "403":
+          description: ""
+    post:
+      tags:
+      - tipo_documento
+      description: |-
+        create TipoDocumento
+        <br>
+      operationId: TipoDocumentoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for TipoDocumento content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoDocumento'
+      responses:
+        "201":
+          description: '{int} models.TipoDocumento'
+        "403":
+          description: body is empty
+  /tipo_documento/{id}:
+    get:
+      tags:
+      - tipo_documento
+      description: |-
+        get TipoDocumento by id
+        <br>
+      operationId: TipoDocumentoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoDocumento'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - tipo_documento
+      description: |-
+        update the TipoDocumento
+        <br>
+      operationId: TipoDocumentoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for TipoDocumento content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoDocumento'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoDocumento'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - tipo_documento
+      description: |-
+        delete the TipoDocumento
+        <br>
+      operationId: TipoDocumentoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /usuarios/:
+    get:
+      tags:
+      - usuarios
+      description: |-
+        get Usuarios
+        <br>
+      operationId: UsuariosController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Usuarios'
+        "403":
+          description: ""
+    post:
+      tags:
+      - usuarios
+      description: |-
+        create Usuarios
+        <br>
+      operationId: UsuariosController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Usuarios content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Usuarios'
+      responses:
+        "201":
+          description: '{int} models.Usuarios'
+        "403":
+          description: body is empty
+  /usuarios/{id}:
+    get:
+      tags:
+      - usuarios
+      description: |-
+        get Usuarios by id
+        <br>
+      operationId: UsuariosController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Usuarios'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - usuarios
+      description: |-
+        update the Usuarios
+        <br>
+      operationId: UsuariosController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Usuarios content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Usuarios'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Usuarios'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - usuarios
+      description: |-
+        delete the Usuarios
+        <br>
+      operationId: UsuariosController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+definitions:
+  models.Credenciales:
+    title: Credenciales
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      Bloqueado:
+        type: boolean
+      CreadoEn:
+        type: string
+        format: datetime
+      DobleFactor:
+        type: boolean
+      Id:
+        type: integer
+        format: int64
+      IdUsuarios:
+        $ref: '#/definitions/models.Usuarios'
+      IntentosFallidos:
+        type: integer
+        format: int64
+      PasswordHash:
+        type: string
+      Salt:
+        type: string
+      TokenExpiraEn:
+        type: string
+        format: datetime
+      TokenReset:
+        type: string
+      UltimoLogin:
+        type: string
+        format: datetime
+  models.DocumentosIdentidad:
+    title: DocumentosIdentidad
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      CreadoEn:
+        type: string
+        format: datetime
+      FechaExpedicion:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
+      IdTipoDocumento:
+        $ref: '#/definitions/models.TipoDocumento'
+      IdUsuarios:
+        $ref: '#/definitions/models.Usuarios'
+      LugarExpedicion:
+        type: string
+      NumeroDocumento:
+        type: string
+  models.RolesUsuarios:
+    title: RolesUsuarios
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      CreadoEn:
+        type: string
+        format: datetime
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.Sesiones:
+    title: Sesiones
+    type: object
+    properties:
+      Activa:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      CreadoEn:
+        type: string
+        format: datetime
+      Dispositivo:
+        type: string
+      ExpiraEn:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
+      IdUsuarios:
+        $ref: '#/definitions/models.Usuarios'
+      Ip:
+        type: string
+      Token:
+        type: string
+  models.TipoDocumento:
+    title: TipoDocumento
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      CreadoEn:
+        type: string
+        format: datetime
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+  models.Usuarios:
+    title: Usuarios
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      ActualizadoEn:
+        type: string
+        format: datetime
+      Apellido:
+        type: string
+      Ciudad:
+        type: string
+      Correo:
+        type: string
+      CreadoEn:
+        type: string
+        format: datetime
+      Disponible:
+        type: boolean
+      FechaNacimiento:
+        type: string
+        format: datetime
+      FotoUrl:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      IdGenero:
+        type: integer
+        format: int64
+      IdRolesUsuarios:
+        $ref: '#/definitions/models.RolesUsuarios'
+      Nacionalidad:
+        type: string
+      Nombre:
+        type: string
+      PerfilPublico:
+        type: boolean
+      Telefono:
+        type: string
+tags:
+- name: roles_usuarios
+  description: |
+    RolesUsuariosController operations for RolesUsuarios
+- name: usuarios
+  description: |
+    UsuariosController operations for Usuarios
+- name: tipo_documento
+  description: |
+    TipoDocumentoController operations for TipoDocumento
+- name: documentos_identidad
+  description: |
+    DocumentosIdentidadController operations for DocumentosIdentidad
+- name: credenciales
+  description: |
+    CredencialesController operations for Credenciales
+- name: sesiones
+  description: |
+    SesionesController operations for Sesiones
