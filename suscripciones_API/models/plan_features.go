@@ -11,13 +11,13 @@ import (
 )
 
 type PlanFeatures struct {
-	Id            int       `orm:"column(id_plan_features);pk"`
+	Id            int       `orm:"column(id_plan_features);pk;auto"`
 	IdPlanes      *Planes   `orm:"column(id_planes);rel(fk)"`
 	Feature       string    `orm:"column(feature)"`
 	Incluida      bool      `orm:"column(incluida)"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *PlanFeatures) TableName() string {
@@ -42,6 +42,7 @@ func GetPlanFeaturesById(id int) (v *PlanFeatures, err error) {
 	o := orm.NewOrm()
 	v = &PlanFeatures{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdPlanes")
 		return v, nil
 	}
 	return nil, err
@@ -52,7 +53,7 @@ func GetPlanFeaturesById(id int) (v *PlanFeatures, err error) {
 func GetAllPlanFeatures(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(PlanFeatures))
+	qs := o.QueryTable(new(PlanFeatures)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute

@@ -11,14 +11,14 @@ import (
 )
 
 type Planes struct {
-	Id            int       `orm:"column(id_planes);pk"`
+	Id            int       `orm:"column(id_planes);pk;auto"`
 	Nombre        string    `orm:"column(nombre)"`
 	PrecioMensual float64   `orm:"column(precio_mensual)"`
 	PrecioAnual   float64   `orm:"column(precio_anual);null"`
 	Descripcion   string    `orm:"column(descripcion);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Planes) TableName() string {

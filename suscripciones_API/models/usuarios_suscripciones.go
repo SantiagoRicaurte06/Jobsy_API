@@ -11,7 +11,7 @@ import (
 )
 
 type UsuariosSuscripciones struct {
-	Id                     int       `orm:"column(id_usuarios_suscripciones);pk"`
+	Id                     int       `orm:"column(id_usuarios_suscripciones);pk;auto"`
 	IdUsuarios             int       `orm:"column(id_usuarios)"`
 	IdPlanes               *Planes   `orm:"column(id_planes);rel(fk)"`
 	IdModalidadSuscripcion int       `orm:"column(id_modalidad_suscripcion)"`
@@ -21,7 +21,7 @@ type UsuariosSuscripciones struct {
 	AutoRenovar            bool      `orm:"column(auto_renovar)"`
 	Activo                 bool      `orm:"column(activo)"`
 	CreadoEn               time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn          time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn          time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *UsuariosSuscripciones) TableName() string {
@@ -46,6 +46,10 @@ func GetUsuariosSuscripcionesById(id int) (v *UsuariosSuscripciones, err error) 
 	o := orm.NewOrm()
 	v = &UsuariosSuscripciones{Id: id}
 	if err = o.Read(v); err == nil {
+		o.LoadRelated(v, "IdUsuarios")
+		o.LoadRelated(v, "IdPlanes")
+		o.LoadRelated(v, "IdModalidadSuscripcion")
+		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err
@@ -56,7 +60,7 @@ func GetUsuariosSuscripcionesById(id int) (v *UsuariosSuscripciones, err error) 
 func GetAllUsuariosSuscripciones(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(UsuariosSuscripciones))
+	qs := o.QueryTable(new(UsuariosSuscripciones)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
