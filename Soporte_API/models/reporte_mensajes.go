@@ -11,14 +11,14 @@ import (
 )
 
 type ReporteMensajes struct {
-	Id            int       `orm:"column(id_reporte_mensajes);pk"`
+	Id            int       `orm:"column(id_reporte_mensajes);pk;auto"`
 	IdReportes    *Reportes `orm:"column(id_reportes);rel(fk)"`
-	IdRemitente   *Usuarios `orm:"column(id_remitente);rel(fk)"`
+	IdRemitente   int       `orm:"column(id_remitente)"`
 	Mensaje       string    `orm:"column(mensaje)"`
 	ArchivoUrl    string    `orm:"column(archivo_url);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *ReporteMensajes) TableName() string {

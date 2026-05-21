@@ -11,15 +11,15 @@ import (
 )
 
 type Reportes struct {
-	Id            int       `orm:"column(id_reportes);pk"`
-	IdUsuarios    *Usuarios `orm:"column(id_usuarios);rel(fk)"`
-	IdTipo        *Tipos    `orm:"column(id_tipo);rel(fk)"`
+	Id            int       `orm:"column(id_reportes);pk;auto"`
+	IdUsuarios    int       `orm:"column(id_usuarios)"`
+	IdTipo        int       `orm:"column(id_tipo)"`
 	Descripcion   string    `orm:"column(descripcion)"`
 	ArchivoUrl    string    `orm:"column(archivo_url);null"`
-	IdEstado      *Estados  `orm:"column(id_estado);rel(fk)"`
+	IdEstado      int       `orm:"column(id_estado);"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Reportes) TableName() string {
