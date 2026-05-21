@@ -12,11 +12,11 @@ import (
 
 type MetodosPagoGuardados struct {
 	Id            int         `orm:"column(id_metodos_pago_guardados);pk"`
-	IdUsuarios    int         `orm:"column(id_usuarios)`
+	IdUsuarios    int         `orm:"column(id_usuarios)"`
 	IdMetodoPago  *MetodoPago `orm:"column(id_metodo_pago);rel(fk)"`
 	Alias         string      `orm:"column(alias);null"`
 	NumeroCuenta  string      `orm:"column(numero_cuenta)"`
-	IdTipoCuenta  int         `orm:"column(id_tipo_cuenta)`
+	IdTipoCuenta  int         `orm:"column(id_tipo_cuenta)"`
 	EsPrincipal   bool        `orm:"column(es_principal)"`
 	Activo        bool        `orm:"column(activo)"`
 	CreadoEn      time.Time   `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`

@@ -1,0 +1,26 @@
+Environment variables
+.env
+.env.local
+.env.*.local
+
+Go
+*.exe
+*.dll
+*.so
+*.dylib
+bin/
+dist/
+*.o
+*.a
+*.test
+
+IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+Dependencies
+vendor/

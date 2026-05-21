@@ -13,12 +13,12 @@ import (
 type Pagos struct {
 	Id               int          `orm:"column(id_pagos);pk"`
 	IdPedidos        *Facturacion `orm:"column(id_pedidos);rel(fk)"`
-	IdContrataciones int          `orm:"column(id_contrataciones);`
-	IdUsuarios       int          `orm:"column(id_usuarios)`
+	IdContrataciones int          `orm:"column(id_contrataciones)"`
+	IdUsuarios       int          `orm:"column(id_usuarios)"`
 	IdMetodoPago     *MetodoPago  `orm:"column(id_metodo_pago);rel(fk)"`
-	IdTipoPago       int          `orm:"column(id_tipo_pago)`
-	IdEstado         int          `orm:"column(id_estado)`
-	IdTipoCuenta     int          `orm:"column(id_tipo_cuenta)`
+	IdTipoPago       int          `orm:"column(id_tipo_pago)"`
+	IdEstado         int          `orm:"column(id_estado)"`
+	IdTipoCuenta     int          `orm:"column(id_tipo_cuenta)"`
 	Monto            float64      `orm:"column(monto)"`
 	ReferenciaExt    string       `orm:"column(referencia_ext);null"`
 	Banco            string       `orm:"column(banco);null"`
