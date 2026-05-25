@@ -11,11 +11,11 @@ import (
 )
 
 type Generos struct {
-	Id            int       `orm:"column(id_genero);pk"`
+	Id            int       `orm:"column(id_genero);pk;auto"`
 	Nombre        string    `orm:"column(nombre)"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Generos) TableName() string {
