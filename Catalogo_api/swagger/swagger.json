@@ -1,0 +1,1662 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API\n",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/dias_semana/": {
+            "get": {
+                "tags": [
+                    "dias_semana"
+                ],
+                "description": "get DiasSemana\n\u003cbr\u003e",
+                "operationId": "DiasSemanaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasSemana"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "dias_semana"
+                ],
+                "description": "create DiasSemana\n\u003cbr\u003e",
+                "operationId": "DiasSemanaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DiasSemana content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasSemana"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DiasSemana"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/dias_semana/{id}": {
+            "get": {
+                "tags": [
+                    "dias_semana"
+                ],
+                "description": "get DiasSemana by id\n\u003cbr\u003e",
+                "operationId": "DiasSemanaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasSemana"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "dias_semana"
+                ],
+                "description": "update the DiasSemana\n\u003cbr\u003e",
+                "operationId": "DiasSemanaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DiasSemana content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasSemana"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DiasSemana"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "dias_semana"
+                ],
+                "description": "delete the DiasSemana\n\u003cbr\u003e",
+                "operationId": "DiasSemanaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/estados/": {
+            "get": {
+                "tags": [
+                    "estados"
+                ],
+                "description": "get Estados\n\u003cbr\u003e",
+                "operationId": "EstadosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Estados"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "estados"
+                ],
+                "description": "create Estados\n\u003cbr\u003e",
+                "operationId": "EstadosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Estados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Estados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Estados"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/estados/{id}": {
+            "get": {
+                "tags": [
+                    "estados"
+                ],
+                "description": "get Estados by id\n\u003cbr\u003e",
+                "operationId": "EstadosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Estados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "estados"
+                ],
+                "description": "update the Estados\n\u003cbr\u003e",
+                "operationId": "EstadosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Estados content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Estados"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Estados"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "estados"
+                ],
+                "description": "delete the Estados\n\u003cbr\u003e",
+                "operationId": "EstadosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/generos/": {
+            "get": {
+                "tags": [
+                    "generos"
+                ],
+                "description": "get Generos\n\u003cbr\u003e",
+                "operationId": "GenerosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Generos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "generos"
+                ],
+                "description": "create Generos\n\u003cbr\u003e",
+                "operationId": "GenerosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Generos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Generos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Generos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/generos/{id}": {
+            "get": {
+                "tags": [
+                    "generos"
+                ],
+                "description": "get Generos by id\n\u003cbr\u003e",
+                "operationId": "GenerosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Generos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "generos"
+                ],
+                "description": "update the Generos\n\u003cbr\u003e",
+                "operationId": "GenerosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Generos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Generos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Generos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "generos"
+                ],
+                "description": "delete the Generos\n\u003cbr\u003e",
+                "operationId": "GenerosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/modalidades_suscripcion/": {
+            "get": {
+                "tags": [
+                    "modalidades_suscripcion"
+                ],
+                "description": "get ModalidadesSuscripcion\n\u003cbr\u003e",
+                "operationId": "ModalidadesSuscripcionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesSuscripcion"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "modalidades_suscripcion"
+                ],
+                "description": "create ModalidadesSuscripcion\n\u003cbr\u003e",
+                "operationId": "ModalidadesSuscripcionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ModalidadesSuscripcion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesSuscripcion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.ModalidadesSuscripcion"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/modalidades_suscripcion/{id}": {
+            "get": {
+                "tags": [
+                    "modalidades_suscripcion"
+                ],
+                "description": "get ModalidadesSuscripcion by id\n\u003cbr\u003e",
+                "operationId": "ModalidadesSuscripcionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesSuscripcion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "modalidades_suscripcion"
+                ],
+                "description": "update the ModalidadesSuscripcion\n\u003cbr\u003e",
+                "operationId": "ModalidadesSuscripcionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ModalidadesSuscripcion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesSuscripcion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesSuscripcion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "modalidades_suscripcion"
+                ],
+                "description": "delete the ModalidadesSuscripcion\n\u003cbr\u003e",
+                "operationId": "ModalidadesSuscripcionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/modalidades_trabajo/": {
+            "get": {
+                "tags": [
+                    "modalidades_trabajo"
+                ],
+                "description": "get ModalidadesTrabajo\n\u003cbr\u003e",
+                "operationId": "ModalidadesTrabajoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesTrabajo"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "modalidades_trabajo"
+                ],
+                "description": "create ModalidadesTrabajo\n\u003cbr\u003e",
+                "operationId": "ModalidadesTrabajoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ModalidadesTrabajo content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesTrabajo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.ModalidadesTrabajo"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/modalidades_trabajo/{id}": {
+            "get": {
+                "tags": [
+                    "modalidades_trabajo"
+                ],
+                "description": "get ModalidadesTrabajo by id\n\u003cbr\u003e",
+                "operationId": "ModalidadesTrabajoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesTrabajo"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "modalidades_trabajo"
+                ],
+                "description": "update the ModalidadesTrabajo\n\u003cbr\u003e",
+                "operationId": "ModalidadesTrabajoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for ModalidadesTrabajo content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesTrabajo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ModalidadesTrabajo"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "modalidades_trabajo"
+                ],
+                "description": "delete the ModalidadesTrabajo\n\u003cbr\u003e",
+                "operationId": "ModalidadesTrabajoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/niveles_experiencia/": {
+            "get": {
+                "tags": [
+                    "niveles_experiencia"
+                ],
+                "description": "get NivelesExperiencia\n\u003cbr\u003e",
+                "operationId": "NivelesExperienciaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.NivelesExperiencia"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "niveles_experiencia"
+                ],
+                "description": "create NivelesExperiencia\n\u003cbr\u003e",
+                "operationId": "NivelesExperienciaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for NivelesExperiencia content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.NivelesExperiencia"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.NivelesExperiencia"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/niveles_experiencia/{id}": {
+            "get": {
+                "tags": [
+                    "niveles_experiencia"
+                ],
+                "description": "get NivelesExperiencia by id\n\u003cbr\u003e",
+                "operationId": "NivelesExperienciaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.NivelesExperiencia"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "niveles_experiencia"
+                ],
+                "description": "update the NivelesExperiencia\n\u003cbr\u003e",
+                "operationId": "NivelesExperienciaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for NivelesExperiencia content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.NivelesExperiencia"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.NivelesExperiencia"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "niveles_experiencia"
+                ],
+                "description": "delete the NivelesExperiencia\n\u003cbr\u003e",
+                "operationId": "NivelesExperienciaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipos/": {
+            "get": {
+                "tags": [
+                    "tipos"
+                ],
+                "description": "get Tipos\n\u003cbr\u003e",
+                "operationId": "TiposController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tipos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipos"
+                ],
+                "description": "create Tipos\n\u003cbr\u003e",
+                "operationId": "TiposController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Tipos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Tipos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Tipos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipos/{id}": {
+            "get": {
+                "tags": [
+                    "tipos"
+                ],
+                "description": "get Tipos by id\n\u003cbr\u003e",
+                "operationId": "TiposController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tipos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipos"
+                ],
+                "description": "update the Tipos\n\u003cbr\u003e",
+                "operationId": "TiposController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Tipos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Tipos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tipos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipos"
+                ],
+                "description": "delete the Tipos\n\u003cbr\u003e",
+                "operationId": "TiposController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/turnos/": {
+            "get": {
+                "tags": [
+                    "turnos"
+                ],
+                "description": "get Turnos\n\u003cbr\u003e",
+                "operationId": "TurnosController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Turnos"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "turnos"
+                ],
+                "description": "create Turnos\n\u003cbr\u003e",
+                "operationId": "TurnosController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Turnos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Turnos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.Turnos"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/turnos/{id}": {
+            "get": {
+                "tags": [
+                    "turnos"
+                ],
+                "description": "get Turnos by id\n\u003cbr\u003e",
+                "operationId": "TurnosController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Turnos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "turnos"
+                ],
+                "description": "update the Turnos\n\u003cbr\u003e",
+                "operationId": "TurnosController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Turnos content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Turnos"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Turnos"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "turnos"
+                ],
+                "description": "delete the Turnos\n\u003cbr\u003e",
+                "operationId": "TurnosController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.DiasSemana": {
+            "title": "DiasSemana",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NombreCompleto": {
+                    "type": "string"
+                },
+                "Orden": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.Estados": {
+            "title": "Estados",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Contexto": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Generos": {
+            "title": "Generos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ModalidadesSuscripcion": {
+            "title": "ModalidadesSuscripcion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ModalidadesTrabajo": {
+            "title": "ModalidadesTrabajo",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.NivelesExperiencia": {
+            "title": "NivelesExperiencia",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Tipos": {
+            "title": "Tipos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Contexto": {
+                    "type": "string"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Turnos": {
+            "title": "Turnos",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "ActualizadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "CreadoEn": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "generos",
+            "description": "GenerosController operations for Generos\n"
+        },
+        {
+            "name": "modalidades_trabajo",
+            "description": "ModalidadesTrabajoController operations for ModalidadesTrabajo\n"
+        },
+        {
+            "name": "modalidades_suscripcion",
+            "description": "ModalidadesSuscripcionController operations for ModalidadesSuscripcion\n"
+        },
+        {
+            "name": "niveles_experiencia",
+            "description": "NivelesExperienciaController operations for NivelesExperiencia\n"
+        },
+        {
+            "name": "turnos",
+            "description": "TurnosController operations for Turnos\n"
+        },
+        {
+            "name": "dias_semana",
+            "description": "DiasSemanaController operations for DiasSemana\n"
+        },
+        {
+            "name": "estados",
+            "description": "EstadosController operations for Estados\n"
+        },
+        {
+            "name": "tipos",
+            "description": "TiposController operations for Tipos\n"
+        }
+    ]
+}
