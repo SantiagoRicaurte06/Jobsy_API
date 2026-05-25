@@ -11,7 +11,7 @@ import (
 )
 
 type Pagos struct {
-	Id               int          `orm:"column(id_pagos);pk"`
+	Id               int          `orm:"column(id_pagos);pk;auto"`
 	IdPedidos        *Facturacion `orm:"column(id_pedidos);rel(fk)"`
 	IdContrataciones int          `orm:"column(id_contrataciones)"`
 	IdUsuarios       int          `orm:"column(id_usuarios)"`
@@ -26,7 +26,7 @@ type Pagos struct {
 	Ultimos4         string       `orm:"column(ultimos4);null"`
 	Activo           bool         `orm:"column(activo)"`
 	CreadoEn         time.Time    `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn    time.Time    `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn    time.Time    `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Pagos) TableName() string {
