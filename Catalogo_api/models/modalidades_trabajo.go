@@ -11,12 +11,12 @@ import (
 )
 
 type ModalidadesTrabajo struct {
-	Id            int       `orm:"column(id_modalidad_trabajo);pk"`
+	Id            int       `orm:"column(id_modalidad_trabajo);pk;auto"`
 	Nombre        string    `orm:"column(nombre)"`
 	Descripcion   string    `orm:"column(descripcion);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *ModalidadesTrabajo) TableName() string {

@@ -11,13 +11,13 @@ import (
 )
 
 type DiasSemana struct {
-	Id             int       `orm:"column(id_dia_semana);pk"`
+	Id             int       `orm:"column(id_dia_semana);pk;auto"`
 	Nombre         string    `orm:"column(nombre)"`
 	NombreCompleto string    `orm:"column(nombre_completo);null"`
 	Orden          int       `orm:"column(orden)"`
 	Activo         bool      `orm:"column(activo)"`
 	CreadoEn       time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn  time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	ActualizadoEn  time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *DiasSemana) TableName() string {
