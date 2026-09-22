@@ -54,7 +54,6 @@ func GetProductosById(id int) (v *Productos, err error) {
 	v = &Productos{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdCategoriasTienda")
-		o.LoadRelated(v, "IdTipo")
 		return v, nil
 	}
 	return nil, err

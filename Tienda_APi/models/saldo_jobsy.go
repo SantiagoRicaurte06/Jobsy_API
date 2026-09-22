@@ -44,7 +44,6 @@ func GetSaldoJobsyById(id int) (v *SaldoJobsy, err error) {
 	o := orm.NewOrm()
 	v = &SaldoJobsy{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		return v, nil
 	}
 	return nil, err

@@ -44,7 +44,6 @@ func GetReporteMensajesById(id int) (v *ReporteMensajes, err error) {
 	v = &ReporteMensajes{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdReportes")
-		o.LoadRelated(v, "IdRemitente")
 		return v, nil
 	}
 	return nil, err

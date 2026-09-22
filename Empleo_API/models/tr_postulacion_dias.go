@@ -42,7 +42,6 @@ func GetTrPostulacionDiasById(id int) (v *TrPostulacionDias, err error) {
 	v = &TrPostulacionDias{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdPostulaciones")
-		o.LoadRelated(v, "IdDiaSemana")
 		return v, nil
 	}
 	return nil, err

@@ -47,7 +47,6 @@ func GetHvExperienciasById(id int) (v *HvExperiencias, err error) {
 	v = &HvExperiencias{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdHojasVida")
-		o.LoadRelated(v, "IdTipo")
 		return v, nil
 	}
 	return nil, err

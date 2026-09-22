@@ -53,7 +53,6 @@ func GetConfiguracionesById(id int) (v *Configuraciones, err error) {
 	o := orm.NewOrm()
 	v = &Configuraciones{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		return v, nil
 	}
 	return nil, err

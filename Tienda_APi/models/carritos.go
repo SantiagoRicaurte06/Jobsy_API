@@ -42,8 +42,6 @@ func GetCarritosById(id int) (v *Carritos, err error) {
 	o := orm.NewOrm()
 	v = &Carritos{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
-		o.LoadRelated(v, "IdEstado")
 		o.LoadRelated(v, "IdCupones")
 		return v, nil
 	}

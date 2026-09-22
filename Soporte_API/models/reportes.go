@@ -45,7 +45,6 @@ func GetReportesById(id int) (v *Reportes, err error) {
 	v = &Reportes{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdUsuarios ")
-		o.LoadRelated(v, "IdTipo")
 		o.LoadRelated(v, "IdEstado ")
 		return v, nil
 	}

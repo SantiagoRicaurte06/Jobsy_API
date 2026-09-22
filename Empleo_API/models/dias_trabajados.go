@@ -41,7 +41,6 @@ func GetDiasTrabajadosById(id int) (v *DiasTrabajados, err error) {
 	o := orm.NewOrm()
 	v = &DiasTrabajados{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdDiaSemana")
 		return v, nil
 	}
 	return nil, err

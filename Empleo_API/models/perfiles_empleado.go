@@ -55,10 +55,6 @@ func GetPerfilesEmpleadoById(id int) (v *PerfilesEmpleado, err error) {
 	o := orm.NewOrm()
 	v = &PerfilesEmpleado{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
-		o.LoadRelated(v, "IdNivelExperiencia")
-		o.LoadRelated(v, "IdModalidadTrabajo")
-		o.LoadRelated(v, "IdTurnoPreferido")
 		return v, nil
 	}
 	return nil, err

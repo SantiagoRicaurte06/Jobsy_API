@@ -45,7 +45,6 @@ func GetTransaccionesById(id int) (v *Transacciones, err error) {
 	o := orm.NewOrm()
 	v = &Transacciones{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		o.LoadRelated(v, "IdPagos")
 		o.LoadRelated(v, "IdTipoTransaccion")
 		return v, nil

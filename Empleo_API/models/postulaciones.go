@@ -56,12 +56,7 @@ func GetPostulacionesById(id int) (v *Postulaciones, err error) {
 	v = &Postulaciones{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdOfertas")
-		o.LoadRelated(v, "IdEmpleado")
 		o.LoadRelated(v, "IdHojasVida")
-		o.LoadRelated(v, "IdEstado")
-		o.LoadRelated(v, "IdModalidadDisp")
-		o.LoadRelated(v, "IdTurnoPostulacion")
-		o.LoadRelated(v, "IdFormaCobro")
 		return v, nil
 	}
 	return nil, err

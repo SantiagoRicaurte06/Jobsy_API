@@ -63,13 +63,9 @@ func GetOfertasById(id int) (v *Ofertas, err error) {
 	o := orm.NewOrm()
 	v = &Ofertas{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdEmpleador")
 		o.LoadRelated(v, "IdDiasTrabajados")
 		o.LoadRelated(v, "IdTipoInmueble")
 		o.LoadRelated(v, "IdTamanoInmueble")
-		o.LoadRelated(v, "IdModalidadTrabajo")
-		o.LoadRelated(v, "IdTipoMascota")
-		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err
