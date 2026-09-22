@@ -1,3 +1,10 @@
+-- Esquema core: usuarios, roles, documentos de identidad, credenciales y sesiones.
+--
+-- ORDEN DE EJECUCION: este script depende de catalogo.generos (ver la FK de
+-- core.usuarios), asi que el esquema catalogo debe crearse ANTES que este.
+
+CREATE SCHEMA IF NOT EXISTS core;
+
 CREATE TABLE core.roles_usuarios (
     id_roles_usuarios   SERIAL          PRIMARY KEY,
     nombre              VARCHAR(50)     NOT NULL UNIQUE,     -- admin | empleado | empleador
@@ -24,7 +31,8 @@ CREATE TABLE core.usuarios (
     activo              BOOLEAN         NOT NULL DEFAULT TRUE,
     creado_en           TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     actualizado_en      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+    CONSTRAINT fk_usuarios_roles  FOREIGN KEY (id_roles_usuarios) REFERENCES core.roles_usuarios(id_roles_usuarios),
+    CONSTRAINT fk_usuarios_genero FOREIGN KEY (id_genero)         REFERENCES catalogo.generos(id_genero)
 );
 
 CREATE TABLE core.tipo_documento (
@@ -46,7 +54,9 @@ CREATE TABLE core.documentos_identidad (
     activo                  BOOLEAN     NOT NULL DEFAULT TRUE,
     creado_en               TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     actualizado_en          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+    UNIQUE (id_usuarios, id_tipo_documento),
+    CONSTRAINT fk_docid_usuarios FOREIGN KEY (id_usuarios)       REFERENCES core.usuarios(id_usuarios),
+    CONSTRAINT fk_docid_tipo     FOREIGN KEY (id_tipo_documento) REFERENCES core.tipo_documento(id_tipo_documento)
 );
 
 CREATE TABLE core.credenciales (
@@ -63,8 +73,12 @@ CREATE TABLE core.credenciales (
     activo              BOOLEAN         NOT NULL DEFAULT TRUE,
     creado_en           TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     actualizado_en      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    
+    CONSTRAINT fk_cred_usuarios FOREIGN KEY (id_usuarios) REFERENCES core.usuarios(id_usuarios)
 );
+
+-- Una credencial por usuario: sin esto, dos filas para el mismo id_usuarios
+-- hacen ambiguo contra cual se valida el login.
+CREATE UNIQUE INDEX ux_credenciales_usuario ON core.credenciales (id_usuarios);
 
 CREATE TABLE core.sesiones (
     id_sesiones         SERIAL          PRIMARY KEY,
@@ -76,15 +90,15 @@ CREATE TABLE core.sesiones (
     expira_en           TIMESTAMP       NOT NULL,
     creado_en           TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     actualizado_en      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   
+    CONSTRAINT fk_ses_usuarios FOREIGN KEY (id_usuarios) REFERENCES core.usuarios(id_usuarios)
 );
 
-
-
-    CONSTRAINT fk_usuarios_roles  FOREIGN KEY (id_roles_usuarios) REFERENCES core.roles_usuarios(id_roles_usuarios),
-    CONSTRAINT fk_usuarios_genero FOREIGN KEY (id_genero)         REFERENCES catalogo.generos(id_genero)
-    UNIQUE (id_usuarios, id_tipo_documento),
-    CONSTRAINT fk_docid_usuarios FOREIGN KEY (id_usuarios)       REFERENCES core.usuarios(id_usuarios),
-    CONSTRAINT fk_docid_tipo     FOREIGN KEY (id_tipo_documento) REFERENCES core.tipo_documento(id_tipo_documento)   
-    CONSTRAINT fk_cred_usuarios FOREIGN KEY (id_usuarios) REFERENCES core.usuarios(id_usuarios)
-    CONSTRAINT fk_ses_usuarios FOREIGN KEY (id_usuarios) REFERENCES core.usuarios(id_usuarios)
+-- Indices sobre las FK. PostgreSQL no los crea solo, y sin ellos cada join y
+-- cada borrado en cascada hace recorrido secuencial.
+CREATE INDEX ix_usuarios_rol         ON core.usuarios (id_roles_usuarios);
+CREATE INDEX ix_usuarios_genero      ON core.usuarios (id_genero);
+CREATE INDEX ix_usuarios_correo      ON core.usuarios (correo);
+CREATE INDEX ix_docid_usuario        ON core.documentos_identidad (id_usuarios);
+CREATE INDEX ix_docid_tipo           ON core.documentos_identidad (id_tipo_documento);
+CREATE INDEX ix_sesiones_usuario     ON core.sesiones (id_usuarios);
+CREATE INDEX ix_sesiones_expira      ON core.sesiones (expira_en) WHERE activa;

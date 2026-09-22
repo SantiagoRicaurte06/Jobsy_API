@@ -20,33 +20,33 @@ func init() {
 	migration.Register("CreacionApiCore_20260521_144404", m)
 }
 
-// Run the migrations
-func (m *CreacionApiCore_20260521_144404) Up() {
-	file, err:= ioutil.ReadFile("../scripts/20260514_125038_creacion_db_up.sql")
+// ejecutarScript carga un .sql y encola cada sentencia.
+//
+// Antes esto leia un archivo con un nombre que no existe y solo imprimia el
+// error, asi que la migracion "corria" ejecutando SQL vacio y no creaba
+// ninguna tabla. Ahora un script ilegible aborta: es preferible fallar de
+// entrada a creerse que la base quedo montada.
+func ejecutarScript(m *CreacionApiCore_20260521_144404, ruta string) {
+	file, err := ioutil.ReadFile(ruta)
 	if err != nil {
-		fmt.Println(err)
+		panic(fmt.Sprintf("no se pudo leer la migracion %s: %v", ruta, err))
 	}
-	requests := strings.Split(string(file), ";")
 
-	for _, request := range requests {
-		fmt.Println(request)
-		m.SQL(request)
+	for _, sentencia := range strings.Split(string(file), ";") {
+		// El split deja un resto vacio despues del ultimo ';'.
+		if strings.TrimSpace(sentencia) == "" {
+			continue
+		}
+		m.SQL(sentencia)
 	}
 }
 
-
+// Run the migrations
+func (m *CreacionApiCore_20260521_144404) Up() {
+	ejecutarScript(m, "../scripts/20260521_144404creacion_db_up.sql")
+}
 
 // Reverse the migrations
 func (m *CreacionApiCore_20260521_144404) Down() {
-	file, err:= ioutil.ReadFile("../scripts/20260514_125038_creacion_db_down.sql")
-	if err != nil {
-		fmt.Println(err)
-	}
-	requests := strings.Split(string(file), ";")
-
-	for _, request := range requests {
-		fmt.Println(request)
-		m.SQL(request)
-	}		
-
+	ejecutarScript(m, "../scripts/20260521_144404_creacion_db_down.sql")
 }
