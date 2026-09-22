@@ -1,16 +1,31 @@
--- Semilla de los catalogos maestros.
+-- Semilla de los catalogos maestros que no tenian ninguna.
 --
--- Este archivo no existia. Los scripts de semilla de Empleo, Tienda, Soporte,
--- Suscripciones y Usuarios resuelven sus claves foraneas con subconsultas del
--- tipo:
+-- Los scripts de semilla de Empleo, Tienda, Soporte, Suscripciones y Usuarios
+-- resuelven sus claves foraneas con subconsultas del tipo:
 --
 --     (SELECT id_tipo FROM catalogo.tipos WHERE contexto='pago' AND nombre='tienda')
 --
--- Como catalogo.tipos y catalogo.estados estaban vacias, esas subconsultas
--- devolvian NULL y el INSERT fallaba contra la restriccion NOT NULL. Es decir:
--- ningun servicio podia sembrar datos.
+-- Contra una tabla vacia eso devuelve NULL y el INSERT falla por NOT NULL.
 --
--- Las filas de abajo son exactamente las que referencian los demas scripts.
+-- QUE CUBRE ESTE ARCHIVO
+--   catalogo.tipos                       (no se sembraba en ninguna parte)
+--   catalogo.generos                     (idem)
+--   catalogo.niveles_experiencia         (idem)
+--   catalogo.modalidades_trabajo         (idem)
+--   catalogo.turnos                      (idem)
+--   catalogo.dias_semana                 (idem)
+--   catalogo.modalidades_suscripcion     (idem)
+--
+-- QUE NO CUBRE, A PROPOSITO
+--   catalogo.estados se siembra en la migracion
+--   database/migrations/20260520_221642_estados.go, con 39 filas que incluyen
+--   los 18 estados que el resto de servicios necesita. Duplicarlas aqui
+--   crearia dos fuentes de verdad que pueden divergir.
+--
+--   Ojo: esa migracion no compilaba (le faltaba la comilla invertida que
+--   cierra el literal de Up), asi que sus INSERT nunca se habian ejecutado.
+--   Se corrigio junto con este archivo.
+--
 -- Si anades una subconsulta nueva a un seed, anade aqui la fila que necesita.
 --
 -- ORDEN DE EJECUCION: despues de crear el esquema catalogo y antes de
@@ -69,54 +84,6 @@ INSERT INTO catalogo.modalidades_suscripcion (nombre, descripcion) VALUES
     ('mensual', 'Cobro cada mes'),
     ('anual',   'Cobro cada ano')
 ON CONFLICT (nombre) DO NOTHING;
-
--- ---- catalogo.estados ------------------------------------------
--- Tabla polimorfica: la unicidad es (contexto, nombre).
-INSERT INTO catalogo.estados (contexto, nombre, descripcion) VALUES
-    ('carrito',       'activo',      'Carrito en uso'),
-    ('carrito',       'pagado',      'Carrito convertido en pedido'),
-    ('carrito',       'abandonado',  'Carrito sin actividad'),
-
-    ('pedido',        'pendiente',   'Pedido creado, pago no confirmado'),
-    ('pedido',        'pagado',      'Pago confirmado'),
-    ('pedido',        'enviado',     'Pedido despachado'),
-    ('pedido',        'entregado',   'Pedido recibido por el cliente'),
-    ('pedido',        'cancelado',   'Pedido anulado'),
-
-    ('pago',          'pendiente',   'Pago iniciado, sin confirmar'),
-    ('pago',          'aprobado',    'Pago confirmado'),
-    ('pago',          'rechazado',   'Pago rechazado'),
-
-    ('oferta',        'activa',      'Oferta visible y admitiendo postulaciones'),
-    ('oferta',        'cerrada',     'Oferta que ya no admite postulaciones'),
-    ('oferta',        'expirada',    'Oferta pasada de su fecha de expiracion'),
-
-    ('postulacion',   'pendiente',   'Postulacion sin revisar'),
-    ('postulacion',   'revisando',   'Postulacion en revision por el empleador'),
-    ('postulacion',   'aceptada',    'Postulacion aceptada'),
-    ('postulacion',   'rechazada',   'Postulacion rechazada'),
-
-    ('contratacion',  'activa',      'Contratacion en curso'),
-    ('contratacion',  'completada',  'Servicio finalizado'),
-    ('contratacion',  'cancelada',   'Contratacion anulada'),
-
-    ('certificacion', 'pendiente',   'Certificacion sin validar'),
-    ('certificacion', 'validado',    'Certificacion verificada'),
-    ('certificacion', 'rechazado',   'Certificacion no valida'),
-
-    ('documento',     'pendiente',   'Documento sin verificar'),
-    ('documento',     'verificado',  'Documento verificado'),
-    ('documento',     'rechazado',   'Documento no valido'),
-
-    ('reporte',       'abierto',     'Reporte recien creado'),
-    ('reporte',       'en_revision', 'Reporte siendo atendido'),
-    ('reporte',       'resuelto',    'Reporte resuelto'),
-    ('reporte',       'cerrado',     'Reporte cerrado'),
-
-    ('suscripcion',   'activa',      'Suscripcion vigente'),
-    ('suscripcion',   'vencida',     'Suscripcion caducada'),
-    ('suscripcion',   'cancelada',   'Suscripcion cancelada por el usuario')
-ON CONFLICT (contexto, nombre) DO NOTHING;
 
 -- ---- catalogo.tipos --------------------------------------------
 INSERT INTO catalogo.tipos (contexto, nombre, descripcion) VALUES

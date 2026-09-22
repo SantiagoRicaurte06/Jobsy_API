@@ -78,7 +78,8 @@ func (m *Estados_20260520_221642) Up() {
 		    ('reporte', 'abierto',     'Reporte registrado, pendiente de atención por soporte'),
 		    ('reporte', 'en_revision', 'Un agente de soporte está analizando el caso'),
 		    ('reporte', 'respondido',  'El equipo de soporte envió respuesta al usuario'),
-		    ('reporte', 'cerrado',     'Caso resuelto y cerrado por soporte o el usuario');)
+		    ('reporte', 'cerrado',     'Caso resuelto y cerrado por soporte o el usuario');
+	`)
 }
 
 
