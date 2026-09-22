@@ -10,23 +10,40 @@ import (
 	"github.com/beego/beego/v2/client/orm"
 )
 
+// Pagos registra un cobro. Un pago cuelga de un pedido de la tienda O de una
+// contratacion de empleo, nunca de ambos ni de ninguno.
 type Pagos struct {
-	Id               int          `orm:"column(id_pagos);pk"`
-	IdPedidos        *Facturacion `orm:"column(id_pedidos);rel(fk)"`
-	IdContrataciones int          `orm:"column(id_contrataciones)"`
-	IdUsuarios       int          `orm:"column(id_usuarios)"`
-	IdMetodoPago     *MetodoPago  `orm:"column(id_metodo_pago);rel(fk)"`
-	IdTipoPago       int          `orm:"column(id_tipo_pago)"`
-	IdEstado         int          `orm:"column(id_estado)"`
-	IdTipoCuenta     int          `orm:"column(id_tipo_cuenta)"`
-	Monto            float64      `orm:"column(monto)"`
-	ReferenciaExt    string       `orm:"column(referencia_ext);null"`
-	Banco            string       `orm:"column(banco);null"`
-	TitularTarjeta   string       `orm:"column(titular_tarjeta);null"`
-	Ultimos4         string       `orm:"column(ultimos4);null"`
-	Activo           bool         `orm:"column(activo)"`
-	CreadoEn         time.Time    `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
-	ActualizadoEn    time.Time    `orm:"column(actualizado_en);type(timestamp without time zone);auto_now_add"`
+	// pk;auto: antes era solo "pk", asi que el ORM enviaba el Id en cada
+	// INSERT. Sin asignarlo explicitamente iba 0, y el segundo pago chocaba
+	// con el primero por clave primaria duplicada.
+	Id int `orm:"column(id_pagos);pk;auto"`
+
+	// Los dos origenes son excluyentes y por tanto ambos anulables. Antes los
+	// dos eran obligatorios, lo que hacia imposible registrar cualquiera de
+	// los dos casos: un pago de tienda no tiene contratacion, y uno de
+	// contratacion no tiene pedido.
+	IdPedidos        *Facturacion `orm:"column(id_pedidos);rel(fk);null"`
+	IdContrataciones *int         `orm:"column(id_contrataciones);null"`
+
+	IdUsuarios   int         `orm:"column(id_usuarios)"`
+	IdMetodoPago *MetodoPago `orm:"column(id_metodo_pago);rel(fk)"`
+	IdTipoPago   int         `orm:"column(id_tipo_pago)"`
+	IdEstado     int         `orm:"column(id_estado)"`
+
+	// Solo aplica a pagos contra cuenta bancaria; una tarjeta no tiene tipo
+	// de cuenta. Los propios inserts de semilla omiten esta columna.
+	IdTipoCuenta *int `orm:"column(id_tipo_cuenta);null"`
+
+	Monto          float64   `orm:"column(monto)"`
+	ReferenciaExt  string    `orm:"column(referencia_ext);null"`
+	Banco          string    `orm:"column(banco);null"`
+	TitularTarjeta string    `orm:"column(titular_tarjeta);null"`
+	Ultimos4       string    `orm:"column(ultimos4);null"`
+	Activo         bool      `orm:"column(activo)"`
+	CreadoEn       time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
+	// auto_now, no auto_now_add: con auto_now_add la columna se fijaba al
+	// crear y no se tocaba nunca mas, asi que "actualizado_en" mentia.
+	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Pagos) TableName() string {
@@ -51,13 +68,13 @@ func GetPagosById(id int) (v *Pagos, err error) {
 	o := orm.NewOrm()
 	v = &Pagos{Id: id}
 	if err = o.Read(v); err == nil {
+		// Solo IdPedidos e IdMetodoPago son relaciones. Aqui se llamaba
+		// ademas sobre IdUsuarios, IdTipoPago, IdEstado e IdTipoCuenta, que
+		// son enteros sueltos: LoadRelated sobre un campo no relacional entra
+		// en la rama por defecto de queryRelated y revienta. Tambien estaba
+		// IdMetodoPago repetido.
 		o.LoadRelated(v, "IdPedidos")
 		o.LoadRelated(v, "IdMetodoPago")
-		o.LoadRelated(v, "IdUsuarios")
-		o.LoadRelated(v, "IdMetodoPago")
-		o.LoadRelated(v, "IdTipoPago")
-		o.LoadRelated(v, "IdEstado")
-		o.LoadRelated(v, "IdTipoCuenta")
 		return v, nil
 	}
 	return nil, err
