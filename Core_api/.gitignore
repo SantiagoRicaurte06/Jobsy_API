@@ -24,4 +24,4 @@ dist/
 .DS_Store
 
 #Dependencies
-vendor/
+vendor/servicio.exe

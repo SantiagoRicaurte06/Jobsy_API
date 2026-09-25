@@ -126,7 +126,7 @@ func (c *TrOfertaServiciosController) GetAll() {
 		c.Data["json"] = err.Error()
 	} else {
 		if l == nil {
-			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetAll: no se encontro el ID", "data": nil}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": []interface{}{}}
 		} else {
 			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": l}
 		}

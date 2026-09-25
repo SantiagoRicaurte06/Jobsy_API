@@ -124,10 +124,10 @@ func (c *PostulacionChipsController) GetAll() {
 	l, err := models.GetAllPostulacionChips(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
-		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetAll: no se encontro el ID", "data": nil}
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 500, "message": "Error en el servicio GetAll", "data": nil}
 	} else {
 		if l == nil {
-			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetAll: no se encontro el ID", "data": nil}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": []interface{}{}}
 		} else {
 			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": l}
 		}
