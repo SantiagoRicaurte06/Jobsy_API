@@ -3,6 +3,7 @@ package main
 import (
 	_ "JOBSY_API/routers"
 	"fmt"
+	"time"
 
 	"github.com/beego/beego/v2/server/web/filter/cors"
 
@@ -33,11 +34,16 @@ func main() {
     database, _ := beego.AppConfig.String("PGdatabase")
     schema, _ := beego.AppConfig.String("PGschema")
 
-	fmt.Printf("postgresSqL connection string: postgres://%s:%s@%s:%s/%s?sslmode=disable&search_path="+"%s\n", User, password, host, port, database, schema)
+	fmt.Printf("postgresSqL connection string: postgres://%s:%s@%s:%s/%s?sslmode=disable&timezone=UTC&search_path="+"%s\n", User, password, host, port, database, schema)
 
 
 // Register the database connection
-orm.RegisterDataBase("default", "postgres", "postgres://"+User+":"+password+"@"+host+":"+port+"/"+database+"?sslmode=disable&search_path="+schema)
+// Las columnas son "timestamp without time zone" y lib/pq las entrega como UTC.
+// Con la hora local el ORM restaba el desfase en cada escritura y las fechas
+// retrocedian un dia por cada PUT; lectura, escritura y sesion van en UTC.
+orm.DefaultTimeLoc = time.UTC
+
+orm.RegisterDataBase("default", "postgres", "postgres://"+User+":"+password+"@"+host+":"+port+"/"+database+"?sslmode=disable&timezone=UTC&search_path="+schema)
 
 // config swagger	
 	if  beego.BConfig.RunMode == "dev" {

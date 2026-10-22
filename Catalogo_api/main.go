@@ -3,6 +3,7 @@ package main
 import (
 	_ "Api_Josby/Catalogo_API/routers"
 	"fmt"
+	"time"
 
 	"github.com/joho/godotenv"
 
@@ -31,7 +32,12 @@ func main() {
 	pgDatabase, _ := beego.AppConfig.String("PGdatabase")
 	pgSchem, _ := beego.AppConfig.String("PGschema")
 
-	fmt.Printf("PostgreSQL connection string: postgres://%s:%s@%s:%s/%s?sslmode=disable&search_path=%s\n", pgUser, pgPass, pgHost, pgPort, pgDatabase, pgSchem)
+	fmt.Printf("PostgreSQL connection string: postgres://%s:%s@%s:%s/%s?sslmode=disable&timezone=UTC&search_path=%s\n", pgUser, pgPass, pgHost, pgPort, pgDatabase, pgSchem)
+
+	// Las columnas son "timestamp without time zone" y lib/pq las entrega como UTC.
+	// Con la hora local el ORM restaba el desfase en cada escritura y las fechas
+	// retrocedian un dia por cada PUT; lectura, escritura y sesion van en UTC.
+	orm.DefaultTimeLoc = time.UTC
 
 	orm.RegisterDataBase(
 		"default",
@@ -42,7 +48,7 @@ func main() {
 			pgHost+":"+
 			pgPort+"/"+
 			pgDatabase+
-			"?sslmode=disable&search_path="+
+			"?sslmode=disable&timezone=UTC&search_path="+
 			pgSchem,
 	)
 
