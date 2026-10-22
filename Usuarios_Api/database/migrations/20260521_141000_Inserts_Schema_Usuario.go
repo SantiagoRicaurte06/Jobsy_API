@@ -25,9 +25,14 @@ func (m *InsertsSchemaUsuario_20260521_141000) Up() {
     notif_nuevas_ofertas, notif_actualizaciones, notif_mensajes, notif_postulaciones, activo) 
     VALUES (1, false, false, false, false, false, false, false, false, false, false, false, false, false, true);`)
 
-	m.SQL(`INSERT INTO usuarios.notificaciones 
-    (id_usuarios, titulo, mensaje, leido, activo) 
-    VALUES (1, 'Bienvenido a Jobsy', 'Tu cuenta ha sido creada exitosamente.', false, true);`)
+	// Las columnas son cuerpo y leida (no mensaje y leido): estos inserts
+	// seguian los nombres del DDL antiguo, que no coincidian con el modelo Go.
+	// id_tipo se resuelve por nombre para no depender de un id concreto.
+	m.SQL(`INSERT INTO usuarios.notificaciones
+    (id_usuarios, id_tipo, titulo, cuerpo, leida, activo)
+    VALUES (1,
+        (SELECT id_tipo FROM catalogo.tipos WHERE contexto='notificacion' AND nombre='sistema'),
+        'Bienvenido a Jobsy', 'Tu cuenta ha sido creada exitosamente.', false, true);`)
 
 }
 

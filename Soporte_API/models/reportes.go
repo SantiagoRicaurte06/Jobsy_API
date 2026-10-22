@@ -44,9 +44,9 @@ func GetReportesById(id int) (v *Reportes, err error) {
 	o := orm.NewOrm()
 	v = &Reportes{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios ")
-		o.LoadRelated(v, "IdTipo")
-		o.LoadRelated(v, "IdEstado ")
+		// IdUsuarios e IdEstado son enteros, no relaciones. Ademas los
+		// nombres llevaban un espacio al final ("IdUsuarios "), que hacia
+		// fallar la busqueda del campo con un mensaje distinto al habitual.
 		return v, nil
 	}
 	return nil, err

@@ -45,8 +45,6 @@ func GetNotificacionesById(id int) (v *Notificaciones, err error) {
 	o := orm.NewOrm()
 	v = &Notificaciones{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
-		o.LoadRelated(v, "IdTipo")
 		return v, nil
 	}
 	return nil, err

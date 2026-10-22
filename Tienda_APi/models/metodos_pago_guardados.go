@@ -45,9 +45,7 @@ func GetMetodosPagoGuardadosById(id int) (v *MetodosPagoGuardados, err error) {
 	o := orm.NewOrm()
 	v = &MetodosPagoGuardados{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		o.LoadRelated(v, "IdMetodoPago")
-		o.LoadRelated(v, "IdTipoCuenta")
 		return v, nil
 	}
 	return nil, err

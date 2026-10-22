@@ -46,10 +46,7 @@ func GetUsuariosSuscripcionesById(id int) (v *UsuariosSuscripciones, err error) 
 	o := orm.NewOrm()
 	v = &UsuariosSuscripciones{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		o.LoadRelated(v, "IdPlanes")
-		o.LoadRelated(v, "IdModalidadSuscripcion")
-		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err

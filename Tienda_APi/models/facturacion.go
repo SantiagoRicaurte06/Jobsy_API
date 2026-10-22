@@ -54,9 +54,7 @@ func GetFacturacionById(id int) (v *Facturacion, err error) {
 	o := orm.NewOrm()
 	v = &Facturacion{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		o.LoadRelated(v, "IdCarritos")
-		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err

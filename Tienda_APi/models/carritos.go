@@ -14,7 +14,9 @@ type Carritos struct {
 	Id            int       `orm:"column(id_carritos);pk;auto"`
 	IdUsuarios    int       `orm:"column(id_usuarios)"`
 	IdEstado      int       `orm:"column(id_estado)"`
-	IdCupones     *Cupones  `orm:"column(id_cupones);rel(fk)"`
+	// Anulable: un carrito sin cupon es lo normal. Sin la marca null, el
+	// INNER JOIN de RelatedSel() esconderia todos los carritos sin cupon.
+	IdCupones     *Cupones  `orm:"column(id_cupones);rel(fk);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
@@ -42,8 +44,6 @@ func GetCarritosById(id int) (v *Carritos, err error) {
 	o := orm.NewOrm()
 	v = &Carritos{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
-		o.LoadRelated(v, "IdEstado")
 		o.LoadRelated(v, "IdCupones")
 		return v, nil
 	}

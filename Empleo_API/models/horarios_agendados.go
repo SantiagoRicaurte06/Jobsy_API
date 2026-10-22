@@ -46,8 +46,6 @@ func GetHorariosAgendadosById(id int) (v *HorariosAgendados, err error) {
 	v = &HorariosAgendados{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdContrataciones")
-		o.LoadRelated(v, "IdDiaSemana")
-		o.LoadRelated(v, "IdTurno")
 		return v, nil
 	}
 	return nil, err

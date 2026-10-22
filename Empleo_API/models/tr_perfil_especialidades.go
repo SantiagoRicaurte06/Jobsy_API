@@ -41,7 +41,7 @@ func GetTrPerfilEspecialidadesById(id int) (v *TrPerfilEspecialidades, err error
 	o := orm.NewOrm()
 	v = &TrPerfilEspecialidades{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IderfilesEmpleado")
+		o.LoadRelated(v, "IdPerfilesEmpleado")
 		o.LoadRelated(v, "IdEspecialidades")
 		return v, nil
 	}

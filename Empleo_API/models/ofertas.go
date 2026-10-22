@@ -13,7 +13,11 @@ import (
 type Ofertas struct {
 	Id                 int             `orm:"column(id_ofertas);pk;auto"`
 	IdEmpleador        int             `orm:"column(id_empleador)"`
-	IdDiasTrabajados   *DiasTrabajados `orm:"column(id_dias_trabajados);rel(fk)"`
+	// null es obligatorio aqui: la columna admite NULL y sin esta marca el ORM
+	// genera un INNER JOIN en RelatedSel(), de modo que toda oferta sin dias
+	// asignados desaparece del listado. Con los datos de semilla eso dejaba
+	// GET /v1/ofertas devolviendo cero filas teniendo tres en la tabla.
+	IdDiasTrabajados   *DiasTrabajados `orm:"column(id_dias_trabajados);rel(fk);null"`
 	Titulo             string          `orm:"column(titulo)"`
 	Descripcion        string          `orm:"column(descripcion);null"`
 	IdTipoInmueble     *TipoInmueble   `orm:"column(id_tipo_inmueble);rel(fk)"`
@@ -63,13 +67,9 @@ func GetOfertasById(id int) (v *Ofertas, err error) {
 	o := orm.NewOrm()
 	v = &Ofertas{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdEmpleador")
 		o.LoadRelated(v, "IdDiasTrabajados")
 		o.LoadRelated(v, "IdTipoInmueble")
 		o.LoadRelated(v, "IdTamanoInmueble")
-		o.LoadRelated(v, "IdModalidadTrabajo")
-		o.LoadRelated(v, "IdTipoMascota")
-		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err

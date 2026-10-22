@@ -54,12 +54,8 @@ func GetContratacionesById(id int) (v *Contrataciones, err error) {
 	o := orm.NewOrm()
 	v = &Contrataciones{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdEmpleador")
-		o.LoadRelated(v, "IdEmpleado")
 		o.LoadRelated(v, "IdOfertas")
 		o.LoadRelated(v, "IdPostulaciones")
-		o.LoadRelated(v, "IdEstado")
-		o.LoadRelated(v, "IdModalidad")
 		return v, nil
 	}
 	return nil, err

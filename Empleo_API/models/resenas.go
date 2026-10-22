@@ -46,9 +46,6 @@ func GetResenasById(id int) (v *Resenas, err error) {
 	v = &Resenas{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdPostulaciones")
-		o.LoadRelated(v, "IdReviewer")
-		o.LoadRelated(v, "IdReviewed")
-		o.LoadRelated(v, "IdTipo")
 		return v, nil
 	}
 	return nil, err

@@ -45,9 +45,6 @@ func GetDocumentosUsuarioById(id int) (v *DocumentosUsuario, err error) {
 	o := orm.NewOrm()
 	v = &DocumentosUsuario{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
-		o.LoadRelated(v, "IdTipo")
-		o.LoadRelated(v, "IdEstado")
 		return v, nil
 	}
 	return nil, err

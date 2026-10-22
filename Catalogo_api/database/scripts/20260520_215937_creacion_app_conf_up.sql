@@ -11,7 +11,7 @@ CREATE TABLE catalogo.generos (
     creado_en       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
     actualizado_en  TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-S
+
 CREATE TABLE catalogo.niveles_experiencia (
     id_nivel_experiencia  SERIAL      PRIMARY KEY,
     nombre          VARCHAR(40)     NOT NULL UNIQUE,   -- sin_experiencia | intermedio | experto
