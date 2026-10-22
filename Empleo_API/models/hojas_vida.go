@@ -19,6 +19,8 @@ type HojasVida struct {
 	UrlPdf           *string   `orm:"column(url_pdf);null"`
 	EsPublica        bool      `orm:"column(es_publica)"`
 	ProgresoPct      int       `orm:"column(progreso_pct)"`
+	Educacion        *string   `orm:"column(educacion);null"`   // JSON: [{titulo, institucion, ano}]
+	Habilidades      *string   `orm:"column(habilidades);null"` // JSON: ["..."]
 	Activo           bool      `orm:"column(activo)"`
 	CreadoEn         time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn    time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

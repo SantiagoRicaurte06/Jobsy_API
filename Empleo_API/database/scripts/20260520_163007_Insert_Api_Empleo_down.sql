@@ -101,5 +101,11 @@ DELETE FROM empleo.especialidades
     WHERE nombre IN (
         'Limpieza general',
         'Cocina y alimentación',
-        'Cuidado de niños'
+        'Cuidado de niños',
+        'Limpieza profunda',
+        'Planchado',
+        'Zonas verdes',
+        'Cuidado de adultos',
+        'Mascotas',
+        'Bioseguridad'
     );

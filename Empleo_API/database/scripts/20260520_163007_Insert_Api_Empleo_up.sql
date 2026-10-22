@@ -2,7 +2,14 @@
 INSERT INTO empleo.especialidades (nombre, descripcion, icono) VALUES
     ('Limpieza general',     'Aseo y limpieza de espacios del hogar',      'icon-spray'),
     ('Cocina y alimentación','Preparación de alimentos y limpieza de cocina','icon-chef'),
-    ('Cuidado de niños',     'Acompañamiento y cuidado de menores de edad', 'icon-baby');
+    ('Cuidado de niños',     'Acompañamiento y cuidado de menores de edad', 'icon-baby'),
+    -- Las que ofrece el registro del front y faltaban en el catalogo
+    ('Limpieza profunda',    'Limpieza a fondo de cocina, baños y zonas difíciles', 'icon-sparkles'),
+    ('Planchado',            'Planchado y organización de ropa',            'icon-shirt'),
+    ('Zonas verdes',         'Cuidado de jardines y zonas verdes',          'icon-leaf'),
+    ('Cuidado de adultos',   'Acompañamiento de adultos mayores',           'icon-heart'),
+    ('Mascotas',             'Paseo y cuidado de mascotas',                 'icon-paw'),
+    ('Bioseguridad',         'Desinfección y protocolos de bioseguridad',   'icon-shield');
  
 -- ---- empleo.tipo_inmueble ------------------------------------
 INSERT INTO empleo.tipo_inmueble (nombre, descripcion) VALUES
