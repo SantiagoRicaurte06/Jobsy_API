@@ -27,6 +27,9 @@ type Facturacion struct {
 	FacturaDireccion *string   `orm:"column(factura_direccion);null"`
 	FacturaCiudad    *string   `orm:"column(factura_ciudad);null"`
 	FacturaDpto      *string   `orm:"column(factura_dpto);null"`
+	FacturaBarrio    *string   `orm:"column(factura_barrio);null"`
+	FacturaDetalle   *string   `orm:"column(factura_detalle);null"`
+	FacturaNotas     *string   `orm:"column(factura_notas);null"`
 	Activo           bool      `orm:"column(activo)"`
 	CreadoEn         time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn    time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
