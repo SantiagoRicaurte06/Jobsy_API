@@ -19,22 +19,22 @@ type Ofertas struct {
 	// GET /v1/ofertas devolviendo cero filas teniendo tres en la tabla.
 	IdDiasTrabajados   *DiasTrabajados `orm:"column(id_dias_trabajados);rel(fk);null"`
 	Titulo             string          `orm:"column(titulo)"`
-	Descripcion        string          `orm:"column(descripcion);null"`
+	Descripcion        *string         `orm:"column(descripcion);null"`
 	IdTipoInmueble     *TipoInmueble   `orm:"column(id_tipo_inmueble);rel(fk)"`
 	IdTamanoInmueble   *TamanoInmueble `orm:"column(id_tamano_inmueble);rel(fk)"`
-	NumHabitaciones    int             `orm:"column(num_habitaciones);null"`
-	NumBanos           int             `orm:"column(num_banos);null"`
-	Barrio             string          `orm:"column(barrio);null"`
+	NumHabitaciones    *int            `orm:"column(num_habitaciones);null"`
+	NumBanos           *int            `orm:"column(num_banos);null"`
+	Barrio             *string         `orm:"column(barrio);null"`
 	Direccion          string          `orm:"column(direccion)"`
 	Ciudad             string          `orm:"column(ciudad)"`
 	TarifaHora         float64         `orm:"column(tarifa_hora)"`
-	TarifaJornada      float64         `orm:"column(tarifa_jornada);null"`
-	HorarioDescripcion string          `orm:"column(horario_descripcion);null"`
+	TarifaJornada      *float64        `orm:"column(tarifa_jornada);null"`
+	HorarioDescripcion *string         `orm:"column(horario_descripcion);null"`
 	IdModalidadTrabajo int             `orm:"column(id_modalidad_trabajo)"`
 	InsumosCliente     bool            `orm:"column(insumos_cliente)"`
 	Vigilancia         bool            `orm:"column(vigilancia)"`
 	IdTipoMascota      int             `orm:"column(id_tipo_mascota)"`
-	CondicionesExtra   string          `orm:"column(condiciones_extra);null"`
+	CondicionesExtra   *string         `orm:"column(condiciones_extra);null"`
 	IdEstado           int             `orm:"column(id_estado)"`
 	Destacada          bool            `orm:"column(destacada)"`
 	Nueva              bool            `orm:"column(nueva)"`

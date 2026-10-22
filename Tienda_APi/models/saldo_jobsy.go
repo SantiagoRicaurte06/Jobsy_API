@@ -16,7 +16,7 @@ type SaldoJobsy struct {
 	SaldoDisponible float64   `orm:"column(saldo_disponible)"`
 	TotalGanado     float64   `orm:"column(total_ganado)"`
 	TotalRetirado   float64   `orm:"column(total_retirado)"`
-	ProximoPago     time.Time `orm:"column(proximo_pago);type(date);null"`
+	ProximoPago     *time.Time `orm:"column(proximo_pago);type(date);null"`
 	Activo          bool      `orm:"column(activo)"`
 	CreadoEn        time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn   time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

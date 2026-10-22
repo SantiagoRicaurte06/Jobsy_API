@@ -19,17 +19,17 @@ type Postulaciones struct {
 	DisponibleDesde    time.Time  `orm:"column(disponible_desde);type(date)"`
 	IdModalidadDisp    int        `orm:"column(id_modalidad_disp)"`
 	IdTurnoPostulacion int        `orm:"column(id_turno_postulacion)"`
-	NotaDisponibilidad string     `orm:"column(nota_disponibilidad);null"`
+	NotaDisponibilidad *string    `orm:"column(nota_disponibilidad);null"`
 	IdFormaCobro       int        `orm:"column(id_forma_cobro)"`
-	TarifaMin          float64    `orm:"column(tarifa_min);null"`
-	TarifaMax          float64    `orm:"column(tarifa_max);null"`
-	MensajeEmpleador   string     `orm:"column(mensaje_empleador);null"`
+	TarifaMin          *float64   `orm:"column(tarifa_min);null"`
+	TarifaMax          *float64   `orm:"column(tarifa_max);null"`
+	MensajeEmpleador   *string    `orm:"column(mensaje_empleador);null"`
 	AceptaTerminos     bool       `orm:"column(acepta_terminos)"`
 	Activo             bool       `orm:"column(activo)"`
 	PostuladoEn        time.Time  `orm:"column(postulado_en);type(timestamp without time zone);auto_now_add"`
-	RespondidoEn       time.Time  `orm:"column(respondido_en);type(timestamp without time zone);null"`
-	NotaRechazo        string     `orm:"column(nota_rechazo);null"`
-	OrigenPostulacion  bool       `orm:"column(origen_postulacion);null"`
+	RespondidoEn       *time.Time `orm:"column(respondido_en);type(timestamp without time zone);null"`
+	NotaRechazo        *string    `orm:"column(nota_rechazo);null"`
+	OrigenPostulacion  *bool      `orm:"column(origen_postulacion);null"`
 	ActualizadoEn      time.Time  `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
 }
 

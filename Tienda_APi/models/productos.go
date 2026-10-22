@@ -14,13 +14,13 @@ type Productos struct {
 	Id                 int               `orm:"column(id_productos);pk;auto"`
 	IdCategoriasTienda *CategoriasTienda `orm:"column(id_categorias_tienda);rel(fk)"`
 	Nombre             string            `orm:"column(nombre)"`
-	Descripcion        string            `orm:"column(descripcion);null"`
+	Descripcion        *string           `orm:"column(descripcion);null"`
 	IdTipo             int               `orm:"column(id_tipo)"`
 	Precio             float64           `orm:"column(precio)"`
-	PrecioOriginal     float64           `orm:"column(precio_original);null"`
+	PrecioOriginal     *float64          `orm:"column(precio_original);null"`
 	DescuentoPct       int               `orm:"column(descuento_pct)"`
 	Stock              int               `orm:"column(stock)"`
-	ImagenUrl          string            `orm:"column(imagen_url);null"`
+	ImagenUrl          *string           `orm:"column(imagen_url);null"`
 	EsNuevo            bool              `orm:"column(es_nuevo)"`
 	Destacado          bool              `orm:"column(destacado)"`
 	EnvioGratis        bool              `orm:"column(envio_gratis)"`

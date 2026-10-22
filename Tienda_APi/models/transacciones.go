@@ -16,8 +16,8 @@ type Transacciones struct {
 	IdPagos           *Pagos           `orm:"column(id_pagos);rel(fk)"`
 	IdTipoTransaccion *TipoTransaccion `orm:"column(id_tipo_transaccion);rel(fk)"`
 	Monto             float64          `orm:"column(monto)"`
-	Descripcion       string           `orm:"column(descripcion);null"`
-	Referencia        string           `orm:"column(referencia);null"`
+	Descripcion       *string          `orm:"column(descripcion);null"`
+	Referencia        *string          `orm:"column(referencia);null"`
 	Activo            bool             `orm:"column(activo)"`
 	CreadoEn          time.Time        `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn     time.Time        `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

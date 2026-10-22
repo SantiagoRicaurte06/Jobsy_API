@@ -35,10 +35,10 @@ type Pagos struct {
 	IdTipoCuenta *int `orm:"column(id_tipo_cuenta);null"`
 
 	Monto          float64   `orm:"column(monto)"`
-	ReferenciaExt  string    `orm:"column(referencia_ext);null"`
-	Banco          string    `orm:"column(banco);null"`
-	TitularTarjeta string    `orm:"column(titular_tarjeta);null"`
-	Ultimos4       string    `orm:"column(ultimos4);null"`
+	ReferenciaExt  *string   `orm:"column(referencia_ext);null"`
+	Banco          *string   `orm:"column(banco);null"`
+	TitularTarjeta *string   `orm:"column(titular_tarjeta);null"`
+	Ultimos4       *string   `orm:"column(ultimos4);null"`
 	Activo         bool      `orm:"column(activo)"`
 	CreadoEn       time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	// auto_now, no auto_now_add: con auto_now_add la columna se fijaba al

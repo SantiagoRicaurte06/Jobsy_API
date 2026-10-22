@@ -20,13 +20,13 @@ type Facturacion struct {
 	CuponDescuento   float64   `orm:"column(cupon_descuento)"`
 	Envio            float64   `orm:"column(envio)"`
 	Total            float64   `orm:"column(total)"`
-	FacturaNombre    string    `orm:"column(factura_nombre);null"`
-	FacturaDoc       string    `orm:"column(factura_doc);null"`
-	FacturaCorreo    string    `orm:"column(factura_correo);null"`
-	FacturaTelefono  string    `orm:"column(factura_telefono);null"`
-	FacturaDireccion string    `orm:"column(factura_direccion);null"`
-	FacturaCiudad    string    `orm:"column(factura_ciudad);null"`
-	FacturaDpto      string    `orm:"column(factura_dpto);null"`
+	FacturaNombre    *string   `orm:"column(factura_nombre);null"`
+	FacturaDoc       *string   `orm:"column(factura_doc);null"`
+	FacturaCorreo    *string   `orm:"column(factura_correo);null"`
+	FacturaTelefono  *string   `orm:"column(factura_telefono);null"`
+	FacturaDireccion *string   `orm:"column(factura_direccion);null"`
+	FacturaCiudad    *string   `orm:"column(factura_ciudad);null"`
+	FacturaDpto      *string   `orm:"column(factura_dpto);null"`
 	Activo           bool      `orm:"column(activo)"`
 	CreadoEn         time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn    time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

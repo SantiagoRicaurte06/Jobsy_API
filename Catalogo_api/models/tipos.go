@@ -14,7 +14,7 @@ type Tipos struct {
 	Id            int       `orm:"column(id_tipo);pk;auto"`
 	Contexto      string    `orm:"column(contexto)"`
 	Nombre        string    `orm:"column(nombre)"`
-	Descripcion   string    `orm:"column(descripcion);null"`
+	Descripcion   *string   `orm:"column(descripcion);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

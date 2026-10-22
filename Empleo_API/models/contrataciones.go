@@ -20,16 +20,16 @@ type Contrataciones struct {
 	DireccionServicio  string              `orm:"column(direccion_servicio)"`
 	FechaInicio        time.Time           `orm:"column(fecha_inicio);type(date)"`
 	HoraInicio         string              `orm:"column(hora_inicio)"`
-	DuracionHoras      float64             `orm:"column(duracion_horas);null"`
+	DuracionHoras      *float64            `orm:"column(duracion_horas);null"`
 	IdModalidad        int 				   `orm:"column(id_modalidad)"`
 	TarifaAcordada     float64             `orm:"column(tarifa_acordada)"`
-	TotalEstimado      float64             `orm:"column(total_estimado);null"`
-	DescripcionTrabajo string              `orm:"column(descripcion_trabajo);null"`
-	NotaAdicional      string              `orm:"column(nota_adicional);null"`
+	TotalEstimado      *float64            `orm:"column(total_estimado);null"`
+	DescripcionTrabajo *string             `orm:"column(descripcion_trabajo);null"`
+	NotaAdicional      *string             `orm:"column(nota_adicional);null"`
 	Activo             bool                `orm:"column(activo)"`
 	CreadoEn           time.Time           `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn      time.Time           `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
-	FinalizadoEn       time.Time           `orm:"column(finalizado_en);type(timestamp without time zone);null"`
+	FinalizadoEn       *time.Time          `orm:"column(finalizado_en);type(timestamp without time zone);null"`
 }
 
 func (t *Contrataciones) TableName() string {

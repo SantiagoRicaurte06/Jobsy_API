@@ -15,7 +15,7 @@ type ReporteMensajes struct {
 	IdReportes    *Reportes `orm:"column(id_reportes);rel(fk)"`
 	IdRemitente   int       `orm:"column(id_remitente)"`
 	Mensaje       string    `orm:"column(mensaje)"`
-	ArchivoUrl    string    `orm:"column(archivo_url);null"`
+	ArchivoUrl    *string   `orm:"column(archivo_url);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

@@ -13,15 +13,15 @@ import (
 type PerfilesEmpleado struct {
 	Id                 int       `orm:"column(id_perfiles_empleado);pk;auto"`
 	IdUsuarios         int       `orm:"column(id_usuarios)"`
-	Bio                string    `orm:"column(bio);null"`
+	Bio                *string   `orm:"column(bio);null"`
 	IdNivelExperiencia int       `orm:"column(id_nivel_experiencia)"`
-	AniosExperiencia   int       `orm:"column(anios_experiencia);null"`
-	TarifaHora         float64   `orm:"column(tarifa_hora);null"`
+	AniosExperiencia   *int      `orm:"column(anios_experiencia);null"`
+	TarifaHora         *float64  `orm:"column(tarifa_hora);null"`
 	TarifaNegociable   bool      `orm:"column(tarifa_negociable)"`
 	IdModalidadTrabajo int       `orm:"column(id_modalidad_trabajo))"`
 	IdTurnoPreferido   int       `orm:"column(id_turno_preferido)"`
-	DistanciaMaxKm     int       `orm:"column(distancia_max_km);null"`
-	BarrioZona         string    `orm:"column(barrio_zona);null"`
+	DistanciaMaxKm     *int      `orm:"column(distancia_max_km);null"`
+	BarrioZona         *string   `orm:"column(barrio_zona);null"`
 	HvVisible          bool      `orm:"column(hv_visible)"`
 	AparecerBusquedas  bool      `orm:"column(aparecer_busquedas)"`
 	RatingPromedio     float64   `orm:"column(rating_promedio)"`

@@ -17,7 +17,7 @@ type HorariosAgendados struct {
 	IdTurno          int             `orm:"column(id_turno)"`
 	HoraInicio       string          `orm:"column(hora_inicio)"`
 	HoraFin          string          `orm:"column(hora_fin)"`
-	Nota             string          `orm:"column(nota);null"`
+	Nota             *string         `orm:"column(nota);null"`
 	Activo           bool            `orm:"column(activo)"`
 	CreadoEn         time.Time       `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn    time.Time       `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

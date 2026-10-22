@@ -14,8 +14,8 @@ type Sesiones struct {
 	Id            int       `orm:"column(id_sesiones);pk;auto"`
 	IdUsuarios    *Usuarios `orm:"column(id_usuarios);rel(fk)"`
 	Token         string    `orm:"column(token)"`
-	Dispositivo   string    `orm:"column(dispositivo);null"`
-	Ip            string    `orm:"column(ip);null"`
+	Dispositivo   *string   `orm:"column(dispositivo);null"`
+	Ip            *string   `orm:"column(ip);null"`
 	Activa        bool      `orm:"column(activa)"`
 	ExpiraEn      time.Time `orm:"column(expira_en);type(timestamp without time zone)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`

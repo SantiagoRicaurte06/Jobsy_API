@@ -15,8 +15,8 @@ type DocumentosIdentidad struct {
 	IdUsuarios      *Usuarios      `orm:"column(id_usuarios);rel(fk)"`
 	IdTipoDocumento *TipoDocumento `orm:"column(id_tipo_documento);rel(fk)"`
 	NumeroDocumento string         `orm:"column(numero_documento)"`
-	FechaExpedicion time.Time      `orm:"column(fecha_expedicion);type(date);null"`
-	LugarExpedicion string         `orm:"column(lugar_expedicion);null"`
+	FechaExpedicion *time.Time     `orm:"column(fecha_expedicion);type(date);null"`
+	LugarExpedicion *string        `orm:"column(lugar_expedicion);null"`
 	Activo          bool           `orm:"column(activo)"`
 	CreadoEn        time.Time      `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn   time.Time      `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

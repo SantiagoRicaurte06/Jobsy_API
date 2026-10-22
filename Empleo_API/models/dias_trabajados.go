@@ -13,7 +13,7 @@ import (
 type DiasTrabajados struct {
 	Id              int         `orm:"column(id_dias_trabajados);pk;auto"`
 	IdDiaSemana     int         `orm:"column(id_dia_semana)"`
-	HorasTrabajadas string      `orm:"column(horas_trabajadas);null"`
+	HorasTrabajadas *string     `orm:"column(horas_trabajadas);null"`
 	Activo          bool        `orm:"column(activo)"`
 	CreadoEn        time.Time   `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn   time.Time   `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

@@ -14,7 +14,7 @@ type MetodosPagoGuardados struct {
 	Id            int         `orm:"column(id_metodos_pago_guardados);pk;auto"`
 	IdUsuarios    int         `orm:"column(id_usuarios)"`
 	IdMetodoPago  *MetodoPago `orm:"column(id_metodo_pago);rel(fk)"`
-	Alias         string      `orm:"column(alias);null"`
+	Alias         *string     `orm:"column(alias);null"`
 	NumeroCuenta  string      `orm:"column(numero_cuenta)"`
 	IdTipoCuenta  int         `orm:"column(id_tipo_cuenta)"`
 	EsPrincipal   bool        `orm:"column(es_principal)"`

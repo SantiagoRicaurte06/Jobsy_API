@@ -16,11 +16,11 @@ type DocumentosUsuario struct {
 	IdTipo        int       `orm:"column(id_tipo)"`
 	UrlArchivo    string    `orm:"column(url_archivo)"`
 	IdEstado      int       `orm:"column(id_estado)"`
-	Notas         string    `orm:"column(notas);null"`
+	Notas         *string   `orm:"column(notas);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`
-	VerificadoEn  time.Time `orm:"column(verificado_en);type(timestamp without time zone);null"`
+	VerificadoEn  *time.Time `orm:"column(verificado_en);type(timestamp without time zone);null"`
 }
 
 func (t *DocumentosUsuario) TableName() string {

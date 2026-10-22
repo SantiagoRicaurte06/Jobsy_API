@@ -14,9 +14,9 @@ type HojasVida struct {
 	Id               int       `orm:"column(id_hojas_vida);pk;auto"`
 	IdUsuarios       int       `orm:"column(id_usuarios)"`
 	Nombre           string    `orm:"column(nombre)"`
-	Resumen          string    `orm:"column(resumen);null"`
+	Resumen          *string   `orm:"column(resumen);null"`
 	EsPredeterminada bool      `orm:"column(es_predeterminada)"`
-	UrlPdf           string    `orm:"column(url_pdf);null"`
+	UrlPdf           *string   `orm:"column(url_pdf);null"`
 	EsPublica        bool      `orm:"column(es_publica)"`
 	ProgresoPct      int       `orm:"column(progreso_pct)"`
 	Activo           bool      `orm:"column(activo)"`

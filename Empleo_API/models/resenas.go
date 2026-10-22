@@ -16,7 +16,7 @@ type Resenas struct {
 	IdReviewer      int            `orm:"column(id_reviewer)"`
 	IdReviewed      int            `orm:"column(id_reviewed)"`
 	Calificacion    float64        `orm:"column(calificacion)"`
-	Comentario      string         `orm:"column(comentario);null"`
+	Comentario      *string        `orm:"column(comentario);null"`
 	IdTipo          int            `orm:"column(id_tipo)"`
 	Activo          bool           `orm:"column(activo)"`
 	CreadoEn        time.Time      `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`

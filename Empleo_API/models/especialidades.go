@@ -13,8 +13,8 @@ import (
 type Especialidades struct {
 	Id            int       `orm:"column(id_especialidades);pk;auto"`
 	Nombre        string    `orm:"column(nombre)"`
-	Descripcion   string    `orm:"column(descripcion);null"`
-	Icono         string    `orm:"column(icono);null"`
+	Descripcion   *string   `orm:"column(descripcion);null"`
+	Icono         *string   `orm:"column(icono);null"`
 	Activa        bool      `orm:"column(activa)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

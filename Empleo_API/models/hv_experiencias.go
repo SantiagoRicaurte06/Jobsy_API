@@ -14,11 +14,11 @@ type HvExperiencias struct {
 	Id            int        `orm:"column(id_hv_experiencias);pk;auto"`
 	IdHojasVida   *HojasVida `orm:"column(id_hojas_vida);rel(fk)"`
 	IdTipo        int        `orm:"column(id_tipo)"`
-	Descripcion   string     `orm:"column(descripcion);null"`
-	Empresa       string     `orm:"column(empresa);null"`
-	Cargo         string     `orm:"column(cargo);null"`
+	Descripcion   *string    `orm:"column(descripcion);null"`
+	Empresa       *string    `orm:"column(empresa);null"`
+	Cargo         *string    `orm:"column(cargo);null"`
 	FechaInicio   time.Time  `orm:"column(fecha_inicio);type(date)"`
-	FechaFin      time.Time  `orm:"column(fecha_fin);type(date);null"`
+	FechaFin      *time.Time `orm:"column(fecha_fin);type(date);null"`
 	Activo        bool       `orm:"column(activo)"`
 	CreadoEn      time.Time  `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time  `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

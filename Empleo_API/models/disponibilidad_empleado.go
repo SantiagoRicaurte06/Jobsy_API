@@ -15,8 +15,8 @@ type DisponibilidadEmpleado struct {
 	IdPerfilesEmpleado *PerfilesEmpleado `orm:"column(id_perfiles_empleado);rel(fk)"`
 	IdDiaSemana        int               `orm:"column(id_dia_semana)"`
 	IdTurno            int               `orm:"column(id_turno)"`
-	HoraInicio         string            `orm:"column(hora_inicio);null"`
-	HoraFin            string            `orm:"column(hora_fin);null"`
+	HoraInicio         *string           `orm:"column(hora_inicio);null"`
+	HoraFin            *string           `orm:"column(hora_fin);null"`
 	Activo             bool              `orm:"column(activo)"`
 	CreadoEn           time.Time         `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn      time.Time         `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

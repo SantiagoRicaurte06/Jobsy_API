@@ -15,7 +15,7 @@ type Reportes struct {
 	IdUsuarios    int       `orm:"column(id_usuarios)"`
 	IdTipo        int       `orm:"column(id_tipo)"`
 	Descripcion   string    `orm:"column(descripcion)"`
-	ArchivoUrl    string    `orm:"column(archivo_url);null"`
+	ArchivoUrl    *string   `orm:"column(archivo_url);null"`
 	IdEstado      int       `orm:"column(id_estado);"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`

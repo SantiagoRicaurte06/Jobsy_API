@@ -17,7 +17,7 @@ type UsuariosSuscripciones struct {
 	IdModalidadSuscripcion int       `orm:"column(id_modalidad_suscripcion)"`
 	IdEstado               int       `orm:"column(id_estado)"`
 	InicioEn               time.Time `orm:"column(inicio_en);type(timestamp without time zone)"`
-	FinEn                  time.Time `orm:"column(fin_en);type(timestamp without time zone);null"`
+	FinEn                  *time.Time `orm:"column(fin_en);type(timestamp without time zone);null"`
 	AutoRenovar            bool      `orm:"column(auto_renovar)"`
 	Activo                 bool      `orm:"column(activo)"`
 	CreadoEn               time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`

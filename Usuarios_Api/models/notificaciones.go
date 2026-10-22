@@ -15,9 +15,9 @@ type Notificaciones struct {
 	IdUsuarios    int       `orm:"column(id_usuarios)"`
 	IdTipo        int       `orm:"column(id_tipo)"`
 	Titulo        string    `orm:"column(titulo)"`
-	Cuerpo        string    `orm:"column(cuerpo);null"`
+	Cuerpo        *string   `orm:"column(cuerpo);null"`
 	Leida         bool      `orm:"column(leida)"`
-	UrlDestino    string    `orm:"column(url_destino);null"`
+	UrlDestino    *string   `orm:"column(url_destino);null"`
 	Activo        bool      `orm:"column(activo)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

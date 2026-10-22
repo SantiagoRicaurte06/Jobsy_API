@@ -13,7 +13,7 @@ import (
 type CategoriasTienda struct {
 	Id            int       `orm:"column(id_categorias_tienda);pk;auto"`
 	Nombre        string    `orm:"column(nombre)"`
-	Icono         string    `orm:"column(icono);null"`
+	Icono         *string   `orm:"column(icono);null"`
 	Activa        bool      `orm:"column(activa)"`
 	CreadoEn      time.Time `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
 	ActualizadoEn time.Time `orm:"column(actualizado_en);type(timestamp without time zone);auto_now"`

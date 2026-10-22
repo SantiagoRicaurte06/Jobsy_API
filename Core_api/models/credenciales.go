@@ -14,11 +14,11 @@ type Credenciales struct {
 	Id               int        `orm:"column(id_credenciales);pk;auto"`
 	IdUsuarios       *Usuarios  `orm:"column(id_usuarios);rel(fk)"`
 	PasswordHash     string     `orm:"column(password_hash)"`
-	Salt             string     `orm:"column(salt);null"`
+	Salt             *string    `orm:"column(salt);null"`
 	DobleFactor      bool       `orm:"column(doble_factor)"`
-	TokenReset       string     `orm:"column(token_reset);null"`
-	TokenExpiraEn    time.Time  `orm:"column(token_expira_en);type(timestamp without time zone);null"`
-	UltimoLogin      time.Time  `orm:"column(ultimo_login);type(timestamp without time zone);null"`
+	TokenReset       *string    `orm:"column(token_reset);null"`
+	TokenExpiraEn    *time.Time `orm:"column(token_expira_en);type(timestamp without time zone);null"`
+	UltimoLogin      *time.Time `orm:"column(ultimo_login);type(timestamp without time zone);null"`
 	IntentosFallidos int        `orm:"column(intentos_fallidos)"`
 	Bloqueado        bool       `orm:"column(bloqueado)"`
 	Activo           bool       `orm:"column(activo)"`

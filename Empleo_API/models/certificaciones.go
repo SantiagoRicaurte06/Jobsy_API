@@ -14,9 +14,9 @@ type Certificaciones struct {
 	Id                 int               `orm:"column(id_certificaciones);pk;auto"`
 	IdPerfilesEmpleado *PerfilesEmpleado `orm:"column(id_perfiles_empleado);rel(fk)"`
 	Nombre             string            `orm:"column(nombre)"`
-	EntidadEmisora     string            `orm:"column(entidad_emisora);null"`
-	AnioEmision        int               `orm:"column(anio_emision);null"`
-	UrlDocumento       string            `orm:"column(url_documento);null"`
+	EntidadEmisora     *string           `orm:"column(entidad_emisora);null"`
+	AnioEmision        *int              `orm:"column(anio_emision);null"`
+	UrlDocumento       *string           `orm:"column(url_documento);null"`
 	IdEstado           int               `orm:"column(id_estado)"`
 	Activo             bool              `orm:"column(activo)"`
 	CreadoEn           time.Time         `orm:"column(creado_en);type(timestamp without time zone);auto_now_add"`
