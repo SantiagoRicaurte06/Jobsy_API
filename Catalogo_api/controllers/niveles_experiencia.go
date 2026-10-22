@@ -53,7 +53,7 @@ func (c *NivelesExperienciaController) Post() {
 			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio Post: el cuerpo no es JSON valido", "data": nil}
 	}
 	c.ServeJSON()
 }
@@ -181,6 +181,8 @@ func (c *NivelesExperienciaController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.NivelesExperiencia{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdateNivelesExperienciaById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,

@@ -59,7 +59,7 @@ func (c *PlanFeaturesController) GetOne() {
 	v, err := models.GetPlanFeaturesById(id)
 	if err != nil {
 		logs.Error(err)
-		c.Data["json"] = map[string]interface{}{"success": true, "status": 400, "message": "Error en el servicio GetOne: La solicitud contiene un parametro invalido o no existe el recurso solicitado"}
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetOne: La solicitud contiene un parametro invalido o no existe el recurso solicitado"}
 	} else {
 		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": v}
 	}
@@ -122,7 +122,8 @@ func (c *PlanFeaturesController) GetAll() {
 
 	l, err := models.GetAllPlanFeatures(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 500, "message": "Error en el servicio GetAll", "data": nil}
 	} else {
 		if l == nil {
 			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": []interface{}{}}
@@ -146,6 +147,8 @@ func (c *PlanFeaturesController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.PlanFeatures{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdatePlanFeaturesById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "date": v}
 		} else {

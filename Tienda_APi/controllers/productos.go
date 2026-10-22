@@ -202,6 +202,8 @@ func (c *ProductosController) Put() {
 	}
 	v := models.Productos{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdateProductosById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,

@@ -247,6 +247,8 @@ func (c *TrCarritoItemsController) Put() {
 		c.ServeJSON()
 		return
 	}
+	// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+	v.Id = id
 
 	if err := models.UpdateTrCarritoItemsById(&v); err != nil {
 		logs.Error("Error al actualizar el item del carrito con id "+idStr+":", err)

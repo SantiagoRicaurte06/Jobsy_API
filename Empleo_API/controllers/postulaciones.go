@@ -148,6 +148,8 @@ func (c *PostulacionesController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Postulaciones{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdatePostulacionesById(&v); err == nil {
 			c.Ctx.Output.SetStatus(200)
 			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "date": v}

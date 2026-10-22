@@ -53,6 +53,13 @@ func (c *UsuariosController) Post() {
 			}
 		}
 
+	} else {
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El cuerpo de la solicitud no es un JSON valido",
+			"data":    nil,
+		}
 	}
 	c.ServeJSON()
 }
@@ -148,22 +155,18 @@ func (c *UsuariosController) GetAll() {
 	l, err := models.GetAllUsuarios(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  500,
+			"message": "Error en el servicio GetAll",
+			"data":    nil,
+		}
 	} else {
-		if err != nil {
-			logs.Error(err)
-			c.Data["json"] = map[string]interface{}{
-				"success": false,
-				"status":  400,
-				"message": err.Error(),
-				"data":    nil,
-			}
-		} else {
-			c.Data["json"] = map[string]interface{}{
-				"success": true,
-				"status":  200,
-				"message": "Consulta exitosa",
-				"data":    l,
-			}
+		c.Data["json"] = map[string]interface{}{
+			"success": true,
+			"status":  200,
+			"message": "Consulta exitosa",
+			"data":    l,
 		}
 	}
 	c.ServeJSON()
@@ -182,6 +185,8 @@ func (c *UsuariosController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Usuarios{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdateUsuariosById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,

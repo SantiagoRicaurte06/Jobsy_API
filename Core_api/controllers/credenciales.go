@@ -49,11 +49,18 @@ func (c *CredencialesController) Post() {
 				"status":  400,
 				"message": err.Error(),
 				"data":    nil,
-				}
-			
-			} 
+			}
+		}
+	} else {
+		c.Data["json"] = map[string]interface{}{
+			"success": false,
+			"status":  400,
+			"message": "El cuerpo de la solicitud no es un JSON valido",
+			"data":    nil,
+		}
+	}
 	c.ServeJSON()
-}}
+}
 
 // GetOne ...
 // @Title Get One
@@ -178,6 +185,8 @@ func (c *CredencialesController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Credenciales{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdateCredencialesById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,

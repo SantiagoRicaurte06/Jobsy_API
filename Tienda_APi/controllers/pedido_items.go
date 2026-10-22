@@ -202,6 +202,8 @@ func (c *PedidoItemsController) Put() {
 	}
 	v := models.PedidoItems{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
+		v.Id = id
 		if err := models.UpdatePedidoItemsById(&v); err == nil {
 			c.Data["json"] = map[string]interface{}{
 				"success": true,
