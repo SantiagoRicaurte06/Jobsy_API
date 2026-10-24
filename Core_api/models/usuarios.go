@@ -51,7 +51,6 @@ func GetUsuariosById(id int) (v *Usuarios, err error) {
 	o := orm.NewOrm()
 	v = &Usuarios{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdGenero")
 		o.LoadRelated(v, "IdRolesUsuarios")
 		return v, nil
 	}

@@ -45,8 +45,6 @@ func GetDisponibilidadEmpleadoById(id int) (v *DisponibilidadEmpleado, err error
 	v = &DisponibilidadEmpleado{Id: id}
 	if err = o.Read(v); err == nil {
 		o.LoadRelated(v, "IdPerfilesEmpleado")
-		o.LoadRelated(v, "IdDiaSemana")
-		o.LoadRelated(v, "IdTurno")
 		return v, nil
 	}
 	return nil, err

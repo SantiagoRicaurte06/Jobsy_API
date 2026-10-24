@@ -46,7 +46,6 @@ func GetHojasVidaById(id int) (v *HojasVida, err error) {
 	o := orm.NewOrm()
 	v = &HojasVida{Id: id}
 	if err = o.Read(v); err == nil {
-		o.LoadRelated(v, "IdUsuarios")
 		return v, nil
 	}
 	return nil, err
