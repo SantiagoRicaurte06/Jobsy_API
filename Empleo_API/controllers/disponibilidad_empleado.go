@@ -3,7 +3,6 @@ package controllers
 import (
 	"Api_Josby/models"
 	"encoding/json"
-	"errors"
 	"strconv"
 	"strings"
 
@@ -37,7 +36,7 @@ func (c *DisponibilidadEmpleadoController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddDisponibilidadEmpleado(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "message": "Post exitoso", "date": v}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "message": "Post exitoso", "data": v}
 		} else {
 			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio Post: informacion invalidad verifique el body"}
 		}
@@ -112,7 +111,7 @@ func (c *DisponibilidadEmpleadoController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error: invalid query key/value pair", "data": nil}
 				c.ServeJSON()
 				return
 			}
@@ -124,13 +123,9 @@ func (c *DisponibilidadEmpleadoController) GetAll() {
 	l, err := models.GetAllDisponibilidadEmpleado(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
-		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetAll: no se encontro el ID", "data": nil}
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": err.Error(), "data": nil}
 	} else {
-		if l == nil {
-			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio GetAll: no se encontro el ID", "data": nil}
-		} else {
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": l}
-		}
+		c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Consulta exitosa", "data": l}
 	}
 	c.ServeJSON()
 }
@@ -150,7 +145,7 @@ func (c *DisponibilidadEmpleadoController) Put() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateDisponibilidadEmpleadoById(&v); err == nil {
 			c.Ctx.Output.SetStatus(200)
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "date": v}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "data": v}
 		} else {
 			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el Put: No se encontro el id"}
 		}
