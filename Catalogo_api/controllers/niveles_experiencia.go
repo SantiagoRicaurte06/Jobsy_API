@@ -53,7 +53,7 @@ func (c *NivelesExperienciaController) Post() {
 			}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio Post: body invalido", "data": nil}
 	}
 	c.ServeJSON()
 }
