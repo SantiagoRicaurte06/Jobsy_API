@@ -3,7 +3,6 @@ package controllers
 import (
 	"Api_Josby/models"
 	"encoding/json"
-	"errors"
 	"strconv"
 	"strings"
 
@@ -37,7 +36,7 @@ func (c *TipoInmuebleController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddTipoInmueble(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "message": "Post exitoso", "date": v}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "message": "Post exitoso", "data": v}
 		} else {
 			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el servicio Post: informacion invalidad verifique el body"}
 		}
@@ -112,7 +111,7 @@ func (c *TipoInmuebleController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = errors.New("Error: invalid query key/value pair")
+				c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error: invalid query key/value pair", "data": nil}
 				c.ServeJSON()
 				return
 			}
@@ -151,7 +150,7 @@ func (c *TipoInmuebleController) Put() {
 		// El id de la ruta manda: sin esto, un Id en el cuerpo actualizaba otra fila.
 		v.Id = id
 		if err := models.UpdateTipoInmuebleById(&v); err == nil {
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "date": v}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 200, "message": "Actualizado exitoso", "data": v}
 		} else {
 			c.Data["json"] = map[string]interface{}{"success": false, "status": 400, "message": "Error en el Put: No se encontro el id"}
 		}
