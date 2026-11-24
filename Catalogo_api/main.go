@@ -32,7 +32,8 @@ func main() {
 	pgDatabase, _ := beego.AppConfig.String("PGdatabase")
 	pgSchem, _ := beego.AppConfig.String("PGschema")
 
-	fmt.Printf("PostgreSQL connection string: postgres://%s:%s@%s:%s/%s?sslmode=disable&timezone=UTC&search_path=%s\n", pgUser, pgPass, pgHost, pgPort, pgDatabase, pgSchem)
+	// La clave no se imprime: los logs de produccion no deben llevar credenciales.
+	fmt.Printf("PostgreSQL: postgres://%s:****@%s:%s/%s?search_path=%s\n", pgUser, pgHost, pgPort, pgDatabase, pgSchem)
 
 	// Las columnas son "timestamp without time zone" y lib/pq las entrega como UTC.
 	// Con la hora local el ORM restaba el desfase en cada escritura y las fechas

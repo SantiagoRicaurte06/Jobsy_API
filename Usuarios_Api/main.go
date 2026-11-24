@@ -34,7 +34,8 @@ func main() {
     database, _ := beego.AppConfig.String("PGdatabase")
     schema, _ := beego.AppConfig.String("PGschema")
 
-	fmt.Printf("postgresSqL connection string: postgres://%s:%s@%s:%s/%s?sslmode=disable&timezone=UTC&search_path="+"%s\n", User, password, host, port, database, schema)
+	// La clave no se imprime: los logs de produccion no deben llevar credenciales.
+	fmt.Printf("PostgreSQL: postgres://%s:****@%s:%s/%s?search_path=%s\n", User, host, port, database, schema)
 
 
 // Register the database connection
