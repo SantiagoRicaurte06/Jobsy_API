@@ -1,0 +1,7 @@
+.git
+**/.env
+**/.env.*
+**/*.exe
+**/*.zip
+**/*.log
+**/database/migrations

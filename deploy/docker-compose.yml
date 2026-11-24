@@ -1,0 +1,190 @@
+# Backend de Jobsy en un solo servidor.
+#
+#   internet ──443──> caddy ──> mid:9090 ──> 7 APIs (red interna) ──> db
+#
+# Solo caddy publica puertos. Las APIs CRUD no tienen autenticacion propia:
+# quedan en la red interna y solo el MID las llama.
+#
+# Espera los dos repos clonados uno al lado del otro:
+#   ~/jobsy/Jobsy_API   (este compose esta en Jobsy_API/deploy)
+#   ~/jobsy/MID_JOBSY
+#
+# Uso (desde esta carpeta, con .env creado a partir de .env.ejemplo):
+#   docker compose up -d --build
+
+x-api: &api
+  build:
+    context: ..
+  restart: unless-stopped
+  depends_on:
+    db:
+      condition: service_healthy
+  networks: [interna]
+
+services:
+  db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    command: ["postgres", "-c", "timezone=America/Bogota"]
+    environment:
+      POSTGRES_DB: jobsy_api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_CLAVE_ADMIN:?falta DB_CLAVE_ADMIN en .env}
+      # Los lee initdb/99_usuario_app.sh para crear el usuario de las APIs.
+      JOBSY_DB_USUARIO: ${DB_USUARIO_APP:-jobsy_app}
+      JOBSY_DB_CLAVE: ${DB_CLAVE_APP:?falta DB_CLAVE_APP en .env}
+    volumes:
+      # Postgres 18 guarda los datos bajo /var/lib/postgresql/<version>.
+      - datos_db:/var/lib/postgresql
+      # Solo se ejecuta la primera vez, con el volumen vacio.
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d jobsy_api"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [interna]
+
+  core:
+    <<: *api
+    build: { context: .., args: { SERVICIO: Core_api } }
+    environment:
+      CORE_API_HTTP_PORT: 8081
+      CORE_API_RUN_MODE: prod
+      CORE_API_PGUSER: ${DB_USUARIO_APP:-jobsy_app}
+      CORE_API_PGPASS: ${DB_CLAVE_APP}
+      CORE_API_PGHOST: db
+      CORE_API_PGPORT: 5432
+      CORE_API_PGDATABASE: jobsy_api
+      CORE_API_PGSCHEMA: core
+
+  usuarios:
+    <<: *api
+    build: { context: .., args: { SERVICIO: Usuarios_Api } }
+    environment:
+      API_CRUD_HTTP_PORT: 8082
+      API_CRUD_RUN_MODE: prod
+      API_CRUD_DB_USER: ${DB_USUARIO_APP:-jobsy_app}
+      API_CRUD_DB_PASSWORD: ${DB_CLAVE_APP}
+      API_CRUD_DB_HOST: db
+      API_CRUD_DB_PORT: 5432
+      API_CRUD_TIENDA_PGDB: jobsy_api
+      API_CRUD_TIENDA_PGDSHEMA: usuarios
+
+  empleo:
+    <<: *api
+    build: { context: .., args: { SERVICIO: Empleo_API } }
+    environment:
+      CRUD_EMPLEO_HTTP_PORT: 8083
+      CRUD_EMPLEO_RUNMODE: prod
+      CRUD_EMPLEO_PGUSER: ${DB_USUARIO_APP:-jobsy_app}
+      CRUD_EMPLEO_PGPASSWORD: ${DB_CLAVE_APP}
+      CRUD_EMPLEO_PGHOST: db
+      CRUD_EMPLEO_PGPORT: 5432
+      CRUD_EMPLEO_PGDATABASE: jobsy_api
+      CRUD_EMPLEO_PGSCHEMA: empleo
+
+  catalogo:
+    <<: *api
+    build: { context: .., args: { SERVICIO: Catalogo_api } }
+    environment:
+      CATALOGO_API_HTTP_PORT: 8084
+      CATALOGO_API_RUN_MODE: prod
+      CATALOGO_API_PGUSER: ${DB_USUARIO_APP:-jobsy_app}
+      CATALOGO_API_PGPASS: ${DB_CLAVE_APP}
+      CATALOGO_API_PGHOST: db
+      CATALOGO_API_PGPORT: 5432
+      CATALOGO_API_PGDATABASE: jobsy_api
+      CATALOGO_API_PGSCHEMA: catalogo
+
+  tienda:
+    <<: *api
+    build: { context: .., args: { SERVICIO: Tienda_APi } }
+    environment:
+      CRUD_TIENDA_HTTP_PORT: 8085
+      CRUD_TIENDA_RUNMODE: prod
+      CRUD_TIENDA_PGUSER: ${DB_USUARIO_APP:-jobsy_app}
+      CRUD_TIENDA_PGPASSWORD: ${DB_CLAVE_APP}
+      CRUD_TIENDA_PGHOST: db
+      CRUD_TIENDA_PGPORT: 5432
+      CRUD_TIENDA_PGDATABASE: jobsy_api
+      CRUD_TIENDA_PGSCHEMA: tienda
+
+  suscripciones:
+    <<: *api
+    build: { context: .., args: { SERVICIO: suscripciones_API } }
+    environment:
+      CRUD_SUSCRIPCIONES_HTTP_PORT: 8086
+      CRUD_SUSCRIPCIONES_RUNMODE: prod
+      CRUD_SUSCRIPCIONES_PGUSER: ${DB_USUARIO_APP:-jobsy_app}
+      CRUD_SUSCRIPCIONES_PGPASSWORD: ${DB_CLAVE_APP}
+      CRUD_SUSCRIPCIONES_PGHOST: db
+      CRUD_SUSCRIPCIONES_PGPORT: 5432
+      CRUD_SUSCRIPCIONES_PGDATABASE: jobsy_api
+      CRUD_SUSCRIPCIONES_PGSCHEMA: suscripciones
+
+  soporte:
+    <<: *api
+    build: { context: .., args: { SERVICIO: Soporte_API } }
+    environment:
+      CRUD_SOPORTE_HTTP_PORT: 8087
+      CRUD_SOPORTE_RUNMODE: prod
+      CRUD_SOPORTE_PGUSER: ${DB_USUARIO_APP:-jobsy_app}
+      CRUD_SOPORTE_PGPASSWORD: ${DB_CLAVE_APP}
+      CRUD_SOPORTE_PGHOST: db
+      CRUD_SOPORTE_PGPORT: 5432
+      CRUD_SOPORTE_PGDATABASE: jobsy_api
+      CRUD_SOPORTE_PGSCHEMA: soporte
+
+  mid:
+    build:
+      context: ../../MID_JOBSY
+    restart: unless-stopped
+    depends_on: [core, usuarios, empleo, catalogo, tienda, suscripciones, soporte]
+    environment:
+      MID_ENTORNO: prod
+      MID_RUNMODE: prod
+      MID_JWT_SECRETO: ${MID_JWT_SECRETO:?falta MID_JWT_SECRETO en .env}
+      MID_SECRETO_PASARELA: ${MID_SECRETO_PASARELA:-}
+      MID_ORIGENES: ${URL_FRONT:?falta URL_FRONT en .env}
+      MID_URL_PUBLICA: https://${DOMINIO_API:?falta DOMINIO_API en .env}
+      MID_URL_CORE: http://core:8081
+      MID_URL_USUARIOS: http://usuarios:8082
+      MID_URL_EMPLEO: http://empleo:8083
+      MID_URL_CATALOGO: http://catalogo:8084
+      MID_URL_TIENDA: http://tienda:8085
+      MID_URL_SUSCRIPCIONES: http://suscripciones:8086
+      MID_URL_SOPORTE: http://soporte:8087
+    volumes:
+      - archivos_mid:/app/archivos
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9090/api/salud"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+    networks: [interna]
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on: [mid]
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMINIO_API: ${DOMINIO_API}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - datos_caddy:/data
+      - config_caddy:/config
+    networks: [interna]
+
+volumes:
+  datos_db:
+  archivos_mid:
+  datos_caddy:
+  config_caddy:
+
+networks:
+  interna:

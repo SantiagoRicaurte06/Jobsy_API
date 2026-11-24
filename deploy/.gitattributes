@@ -1,0 +1,4 @@
+# Postgres ejecuta estos scripts en Linux: con CRLF fallan.
+*.sh text eol=lf
+*.sql text eol=lf
+Caddyfile text eol=lf
