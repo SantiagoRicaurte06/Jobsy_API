@@ -93,6 +93,12 @@ func init() {
 				&controllers.MetodosPagoGuardadosController{},
 			),
 		),
+
+		beego.NSNamespace("/resenas_productos",
+			beego.NSInclude(
+				&controllers.ResenasProductosController{},
+			),
+		),
 	)
 
 	beego.AddNamespace(ns)

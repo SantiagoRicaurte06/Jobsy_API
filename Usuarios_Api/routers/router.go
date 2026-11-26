@@ -22,9 +22,21 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/perfiles_guardados",
+			beego.NSInclude(
+				&controllers.PerfilesGuardadosController{},
+			),
+		),
+
 		beego.NSNamespace("/notificaciones",
 			beego.NSInclude(
 				&controllers.NotificacionesController{},
+			),
+		),
+
+		beego.NSNamespace("/suscriptores_boletin",
+			beego.NSInclude(
+				&controllers.SuscriptoresBoletinController{},
 			),
 		),
 	)
